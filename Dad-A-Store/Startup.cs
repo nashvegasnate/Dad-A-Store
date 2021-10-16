@@ -28,6 +28,7 @@ namespace Dad_A_Store
     public void ConfigureServices(IServiceCollection services)
     {
 
+
       services.AddSingleton<IConfiguration>(Configuration);
 
 
