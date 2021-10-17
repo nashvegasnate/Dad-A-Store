@@ -33,5 +33,21 @@ namespace Dad_A_Store.DataAccess
 
       return orderDetails;
     }
+
+    internal List<OrderDetail> GetByOrderID(Guid orderID)
+    {
+      //connection to db
+      using var db = new SqlConnection(_connectionString);
+
+      //Query string
+      var sql = @"SELECT *
+                  FROM ORDERDETAILS
+                  WHERE OrderID = @orderID";
+
+      var orderDetails = db.Query<OrderDetail>(sql, new { orderID }).ToList();
+
+      return orderDetails;
+    }
+
   }
 }
