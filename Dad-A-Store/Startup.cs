@@ -32,6 +32,7 @@ namespace Dad_A_Store
 
       services.AddSingleton<IConfiguration>(Configuration);
       services.AddTransient<OrderRepository>();
+      services.AddTransient<OrderDetailRepository>();
 
       services.AddControllers();
       services.AddSwaggerGen(c =>
