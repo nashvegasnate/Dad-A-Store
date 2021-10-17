@@ -1,3 +1,4 @@
+using Dad_A_Store.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,11 +32,12 @@ namespace Dad_A_Store
 
       services.AddSingleton<IConfiguration>(Configuration);
 
+      services.AddTransient<CategoryRepository>();
 
       services.AddControllers();
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dad_A_Store", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "TempData-A-Store", Version = "v1" });
       });
     }
 
@@ -46,7 +48,7 @@ namespace Dad_A_Store
       {
         app.UseDeveloperExceptionPage();
         app.UseSwagger();
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dad_A_Store v1"));
+        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TempData-A-Store v1"));
       }
 
       app.UseHttpsRedirection();
