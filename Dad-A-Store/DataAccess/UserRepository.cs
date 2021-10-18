@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
-public class Class1
+
+namespace Dad_A_Store.DataAccess
 {
-	public Class1()
+	public class UserRepository
 	{
 		//
-		// TODO: Add constructor logic here
-		//
+
 	}
 }
