@@ -5,15 +5,12 @@ using System.Threading.Tasks;
 using Dad_A_Store.DataAccess;
 using Dad_A_Store.Models;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
-public class Class1
+
+namespace Dad_A_Store.Controllers
 {
-	public Class1()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+  public class PaymentController : ControllerBase
+  {
+    //
+
+  }
 }
