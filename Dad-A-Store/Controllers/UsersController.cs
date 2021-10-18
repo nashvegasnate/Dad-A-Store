@@ -8,6 +8,8 @@ using Dad_A_Store.Models;
 
 namespace Dad_A_Store.Controllers
 {
+  [Route("api/users")]
+  [ApiController]
   public class UsersController : ControllerBase
   {
 
