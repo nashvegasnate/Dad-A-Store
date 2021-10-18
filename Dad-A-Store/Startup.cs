@@ -1,3 +1,4 @@
+using Dad_A_Store.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +31,8 @@ namespace Dad_A_Store
 
 
       services.AddSingleton<IConfiguration>(Configuration);
-
+      services.AddTransient<OrderRepository>();
+      services.AddTransient<OrderDetailRepository>();
 
       services.AddControllers();
       services.AddSwaggerGen(c =>
