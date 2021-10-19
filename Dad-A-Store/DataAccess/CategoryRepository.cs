@@ -3,9 +3,7 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 namespace Dad_A_Store.DataAccess
