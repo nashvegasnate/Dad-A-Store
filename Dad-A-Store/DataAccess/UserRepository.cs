@@ -12,7 +12,44 @@ namespace Dad_A_Store.DataAccess
 {
 	public class UserRepository
 	{
-		//
+    
+    readonly string _connectionString;
 
-	}
+    public UserRepository(IConfiguration config)
+    {
+      _connectionString = config.GetConnectionString("TempDataAStore");
+    }
+
+    internal IEnumerable<User> GetAll()
+    {
+      // creates connection to database
+      using var db = new SqlConnection(_connectionString);
+      
+      // SQL query 
+      var sql = @"SELECT *
+                  FROM USERS";
+
+      // Query the database, store results in a list
+
+      var users = db.Query<Users>(sql).ToList();
+
+      return users;
+    }
+
+    internal List<Users> GetByUserID(Guid userID)
+    {
+      // creates connection to db
+      using var db = new SqlConnection(_connectionString);
+
+      // SQL Query string
+      var sql = @"SELECT *
+                  FROM PAYMENTS
+                  WHERE UserID = @userID";
+
+      var users = db.Query<Users>(sql, new { userID }).ToList();
+
+      return users;
+    }
+
+  }
 }
