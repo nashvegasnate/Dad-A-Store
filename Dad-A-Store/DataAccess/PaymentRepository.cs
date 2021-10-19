@@ -25,7 +25,7 @@ namespace Dad_A_Store.DataAccess
     // GetALL Method
     internal List<Payment> GetAll()
     {
-      // creates connection to database
+      // Creates connection to database
       using var db = new SqlConnection(_connectionString);
 
       // SQL query 

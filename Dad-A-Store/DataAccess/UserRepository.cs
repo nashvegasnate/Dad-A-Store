@@ -15,7 +15,7 @@ namespace Dad_A_Store.DataAccess
     
     readonly string _connectionString;
 
-    // connection configuration string in Startup
+    // Connection configuration string in Startup
     public UserRepository(IConfiguration config)
     {
       _connectionString = config.GetConnectionString("TempDataAStore");
@@ -48,6 +48,7 @@ namespace Dad_A_Store.DataAccess
                   FROM PAYMENTS
                   WHERE UserID = @userID";
 
+      // UsersID List() variable
       var users = db.Query<Users>(sql, new { userID }).ToList();
 
       return users;
