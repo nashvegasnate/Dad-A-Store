@@ -49,5 +49,47 @@ namespace Dad_A_Store.DataAccess
       return orderDetails;
     }
 
+    internal OrderDetail Add(OrderDetail orderDetail)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"INSERT INTO ORDERDETAILS
+                (OrderID, ItemID, ItemQuantity, ItemPrice)
+                OUTPUT inserted.*
+                VALUES
+                (@OrderID, @ItemID, @ItemQuantity, @ItemPrice)";
+
+      var id = db.ExecuteScalar<Guid>(sql, orderDetail);
+      var newItemID = orderDetail.ItemID;
+
+      var orderQuery = @"SELECT * 
+                         FROM ORDERDETAILS
+                         WHERE OrderID = @id AND ItemID = @newItemID";
+
+      var orderDetailResult = db.QueryFirstOrDefault<OrderDetail>(orderQuery, new { id, newItemID });
+
+      return orderDetailResult;
+
+
+    }
+
+    internal OrderDetail Update(Guid orderID, Guid itemID, OrderDetail orderDetail)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"UPDATE ORDERDETAILS
+                  SET ItemID = @ItemID,
+		          ItemQuantity = @ItemQuantity
+		          ItemPrice = @ItemPrice
+                  OUTPUT inserted.*
+                  WHERE OrderID = @orderID AND ItemID = @itemID";
+      orderDetail.ItemID = orderID;
+
+      var updatedOrderDetail = db.QuerySingleOrDefault(sql, orderDetail);
+
+      return updatedOrderDetail;
+
+    }
+
   }
 }
