@@ -15,14 +15,16 @@ namespace Dad_A_Store.DataAccess
     
     readonly string _connectionString;
 
+    // connection configuration string in Startup
     public UserRepository(IConfiguration config)
     {
       _connectionString = config.GetConnectionString("TempDataAStore");
     }
 
+    // GetALL Method
     internal IEnumerable<User> GetAll()
     {
-      // creates connection to database
+      // Creates connection to database
       using var db = new SqlConnection(_connectionString);
       
       // SQL query 
@@ -38,7 +40,7 @@ namespace Dad_A_Store.DataAccess
 
     internal List<Users> GetByUserID(Guid userID)
     {
-      // creates connection to db
+      // Creates connection to db
       using var db = new SqlConnection(_connectionString);
 
       // SQL Query string

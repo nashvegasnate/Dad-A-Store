@@ -16,11 +16,13 @@ namespace Dad_A_Store.DataAccess
     
     readonly string _connectionString;
 
+    // Connection configuration string in Startup
     public PaymentRepository(IConfiguration config)
     {
       _connectionString = config.GetConnectionString("TempDataAStore");
     }
 
+    // GetALL Method
     internal List<Payment> GetAll()
     {
       // creates connection to database
@@ -30,8 +32,7 @@ namespace Dad_A_Store.DataAccess
       var sql = @"SELECT *
                   FROM PAYMENTS";
 
-      //Query the database, store results in a list
-
+      // Query the database, store results in a list
       var payments = db.Query<OrderDetail>(sql).ToList();
 
       return payments;
@@ -39,7 +40,7 @@ namespace Dad_A_Store.DataAccess
 
     internal List<Payment> GetByPaymentID(Guid paymentID)
     {
-      // creates connection to db
+      // Creates connection to db
       using var db = new SqlConnection(_connectionString);
 
       // SQL Query string
@@ -47,7 +48,8 @@ namespace Dad_A_Store.DataAccess
                   FROM PAYMENTS
                   WHERE PaymentID = @paymentID";
 
-      var payments = db.Query<Payment>(sql, new { orderID }).ToList();
+      // PaymentsID List() variable
+      var payments = db.Query<Payment>(sql, new { paymentID }).ToList();
 
       return payments;
     }
