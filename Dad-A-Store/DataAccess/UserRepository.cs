@@ -12,7 +12,6 @@ namespace Dad_A_Store.DataAccess
 {
 	public class UserRepository
 	{
-    
     readonly string _connectionString;
 
     // Connection configuration string in Startup
@@ -32,7 +31,6 @@ namespace Dad_A_Store.DataAccess
                   FROM USERS";
 
       // Query the database, store results in a list
-
       var users = db.Query<User>(sql).ToList();
 
       return users;
@@ -54,5 +52,5 @@ namespace Dad_A_Store.DataAccess
       return users;
     }
 
-  }
+	}
 }
