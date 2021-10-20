@@ -84,6 +84,23 @@ namespace Dad_A_Store.DataAccess
       db.Execute(sql, new { ID });
     }
 
+    internal Payment UpdatePayment  (Guid ID, Payment payment)
+    {
+      using var db = new SqlConnection(_connectionString);
+      var sql = @"IF EXISTS(SELECT * 
+                            FROM Payments
+                            WHERE  PaymentID = @PaymentID
+                            )
+                   UPDATE Payments 
+                   SET PaymentType = @PaymentType
+                   OUTPUT INSERTED.*
+                   WHERE PaymentID = @ID";
+
+      payment.PaymentID = ID;
+      var updatePayment = db.QuerySingleOrDefault<Payment>(sql, payment);
+
+      return updatePayment;
+    }
 
   }
 }
