@@ -26,19 +26,20 @@ namespace Dad_A_Store.Controllers
     [HttpGet]
     public IActionResult GetAllPayments()
     {
-      return Ok(_repo.GetAll());
+      return Ok(_repo.GetAllPayments());
     }
 
-    //[HttpGet("{id}")]
-    //public IActionResult GetPaymentByID(Guid id)
-    //{
-    //  var payment -_repo.GetByID(id);
+    [HttpGet("{id}")]
+    public IActionResult GetPaymentByID(Guid id)
+    {
+      var payment = _repo.GetPaymentByID(id);
 
-    //  if (Payment == null)
-    //  {
-          
-    //  }
-    //}
+      if (payment == null)
+      {
+        return NotFound($"No payment with id {id} was found.");
+      }
+
+    }
 
   }
 }

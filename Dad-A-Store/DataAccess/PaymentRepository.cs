@@ -23,7 +23,7 @@ namespace Dad_A_Store.DataAccess
     }
 
     // GetALL Method
-    internal IEnumerable<Payment> GetAll()
+    internal IEnumerable<Payment> GetAllPayments()
     {
       // Creates connection to database
       using var db = new SqlConnection(_connectionString);
@@ -33,12 +33,12 @@ namespace Dad_A_Store.DataAccess
                   FROM PAYMENTS";
 
       // Query the database, store results in a list
-      var payments = db.Query<OrderDetail>(sql).ToList();
+      var payments = db.Query<Payment>(sql).ToList();
 
       return payments;
     }
 
-    internal List<Payment> GetByPaymentID(Guid paymentID)
+    internal List<Payment> GetPaymentByID(Guid paymentID)
     {
       // Creates connection to db
       using var db = new SqlConnection(_connectionString);

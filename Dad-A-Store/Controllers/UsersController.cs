@@ -15,7 +15,19 @@ namespace Dad_A_Store.Controllers
   [ApiController]
   public class UsersController : ControllerBase
   {
+    UserRepository _repo;
 
+
+    public UsersController(UserRepository repo)
+    {
+      _repo = repo;
+    }
+
+    [HttpGet]
+    public IActionResult GetAllUsers()
+    {
+      return Ok(_repo.GetAllUsers());
+    }
 
   }
  }
