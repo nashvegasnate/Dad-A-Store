@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Dad_A_Store.Controllers
 {
-  [Route("api/paymenttype")]
+  [Route("api/Payments")]
   [ApiController]
   public class PaymentController : ControllerBase
   {
@@ -38,8 +38,22 @@ namespace Dad_A_Store.Controllers
       {
         return NotFound($"No payment with id {id} was found.");
       }
-
+      return Ok(payment);
     }
+
+    [HttpPost]
+    public IActionResult AddPayment(Payment newPayment)
+    {
+      if (string.IsNullOrEmpty(newPayment.PaymentType))
+      {
+        return BadRequest("Payment Type is a required field");
+      }
+      _repo.Add(newPayment);
+
+      return Created($"/api/Payments/{newPayment.PaymentID}", newPayment);
+    }
+
+
 
   }
 }
