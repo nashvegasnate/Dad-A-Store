@@ -22,21 +22,21 @@ namespace Dad_A_Store.DataAccess
       _connectionString = config.GetConnectionString("TempDataAStore");
     }
 
-    // GetALL Method
-    internal IEnumerable<Payment> GetAll()
-    {
-      // Creates connection to database
-      using var db = new SqlConnection(_connectionString);
+    //// GetALL Method
+    //internal IEnumerable<Payment> GetAll()
+    //{
+    //  // Creates connection to database
+    //  using var db = new SqlConnection(_connectionString);
 
-      // SQL query 
-      var sql = @"SELECT *
-                  FROM PAYMENTS";
+    //  // SQL query 
+    //  var sql = @"SELECT *
+    //              FROM PAYMENTS";
 
-      // Query the database, store results in a list
-      var payments = db.Query<OrderDetail>(sql).ToList();
+    //  //// Query the database, store results in a list
+    //  //var payments = db.Query<OrderDetail>(sql).ToList();
 
-      return payments;
-    }
+    //  //return payments;
+    //}
 
     internal List<Payment> GetByPaymentID(Guid paymentID)
     {

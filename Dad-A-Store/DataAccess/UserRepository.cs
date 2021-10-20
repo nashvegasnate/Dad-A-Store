@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.Data.SqlClient;
 
 namespace Dad_A_Store.DataAccess
 {
@@ -33,12 +33,12 @@ namespace Dad_A_Store.DataAccess
 
       // Query the database, store results in a list
 
-      var users = db.Query<Users>(sql).ToList();
+      var users = db.Query<User>(sql).ToList();
 
       return users;
     }
 
-    internal List<Users> GetByUserID(Guid userID)
+    internal List<User> GetByUserID(Guid userID)
     {
       // Creates connection to db
       using var db = new SqlConnection(_connectionString);
@@ -49,7 +49,7 @@ namespace Dad_A_Store.DataAccess
                   WHERE UserID = @userID";
 
       // UsersID List() variable
-      var users = db.Query<Users>(sql, new { userID }).ToList();
+      var users = db.Query<User>(sql, new { userID }).ToList();
 
       return users;
     }
