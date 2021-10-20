@@ -12,9 +12,6 @@ namespace Dad_A_Store.DataAccess
 {
 	public class UserRepository
 	{
-    
-    readonly string _connectionString;
-
     // Connection configuration string in Startup
     public UserRepository(IConfiguration config)
     {
@@ -54,5 +51,5 @@ namespace Dad_A_Store.DataAccess
       return users;
     }
 
-  }
+	}
 }

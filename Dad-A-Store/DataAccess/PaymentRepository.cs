@@ -11,9 +11,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace Dad_A_Store.DataAccess
 {
-  public class PaymentRepository
-  {
-
+	public class PaymentRepository
+	{
     readonly string _connectionString;
 
     // Connection configuration string in Startup
@@ -54,5 +53,5 @@ namespace Dad_A_Store.DataAccess
       return payments;
     }
 
-  }
+	}
 }
