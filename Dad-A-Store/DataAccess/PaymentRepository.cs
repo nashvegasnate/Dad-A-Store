@@ -33,7 +33,7 @@ namespace Dad_A_Store.DataAccess
                   FROM PAYMENTS";
 
       // Query the database, store results in a list
-      var payments = db.Query<OrderDetail>(sql).ToList();
+      var payments = db.Query<Payment>(sql).ToList();
 
       return payments;
     }
