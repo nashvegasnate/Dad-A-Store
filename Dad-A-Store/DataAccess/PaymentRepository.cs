@@ -13,7 +13,7 @@ namespace Dad_A_Store.DataAccess
 {
   public class PaymentRepository
   {
-    
+
     readonly string _connectionString;
 
     // Connection configuration string in Startup
