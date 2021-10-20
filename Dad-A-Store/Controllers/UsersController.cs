@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Dad_A_Store.Controllers
 {
-  [Route("api/users")]
+  [Route("api/Users")]
   [ApiController]
   public class UsersController : ControllerBase
   {
@@ -29,5 +29,19 @@ namespace Dad_A_Store.Controllers
       return Ok(_repo.GetAllUsers());
     }
 
+    [HttpGet("{ID}")]
+    public IActionResult GetUserByID(Guid ID)
+    {
+      var user = _repo.GetUserByID(ID);
+
+      if (user == null)
+      {
+        return NotFound($"No user with the ID of {ID} was found");
+      }
+    }
+
+
+
+     
   }
  }
