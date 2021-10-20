@@ -54,6 +54,21 @@ namespace Dad_A_Store.DataAccess
       return payments;
     }
 
+    internal void Add(Payment newPayment)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"IF NOT EXISTS(SELECT * 
+                                FROM Payments
+                                WHERE  PaymentType = @PaymentType
+                                )
+                   INSERT INTO Payments (PaymentType)
+                   OUTPUT INSERTED.ID
+                   VALUES (@PaymentType)";
+
+      var ID = db.ExecuteScalar<Guid>(sql, newPayment);
+      newPayment.PaymentID = ID;
+    }
 
 
   }
