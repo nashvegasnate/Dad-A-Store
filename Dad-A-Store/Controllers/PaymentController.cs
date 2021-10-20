@@ -53,7 +53,27 @@ namespace Dad_A_Store.Controllers
       return Created($"/api/Payments/{newPayment.PaymentID}", newPayment);
     }
 
+    [HttpDelete("{id}")]
+    public IActionResult DeletePayemnt(Guid ID)
+    {
+      _repo.Remove(ID);
 
+      return Ok();
+    }
+
+    [HttpPut("{ID}")]
+    public IActionResult UpdatePayment(Guid ID, Payment payment)
+    {
+      var paymentToUpdate = _repo.GetPaymentByID(ID);
+
+      if (paymentToUpdate == null)
+      {
+        return NotFound($"Could not find payment with that id {ID} to update");
+      }
+      var updatedPayment = _repo.Update(ID, payment);
+
+      return Ok(updatedPayment);
+    }
 
   }
 }
