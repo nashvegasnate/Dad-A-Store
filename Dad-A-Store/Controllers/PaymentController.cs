@@ -30,13 +30,13 @@ namespace Dad_A_Store.Controllers
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetPaymentByID(Guid id)
+    public IActionResult GetPaymentByID(Guid ID)
     {
-      var payment = _repo.GetPaymentByID(id);
+      var payment = _repo.GetPaymentByID(ID);
 
       if (payment == null)
       {
-        return NotFound($"No payment with id {id} was found.");
+        return NotFound($"No payment with id {ID} was found.");
       }
       return Ok(payment);
     }
@@ -53,10 +53,10 @@ namespace Dad_A_Store.Controllers
       return Created($"/api/Payments/{newPayment.PaymentID}", newPayment);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{ID}")]
     public IActionResult DeletePayemnt(Guid ID)
     {
-      _repo.Remove(ID);
+      _repo.RemovePayment(ID);
 
       return Ok();
     }

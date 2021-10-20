@@ -70,6 +70,20 @@ namespace Dad_A_Store.DataAccess
       newPayment.PaymentID = ID;
     }
 
+    internal void RemovePayment(Guid ID)
+    {
+      using var db = new SqlConnection(_connectionString);
+      var sql = @"IF EXISTS(SELECT * 
+                            FROM Payments
+                            WHERE  PaymentID = @ID
+                            )
+                   DELETE 
+                   FROM Payments 
+                   WHERE PaymentID = @ID";
+
+      db.Execute(sql, new { ID });
+    }
+
 
   }
 }
