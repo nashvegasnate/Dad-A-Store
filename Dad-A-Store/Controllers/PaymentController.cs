@@ -50,7 +50,7 @@ namespace Dad_A_Store.Controllers
       }
       _repo.Add(newPayment);
 
-      return Created($"/api/Payments/{newPayment.PaymentID}", newPayment);
+      return Created($"/api/PAYMENTTYPE/{newPayment.PaymentID}", newPayment);
     }
 
     [HttpDelete("{ID}")]

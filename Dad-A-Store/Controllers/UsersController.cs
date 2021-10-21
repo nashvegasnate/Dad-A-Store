@@ -65,7 +65,7 @@ namespace Dad_A_Store.Controllers
     [HttpDelete("{ID}")]
     public IActionResult DeleteUser(Guid ID)
     {
-      _repo.Remove(ID);
+      _repo.RemoveUser(ID);
 
       return Ok();
     }

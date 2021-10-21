@@ -67,19 +67,32 @@ namespace Dad_A_Store.DataAccess
                                        UserCity = @UserCity,
                                        UserState = @UserState,
                                        UserZipeCode = @UserZipCode,
+                                       PaymentID = @PaymentID
 
                                 )
                    INSERT INTO USERS (Users)
                    OUTPUT INSERTED.ID
-                   VALUES (@PaymentType)";
+                   VALUES (@Users)";
 
       var ID = db.ExecuteScalar<Guid>(sql, newUser);
       newUser.UserID = ID;
     }
 
-    internal void Remove(Guid iD)
+    internal void RemoveUser(Guid ID)
     {
-      throw new NotImplementedException();
+      using var db = new SqlConnection(_connectionString);
+      var sql = @"IF EXISTS(SELECT * 
+                            FROM USERS
+                            WHERE  UserID = @ID
+                            )
+                   DELETE 
+                   FROM USERS 
+                   WHERE UserID = @ID";
+
+      db.Execute(sql, new { ID });
     }
+
+
+
   }
 }
