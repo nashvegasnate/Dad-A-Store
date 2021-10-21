@@ -38,7 +38,29 @@ namespace Dad_A_Store.Controllers
       {
         return NotFound($"No user with the ID of {ID} was found");
       }
+
+      return Ok(user);
     }
+
+    [HttpPost]
+    public IActionResult AddUser(User newUser)
+    {
+      if (string.IsNullOrEmpty(newUser.UserFirst) ||
+          string.IsNullOrEmpty(newUser.UserLast) ||
+          string.IsNullOrEmpty(newUser.UserAddress1) ||
+          string.IsNullOrEmpty(newUser.UserAddress2) ||
+          string.IsNullOrEmpty(newUser.UserCity) ||
+          string.IsNullOrEmpty(newUser.UserState) ||
+          newUser.UserZipCode.Equals(0) ||
+          newUser.PaymentID.Equals(string.Empty))
+      {
+        return BadRequest("User information fields are required");
+      }
+
+        _repo.Add(newUser);
+
+        return Created($"/api/Users/{newUser.ID}", newUser);
+      }
 
 
 
