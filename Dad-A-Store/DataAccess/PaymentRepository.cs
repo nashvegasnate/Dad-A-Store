@@ -23,7 +23,7 @@ namespace Dad_A_Store.DataAccess
     }
 
     // GetALL Method
-    internal IEnumerable<Payment> GetAll()
+    internal IEnumerable<Payment> GetAllPayments()
     {
       // Creates connection to database
       using var db = new SqlConnection(_connectionString);

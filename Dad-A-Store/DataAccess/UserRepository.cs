@@ -21,7 +21,7 @@ namespace Dad_A_Store.DataAccess
     }
 
     // GetALL Method
-    internal IEnumerable<User> GetAll()
+    internal IEnumerable<User> GetAllUsers()
     {
       // Creates connection to database
       using var db = new SqlConnection(_connectionString);

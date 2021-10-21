@@ -15,6 +15,18 @@ namespace Dad_A_Store.Controllers
   public class PaymentController : ControllerBase
   {
     //
+    PaymentRepository _repo;
 
+
+    public PaymentController(PaymentRepository repo)
+    {
+      _repo = repo;
+    }
+
+    [HttpGet]
+    public IActionResult GetAllPayments()
+    {
+      return Ok(_repo.GetAllPayments());
+    }
   }
 }
