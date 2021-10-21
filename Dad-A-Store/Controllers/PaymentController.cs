@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Dad_A_Store.Controllers
 {
-  [Route("api/paymenttype")]
+  [Route("api/Payments")]
   [ApiController]
   public class PaymentController : ControllerBase
   {
