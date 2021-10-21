@@ -7,7 +7,6 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
-
 namespace Dad_A_Store.DataAccess
 {
 	public class UserRepository
@@ -52,5 +51,5 @@ namespace Dad_A_Store.DataAccess
       return users;
     }
 
-	}
+  }
 }
