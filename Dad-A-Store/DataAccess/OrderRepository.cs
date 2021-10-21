@@ -32,6 +32,29 @@ namespace Dad_A_Store.DataAccess
 
     }
 
+    internal Order GetByOrderID(Guid orderID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"SELECT *
+                  FROM ORDERS
+                  WHERE ORDERID = @orderID";
+
+      return db.QueryFirstOrDefault<Order>(sql, new { orderID });
+    }
+
+    internal List<Order> GetByUserID(Guid userID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"SELECT *
+                  FROM ORDERS
+                  WHERE USERID = @userID";
+
+      return db.Query<Order>(sql, new { userID }).ToList();
+    }
+
+
     internal Order CreateOrder(List<NewOrder> listOfItems, Guid userID, Guid paymentID)
     {
       //To create an order, we expect a list of items that make up the order, and the userID and paymentID to create the order.
