@@ -30,7 +30,7 @@ namespace Dad_A_Store.DataAccess
 
       // SQL query 
       var sql = @"SELECT *
-                  FROM PAYMENTS";
+                  FROM PAYMENTTYPES";
 
       // Query the database, store results in a list
       var payments = db.Query<Payment>(sql).ToList();
@@ -45,7 +45,7 @@ namespace Dad_A_Store.DataAccess
 
       // SQL Query string
       var sql = @"SELECT *
-                  FROM PAYMENTS
+                  FROM PAYMENTTYPES
                   WHERE PaymentID = @paymentID";
 
       // PaymentsID List() variable
@@ -59,10 +59,10 @@ namespace Dad_A_Store.DataAccess
       using var db = new SqlConnection(_connectionString);
 
       var sql = @"IF NOT EXISTS(SELECT * 
-                                FROM Payments
+                                FROM PAYMENTTYPES
                                 WHERE  PaymentType = @PaymentType
                                 )
-                   INSERT INTO Payments (PaymentType)
+                   INSERT INTO PAYMENTTYPES (PaymentType)
                    OUTPUT INSERTED.ID
                    VALUES (@PaymentType)";
 
@@ -74,7 +74,7 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
       var sql = @"IF EXISTS(SELECT * 
-                            FROM Payments
+                            FROM PAYMENTTYPES
                             WHERE  PaymentID = @ID
                             )
                    DELETE 
@@ -88,10 +88,10 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
       var sql = @"IF EXISTS(SELECT * 
-                            FROM Payments
+                            FROM PAYMENTTYPES
                             WHERE  PaymentID = @PaymentID
                             )
-                   UPDATE Payments 
+                   UPDATE PAYMENTTYPES 
                    SET PaymentType = @PaymentType
                    OUTPUT INSERTED.*
                    WHERE PaymentID = @ID";

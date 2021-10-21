@@ -9,7 +9,6 @@ namespace Dad_A_Store.Models
   public class User
   {
     // User Properties
-
     public Guid UserID { get; set; }
     public string UserFirst { get; set; }
     public string UserLast { get; set; }

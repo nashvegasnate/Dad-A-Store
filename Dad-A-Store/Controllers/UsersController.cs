@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Dad_A_Store.Controllers
 {
-  [Route("api/Users")]
+  [Route("api/USERS")]
   [ApiController]
   public class UsersController : ControllerBase
   {
@@ -59,7 +59,7 @@ namespace Dad_A_Store.Controllers
 
     //    _repo.Add(newUser);
 
-    //    return Created($"/api/Users/{newUser.ID}", newUser);
+    //    return Created($"/api/USERS/{newUser.ID}", newUser);
     //  }
 
     [HttpDelete("{ID}")]

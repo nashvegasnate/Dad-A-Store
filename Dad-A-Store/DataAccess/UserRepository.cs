@@ -45,7 +45,7 @@ namespace Dad_A_Store.DataAccess
 
       // SQL Query string
       var sql = @"SELECT *
-                  FROM PAYMENTS
+                  FROM USERS
                   WHERE UserID = @userID";
 
       // UsersID List() variable
@@ -59,7 +59,7 @@ namespace Dad_A_Store.DataAccess
       using var db = new SqlConnection(_connectionString);
 
       var sql = @"IF NOT EXISTS(SELECT * 
-                                FROM Users
+                                FROM USERS
                                 WHERE  UserFirst = @UserFirst,
                                        UserLast = @UserLast,
                                        UserAddress1 = @UserAddress1,
@@ -69,7 +69,7 @@ namespace Dad_A_Store.DataAccess
                                        UserZipeCode = @UserZipCode,
 
                                 )
-                   INSERT INTO Payments (PaymentType)
+                   INSERT INTO USERS (Users)
                    OUTPUT INSERTED.ID
                    VALUES (@PaymentType)";
 
