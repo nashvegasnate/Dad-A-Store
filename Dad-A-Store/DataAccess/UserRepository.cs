@@ -56,7 +56,25 @@ namespace Dad_A_Store.DataAccess
 
     internal void Add(User newUser)
     {
-      throw new NotImplementedException();
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"IF NOT EXISTS(SELECT * 
+                                FROM Users
+                                WHERE  UserFirst = @UserFirst,
+                                       UserLast = @UserLast,
+                                       UserAddress1 = @UserAddress1,
+                                       UserAddress2 = @UserAddress2,
+                                       UserCity = @UserCity,
+                                       UserState = @UserState,
+                                       UserZipeCode = @UserZipCode,
+
+                                )
+                   INSERT INTO Payments (PaymentType)
+                   OUTPUT INSERTED.ID
+                   VALUES (@PaymentType)";
+
+      var ID = db.ExecuteScalar<Guid>(sql, newUser);
+      newUser.UserID = ID;
     }
 
     internal void Remove(Guid iD)
