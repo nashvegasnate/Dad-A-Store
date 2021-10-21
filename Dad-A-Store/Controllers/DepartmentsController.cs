@@ -55,7 +55,6 @@ namespace Dad_A_Store.Controllers
       }
 
       _repo.Add(newDepartment);
-
       return Created($"api/departments/{newDepartment.DepartmentID}", newDepartment);
     }
 
