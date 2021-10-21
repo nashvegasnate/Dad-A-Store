@@ -26,5 +26,11 @@ namespace Dad_A_Store.Controllers
       return _repo.GetAll();
     }
 
+    [HttpPost]
+    public Order CreateNewOrder(List<NewOrder> orderCart, Guid userID, Guid paymentID)
+    {
+     return _repo.CreateOrder(orderCart, userID, paymentID);
+    }
+
   }
 }
