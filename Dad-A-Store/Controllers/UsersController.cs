@@ -62,6 +62,13 @@ namespace Dad_A_Store.Controllers
         return Created($"/api/Users/{newUser.ID}", newUser);
       }
 
+    [HttpEDelete("{ID}")]
+    public IActionResult DeleteUser(Guid ID)
+    {
+      _repo.Remove(ID);
+
+      return Ok();
+    }
 
 
      
