@@ -72,8 +72,10 @@ namespace Dad_A_Store.DataAccess
                                   AND  CategoryDescription = @CategoryDescription
                                 )
                    INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentID)
-                   OUTPUT INSERTED.ID
-                   VALUES (@CategoryName, @CategoryDescription, @DepartmentID)";
+                   OUTPUT INSERTED.CategoryID
+                   VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
+                                                                      FROM DEPARTMENTS
+                                                                      WHERE  DepartmentID = @DepartmentID) AS uniqueidentifier))";
 
       var ID = db.ExecuteScalar<Guid>(sql, newCategory);
       newCategory.CategoryID = ID;
@@ -93,7 +95,36 @@ namespace Dad_A_Store.DataAccess
        db.Execute(sql, new { ID });
     }
 
-    internal Category UpdateCategory(Guid ID, Category category)
+    //internal Category UpdateCategory(Guid ID, Category category)
+    //{
+    //  using var db = new SqlConnection(_connectionString);
+    //  var sql = @"IF EXISTS(SELECT * 
+    //                        FROM CATEGORIES
+    //                        WHERE  CategoryID = @ID
+    //                        )
+    //               UPDATE CATEGORIES 
+    //               SET CategoryName        = @CategoryName
+    //                  ,CategoryDescription = @CategoryDescription
+    //                  ,DepartmentID        = @DepartmentID
+    //               OUTPUT INSERTED.*
+    //               WHERE CategoryID = @ID";
+
+    //  var paramObj = new
+    //  {
+    //    ID = ID,
+    //    CategoryName = category.CategoryName,
+    //    CategoryDescription = category.CategoryDescription,
+    //    DepartmentID = category.DepartmentID
+    //  };
+
+    //  category.CategoryID = @ID;
+    //  var updateCategory = db.QuerySingleOrDefault<Category>(sql, paramObj);
+
+    //  return updateCategory;
+    //}
+
+
+    internal Category UpdateCategory(Guid CategoryID, Category category)
     {
       using var db = new SqlConnection(_connectionString);
       var sql = @"IF EXISTS(SELECT * 
@@ -105,9 +136,8 @@ namespace Dad_A_Store.DataAccess
                       ,CategoryDescription = @CategoryDescription
                       ,DepartmentID        = @DepartmentID
                    OUTPUT INSERTED.*
-                   WHERE CategoryID = @ID";
+                   WHERE CategoryID = @CategoryID";
 
-      category.CategoryID = ID;
       var updateCategory = db.QuerySingleOrDefault<Category>(sql, category);
 
       return updateCategory;
