@@ -54,5 +54,14 @@ namespace Dad_A_Store.DataAccess
       return users;
     }
 
+    internal void Add(User newUser)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void Remove(Guid iD)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
