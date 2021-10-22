@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-
 namespace Dad_A_Store.Controllers
 {
   [Route("api/users")]
@@ -24,9 +22,9 @@ namespace Dad_A_Store.Controllers
     }
 
     [HttpGet]
-    public IActionResult GetAllUsers()
+    public List<User> GetAllUsers()
     {
-      return Ok(_repo.GetAllUsers());
+      return _repo.GetAllUsers();
     }
 
     [HttpGet("{ID}")]
