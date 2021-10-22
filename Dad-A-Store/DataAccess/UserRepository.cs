@@ -93,9 +93,31 @@ namespace Dad_A_Store.DataAccess
       db.Execute(sql, new { ID });
     }
 
-    internal object UpdateUser(Guid iD, object user)
+    internal User UpdateUser(Guid ID, User user)
     {
-      throw new NotImplementedException();
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"IF EXISTS(SELECT * 
+                            FROM ITEMS
+                            WHERE  UserID = @UserID
+                            )
+                        update USERS 
+                        Set UserFirst = @UserFirst,
+                            UserLast = @UserLast,
+	                        UserAddress1 = @UserAddress1,
+                            UserAddress2 = @UserAddress2,
+	                        UserCity = @UserCity,
+                            UserState = @UserState,
+                            UserZipCode = @UserZipCode,
+                            PaymentID = @PaymentID,
+
+                        output inserted.*
+                        Where UserID = @ID";
+
+      user.UserID = ID;
+      var updatedUser = db.QuerySingleOrDefault<User>(sql, user);
+
+      return updatedUser;
     }
 
 
