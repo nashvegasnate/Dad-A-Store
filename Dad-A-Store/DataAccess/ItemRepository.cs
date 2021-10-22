@@ -73,8 +73,13 @@ namespace Dad_A_Store.DataAccess
                                   AND  ItemDescription = @ItemDescription
                                 )
                    INSERT INTO ITEMS (ItemName, ItemDescription, CategoryID)
-                   OUTPUT INSERTED.ID
-                   VALUES (@ItemName, @ItemDescription, @CategoryID)";
+                   OUTPUT INSERTED.ItemID
+                   VALUES (@ItemName
+                          ,@ItemDescription
+                          ,CAST((SELECT CategoryID 
+                                        FROM CATEGORIES
+                                        WHERE  CategoryID = @CategoryID
+                                 ) AS uniqueidentifier))";
 
       var ID = db.ExecuteScalar<Guid>(sql, newItem);
       newItem.ItemID = ID;
@@ -106,7 +111,7 @@ namespace Dad_A_Store.DataAccess
                       ,ItemDescription   = @ItemDescription
                       ,CategoryID        = @CategoryID
                    OUTPUT INSERTED.*
-                   WHERE ItemID = @ID";
+                   WHERE ItemID = @ItemID";
 
       Item.ItemID = ID;
       var updateItem = db.QuerySingleOrDefault<Item>(sql, Item);
