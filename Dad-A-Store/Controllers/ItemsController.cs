@@ -42,7 +42,7 @@ namespace Dad_A_Store.Controllers
     }
 
     [HttpPost]
-    public IActionResult AddItem(Item newItem)
+    public IActionResult AddItem(NewItem newItem)
     {
       if (string.IsNullOrEmpty(newItem.ItemName) ||
           string.IsNullOrEmpty(newItem.ItemDescription) ||
@@ -51,9 +51,9 @@ namespace Dad_A_Store.Controllers
       {
         return BadRequest("Sorry the Item: Name, Description, Price, and Category ID are required.");
       }
-      _repo.Add(newItem);
+      var newlyCreatedItem = _repo.Add(newItem);
 
-      return Created($"api/Items/{newItem.ItemID}", newItem);
+      return Created($"api/Items/{newlyCreatedItem.ItemID}", newlyCreatedItem);
     }
 
     [HttpDelete("{ID}")]
