@@ -35,7 +35,7 @@ namespace Dad_A_Store.Controllers
     [HttpGet("GetDepartmentByNameFromDB/{departmentName}")]
     public Department GetDepartmentByNameFromDB(string departmentName)
     {
-      return GetDepartmentByNameFromDB(departmentName);
+      return _repo.GetDepartmentByNameFromDB(departmentName);
     }
 
     [HttpGet("GetDepartmentByDepartmentID/{departmentID}")]
