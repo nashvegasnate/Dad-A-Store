@@ -1,56 +1,66 @@
 ﻿using Dad_A_Store.Models;
-using Dad_A_Store.DataAccess;
+using Dapper;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace Dad_A_Store.DataAccess
 {
   public class PaymentRepository
   {
-
+    static List<Payment> _paymenttypes = new List<Payment>();
     readonly string _connectionString;
 
     // Connection configuration string in Startup
     public PaymentRepository(IConfiguration config)
     {
       _connectionString = config.GetConnectionString("TempDataAStore");
+      LoadAllPayments();
     }
 
-    // GetALL Method
+    internal void LoadAllPayments()
+    {
+      using var db = new SqlConnection(_connectionString);
+      _paymenttypes = db.Query<Payment>("SELECT * FROM PAYMENTTYPES").ToList();
+    }
+
+    // GetALL Payments Method
     internal List<Payment> GetAllPayments()
     {
-      // Creates connection to database
-      using var db = new SqlConnection(_connectionString);
-
-      // SQL query 
-      var sql = @"SELECT *
-                  FROM PAYMENTTYPES";
-
-      // Query the database, store results in a list
-      var payments = db.Query<Payment>(sql).ToList();
-
-      return payments;
+      return _paymenttypes;
+      //// Creates connection to database
+      //using var db = new SqlConnection(_connectionString);
+      //// SQL query 
+      //var sql = @"SELECT *
+      //            FROM PAYMENTTYPES";
+      //// Query the database, store results in a list
+      //var payments = db.Query<Payment>(sql).ToList();
+      //return payments;
     }
 
-    internal List<Payment> GetPaymentByID(Guid paymentID)
+    internal IEnumerable<Payment> GetPaymentByID(Guid paymentID)
     {
-      // Creates connection to db
-      using var db = new SqlConnection(_connectionString);
+      return _paymenttypes.Where(payment => payment.PaymentID == paymentID);
 
-      // SQL Query string
+    }
+
+    internal Payment GetByID(Guid paymentID)
+    {
+      //using var db = new SqlConnection(_connectionString);
+      //var temp = db.QueryFirstOrDefault<Category>("SELECT * FROM CATEGORIES WHERE CategoryID = @categoryID", new { categoryID });
+      //return temp;
+      // creates connection to db
+      using var db = new SqlConnection(_connectionString);
+      // sql query string
       var sql = @"SELECT *
                   FROM PAYMENTTYPES
                   WHERE PaymentID = @paymentID";
 
-      // PaymentsID List() variable
-      var payments = db.Query<Payment>(sql, new { paymentID }).ToList();
-
+      var payments = db.QueryFirstOrDefault<Payment>(sql, new { paymentID }); //.toList();
       return payments;
     }
 
@@ -63,7 +73,7 @@ namespace Dad_A_Store.DataAccess
                                 WHERE  PaymentType = @PaymentType
                                 )
                    INSERT INTO PAYMENTTYPES (PaymentType)
-                   OUTPUT INSERTED.ID
+                   OUTPUT INSERTED.PaymentID
                    VALUES (@PaymentType)";
 
       var ID = db.ExecuteScalar<Guid>(sql, newPayment);
@@ -78,13 +88,13 @@ namespace Dad_A_Store.DataAccess
                             WHERE  PaymentID = @ID
                             )
                    DELETE 
-                   FROM Payments 
+                   FROM PAYMENTTYPES 
                    WHERE PaymentID = @ID";
 
       db.Execute(sql, new { ID });
     }
 
-    internal Payment UpdatePayment  (Guid ID, Payment payment)
+    internal Payment UpdatePayment  (Guid PaymentID, Payment payment)
     {
       using var db = new SqlConnection(_connectionString);
       var sql = @"IF EXISTS(SELECT * 
@@ -94,9 +104,9 @@ namespace Dad_A_Store.DataAccess
                    UPDATE PAYMENTTYPES 
                    SET PaymentType = @PaymentType
                    OUTPUT INSERTED.*
-                   WHERE PaymentID = @ID";
+                   WHERE PaymentID = @PaymentID";
 
-      payment.PaymentID = ID;
+      // payment.PaymentID = ID;
       var updatePayment = db.QuerySingleOrDefault<Payment>(sql, payment);
 
       return updatePayment;
