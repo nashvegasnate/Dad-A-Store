@@ -120,7 +120,7 @@ namespace Dad_A_Store.DataAccess
                             FROM USERS
                             WHERE  UserID = @UserID
                             )
-                        update USERS 
+                        UPDATE USERS 
                         Set UserFirst = @UserFirst,
                             UserLast = @UserLast,
 	                        UserAddress1 = @UserAddress1,
@@ -128,12 +128,11 @@ namespace Dad_A_Store.DataAccess
 	                        UserCity = @UserCity,
                             UserState = @UserState,
                             UserZipCode = @UserZipCode,
-                            PaymentID = @PaymentID,
+                            PaymentID = @PaymentID
+                        OUTPUT INSERTED.*
+                        Where UserID = @USerID";
 
-                        output inserted.*
-                        Where UserID = @ID";
-
-      user.UserID = ID;
+      // user.UserID = ID;
       var updatedUser = db.QuerySingleOrDefault<User>(sql, user);
 
       return updatedUser;
