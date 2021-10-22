@@ -102,10 +102,9 @@ namespace Dad_A_Store.DataAccess
                             )
                             UPDATE DEPARTMENTS
                             SET DepartmentName        = @DepartmentName,
-                                DepartmentDescription = @DepartmentDescription,
-                                DepartmentID          = @DepartmentID
+                                DepartmentDescription = @DepartmentDescription
                             OUTPUT INSERTED.*
-                            WHERE DepartmentID = @ID";
+                            WHERE DepartmentID = @DepartmentID";
 
       department.DepartmentID = DepartmentID;
       var updatedDepartment = db.QuerySingleOrDefault<Department>(sql, department);
