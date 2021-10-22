@@ -13,13 +13,20 @@ namespace Dad_A_Store.DataAccess
 {
 	public class UserRepository
 	{
-    
+
+    static List<User> _users = new List<User>();
     readonly string _connectionString;
 
     // Connection configuration string in Startup
     public UserRepository(IConfiguration config)
     {
       _connectionString = config.GetConnectionString("TempDataAStore");
+      LoadAllUsers();
+    }
+    internal void LoadAllUsers()
+    {
+      using var db = new SqlConnection(_connectionString);
+      _users = db.Query<User>("SELECT * FROM USERS").ToList();
     }
 
     // GetALL Method
@@ -27,13 +34,11 @@ namespace Dad_A_Store.DataAccess
     {
       // Creates connection to database
       using var db = new SqlConnection(_connectionString);
-      
       // SQL query 
       var sql = @"SELECT *
                   FROM USERS";
 
       // Query the database, store results in a list
-
       var users = db.Query<User>(sql).ToList();
 
       return users;
@@ -47,7 +52,7 @@ namespace Dad_A_Store.DataAccess
       // SQL Query string
       var sql = @"SELECT *
                   FROM USERS
-                  WHERE UserID = @userID";
+                  WHERE UserID = @UserID";
 
       // UsersID List() variable
       var users = db.Query<User>(sql, new { userID }).ToList();
@@ -73,7 +78,7 @@ namespace Dad_A_Store.DataAccess
                                 )
                    INSERT INTO USERS (Users)
                    OUTPUT INSERTED.ID
-                   VALUES (@Users)";
+                   VALUES (@USERS)";
 
       var ID = db.ExecuteScalar<Guid>(sql, newUser);
       newUser.UserID = ID;
@@ -98,7 +103,7 @@ namespace Dad_A_Store.DataAccess
       using var db = new SqlConnection(_connectionString);
 
       var sql = @"IF EXISTS(SELECT * 
-                            FROM ITEMS
+                            FROM USERS
                             WHERE  UserID = @UserID
                             )
                         update USERS 
@@ -119,8 +124,6 @@ namespace Dad_A_Store.DataAccess
 
       return updatedUser;
     }
-
-
 
   }
 }
