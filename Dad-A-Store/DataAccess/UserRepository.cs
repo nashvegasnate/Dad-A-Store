@@ -8,6 +8,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 
+
 namespace Dad_A_Store.DataAccess
 {
 	public class UserRepository
@@ -22,7 +23,7 @@ namespace Dad_A_Store.DataAccess
     }
 
     // GetALL Method
-    internal IEnumerable<User> GetAllUsers()
+    internal List<User> GetAllUsers()
     {
       // Creates connection to database
       using var db = new SqlConnection(_connectionString);
@@ -90,6 +91,11 @@ namespace Dad_A_Store.DataAccess
                    WHERE UserID = @ID";
 
       db.Execute(sql, new { ID });
+    }
+
+    internal object UpdateUser(Guid iD, object user)
+    {
+      throw new NotImplementedException();
     }
 
 

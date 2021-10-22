@@ -70,6 +70,19 @@ namespace Dad_A_Store.Controllers
       return Ok();
     }
 
+    [HttpPut("{ID}")]
+    public IActionResult UpdateUser(Guid ID, User user)
+    {
+      var userToUpdate = _repo.GetUserByID(ID);
+
+      if (userToUpdate == null)
+      {
+        return NotFound($"Could not find bird with the ID {ID} for updating.");
+
+      }
+      var updateUser = _repo.UpdateUser(ID, user);
+      return Ok(updateUser);
+    }
 
      
   }
