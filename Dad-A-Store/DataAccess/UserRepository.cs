@@ -87,9 +87,12 @@ namespace Dad_A_Store.DataAccess
                                        PaymentID = @PaymentID
 
                                 )
-                   INSERT INTO USERS (Users)
-                   OUTPUT INSERTED.ID
-                   VALUES (@USERS)";
+                   INSERT INTO USERS (UserFirst, UserLast, UserAddress1, UserAddress2, UserCity, UserState, UserZipCode, PaymentID)
+                   OUTPUT INSERTED.UserID
+                   VALUES (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZipeCode,
+                           CAST((SELECT PaymentID
+                           FROM PAYMENTTYPES
+                           WHERE PaymentID = @PaymentID) AS uniqeidentifier))";
 
       var ID = db.ExecuteScalar<Guid>(sql, newUser);
       newUser.UserID = ID;
