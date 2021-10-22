@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Dad_A_Store.Controllers
 {
-  [Route("api/PAYMENTTYPES")]
+  [Route("api/paymenttypes")]
   [ApiController]
   public class PaymentController : ControllerBase
   {
@@ -29,7 +29,7 @@ namespace Dad_A_Store.Controllers
       return Ok(_repo.GetAllPayments());
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{ID}")]
     public IActionResult GetPaymentByID(Guid ID)
     {
       var payment = _repo.GetPaymentByID(ID);

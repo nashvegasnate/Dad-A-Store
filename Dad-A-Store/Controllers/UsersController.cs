@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Dad_A_Store.Controllers
 {
-  [Route("api/USERS")]
+  [Route("api/users")]
   [ApiController]
   public class UsersController : ControllerBase
   {
