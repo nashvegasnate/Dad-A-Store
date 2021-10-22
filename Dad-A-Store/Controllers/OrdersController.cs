@@ -52,24 +52,11 @@ namespace Dad_A_Store.Controllers
       return _repo.CreateOrder(listOfItems, userID, paymentID);
     }
 
-
-
-    //[HttpPost]
-    //public IActionResult AddCategory(Category newCategory)
-    //{
-    //  if (string.IsNullOrEmpty(newCategory.CategoryName) ||
-    //      string.IsNullOrEmpty(newCategory.CategoryDescription) ||
-    //      newCategory.DepartmentID.Equals(string.Empty))
-    //  {
-    //    return BadRequest("Sorry the Category: Name, Description, and Department ID are required.");
-    //  }
-    //  _repo.Add(newCategory);
-
-    //  return Created($"api/categories/{newCategory.CategoryID}", newCategory);
-    //}
-
-
-
+    [HttpDelete("remove/{orderID}")]
+    public void DeleteOrder(Guid orderID)
+    {
+      _repo.Remove(orderID);
+    }
 
   }
 }

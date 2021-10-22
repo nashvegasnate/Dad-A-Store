@@ -154,5 +154,24 @@ namespace Dad_A_Store.DataAccess
       return theNewOrder;
     }
 
+    internal void Remove(Guid orderID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var orderDetailSql = @"DELETE
+                            FROM ORDERDETAILS
+                            WHERE OrderID = @orderID";
+
+      var orderSql = @"DELETE
+                       FROM ORDERS
+                       WHERE OrderID = @orderID";
+
+      db.Execute(orderDetailSql, new { orderID });
+      db.Execute(orderSql, new { orderID });
+
+    }
+
+
+
   }
 }
