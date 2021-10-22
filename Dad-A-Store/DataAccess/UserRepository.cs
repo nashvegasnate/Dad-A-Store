@@ -7,14 +7,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
-
-
-
 namespace Dad_A_Store.DataAccess
 {
 	public class UserRepository
 	{
-
     static List<User> _users = new List<User>();
     readonly string _connectionString;
 
@@ -24,6 +20,7 @@ namespace Dad_A_Store.DataAccess
       _connectionString = config.GetConnectionString("TempDataAStore");
       LoadAllUsers();
     }
+
     internal void LoadAllUsers()
     {
       using var db = new SqlConnection(_connectionString);
@@ -33,32 +30,37 @@ namespace Dad_A_Store.DataAccess
     // GetALL Method
     internal List<User> GetAllUsers()
     {
-      // Creates connection to database
-      using var db = new SqlConnection(_connectionString);
-      // SQL query 
-      var sql = @"SELECT *
-                  FROM USERS";
-
-      // Query the database, store results in a list
-      var users = db.Query<User>(sql).ToList();
-
-      return users;
+      return _users;
+      //// Creates connection to database
+      //using var db = new SqlConnection(_connectionString);
+      //// SQL query 
+      //var sql = @"SELECT *
+      //            FROM USERS";
+      //// Query the database, store results in a list
+      //var users = db.Query<User>(sql).ToList();
+      //return users;
     }
 
-    internal List<User> GetUserByID(Guid userID)
+    internal IEnumerable<User> GetUserByID(Guid userID)
     {
-      // Creates connection to db
+      return _users.Where(user => user.UserID == userID);
+
+      //// Creates connection to db
+      //using var db = new SqlConnection(_connectionString);
+      //// SQL Query string
+      //var sql = @"SELECT *
+      //            FROM USERS
+      //            WHERE UserID = @UserID";
+      //// UsersID List() variable
+      //var users = db.Query<User>(sql, new { userID }).ToList();
+      //return users;
+    }
+
+    internal User GetByID(Guid userID)
+    {
       using var db = new SqlConnection(_connectionString);
-
-      // SQL Query string
-      var sql = @"SELECT *
-                  FROM USERS
-                  WHERE UserID = @UserID";
-
-      // UsersID List() variable
-      var users = db.Query<User>(sql, new { userID }).ToList();
-
-      return users;
+      var user = db.QueryFirstOrDefault<User>("SELECT * FROM USERS WHERE UserID = @userID", new { userID });
+      return user;
     }
 
     internal void Add(User newUser)
