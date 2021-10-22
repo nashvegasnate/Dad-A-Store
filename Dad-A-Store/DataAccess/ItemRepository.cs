@@ -63,7 +63,7 @@ namespace Dad_A_Store.DataAccess
       return temp;
     }
 
-    internal void Add(Item newItem)
+    internal Item Add(NewItem newItem)
     {
       using var db = new SqlConnection(_connectionString);
 
@@ -72,17 +72,18 @@ namespace Dad_A_Store.DataAccess
                                 WHERE  ItemName = @ItemName
                                   AND  ItemDescription = @ItemDescription
                                 )
-                   INSERT INTO ITEMS (ItemName, ItemDescription, CategoryID)
-                   OUTPUT INSERTED.ItemID
+                   INSERT INTO ITEMS (ItemName, ItemDescription, ItemPrice, CategoryID)
+                   OUTPUT INSERTED.*
                    VALUES (@ItemName
                           ,@ItemDescription
+                          ,@ItemPrice
                           ,CAST((SELECT CategoryID 
                                         FROM CATEGORIES
                                         WHERE  CategoryID = @CategoryID
                                  ) AS uniqueidentifier))";
 
-      var ID = db.ExecuteScalar<Guid>(sql, newItem);
-      newItem.ItemID = ID;
+      return db.QueryFirstOrDefault<Item>(sql, newItem);
+      //newItem.ItemID = ID;
     }
 
     internal void RemoveItem(Guid ID)
