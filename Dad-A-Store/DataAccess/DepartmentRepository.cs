@@ -93,7 +93,7 @@ namespace Dad_A_Store.DataAccess
       db.Execute(sql, new { ID });
     }
 
-    internal Department UpdateDepartment(Guid ID, Department department)
+    internal Department UpdateDepartment(Guid DepartmentID, Department department)
     {
       using var db = new SqlConnection(_connectionString);
       var sql = @"IF EXISTS(SELECT *
@@ -107,7 +107,7 @@ namespace Dad_A_Store.DataAccess
                             OUTPUT INSERTED.*
                             WHERE DepartmentID = @ID";
 
-      department.DepartmentID = ID;
+      department.DepartmentID = DepartmentID;
       var updatedDepartment = db.QuerySingleOrDefault<Department>(sql, department);
 
       return updatedDepartment;
