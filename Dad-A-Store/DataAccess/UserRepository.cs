@@ -63,6 +63,14 @@ namespace Dad_A_Store.DataAccess
       return user;
     }
 
+    internal List<User> GetUserByPaymentID(string paymentID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var userPayment = db.Query<User>("SELECT * FROM USERS WHERE PAYMENTID = @paymentID", new { paymentID }).ToList();
+      return userPayment;
+    }
+
     internal void Add(User newUser)
     {
       using var db = new SqlConnection(_connectionString);
