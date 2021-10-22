@@ -26,5 +26,37 @@ namespace Dad_A_Store.Controllers
       return _repo.GetAll();
     }
 
+    [HttpGet("{orderID}")]
+    public IActionResult GetOrderByOrderID(Guid orderID)
+    {
+      var order = _repo.GetByOrderID(orderID);
+
+      if (order == null)
+      {
+        return NotFound($"No order with the OrderID {orderID} was found.");
+      }
+
+      return Ok(order);
+    }
+
+    [HttpGet("user/{userID}")]
+    public List<Order> GetOrderByUserID(Guid userID)
+    {
+      return _repo.GetByUserID(userID);
+
+    }
+
+    [HttpPost]
+    public Order AddOrder(List<NewOrder> listOfItems, Guid userID, Guid paymentID)
+    {
+      return _repo.CreateOrder(listOfItems, userID, paymentID);
+    }
+
+    [HttpDelete("remove/{orderID}")]
+    public void DeleteOrder(Guid orderID)
+    {
+      _repo.Remove(orderID);
+    }
+
   }
 }
