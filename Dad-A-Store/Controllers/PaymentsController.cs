@@ -39,17 +39,17 @@ namespace Dad_A_Store.Controllers
       return Ok(payment);
     }
 
-    [HttpPost]
-    public IActionResult AddPayment(Payment newPayment)
-    {
-      if (string.IsNullOrEmpty(newPayment.PaymentType))
-      {
-        return BadRequest("Payment Type is a required field");
-      }
-      _repo.Add(newPayment);
+    //[HttpPost]
+    //public IActionResult AddPayment(Payment newPayment)
+    //{
+    //  if (string.IsNullOrEmpty(newPayment.PaymentType))
+    //  {
+    //    return BadRequest("Payment Type is a required field");
+    //  }
+    //  _repo.Add(newPayment);
 
-      return Created($"/api/paymenttypes/{newPayment.PaymentID}", newPayment);
-    }
+    //  return Created($"/api/paymenttypes/{newPayment.PaymentID}", newPayment);
+    //}
 
     [HttpDelete("{ID}")]
     public IActionResult DeletePayemnt(Guid ID)
