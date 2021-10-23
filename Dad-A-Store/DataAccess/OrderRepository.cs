@@ -55,13 +55,21 @@ namespace Dad_A_Store.DataAccess
     }
 
 
-    internal Order CreateOrder(List<NewOrder> listOfItems, Guid userID, Guid paymentID)
+    internal Order CreateOrder(Guid userID, List<NewOrder> listOfItems)
     {
       //To create an order, we expect a list of items that make up the order, and the userID and paymentID to create the order.
       //We will first create the order, and then the line items in OrderDetails
 
       //Connecting to the database
       var db = new SqlConnection(_connectionString);
+
+      //Let's grab the UserID and the assocaited PaymentID to tie to the order
+
+      var userSql = @"SELECT *
+                    FROM USERS
+                    WHERE UserID = @userID";
+
+      var userOrdering = db.QueryFirstOrDefault<User>(userSql, new { userID });
 
       //To create the order, we will need to get the order total of each line item
       var thisOrderTotal = 0m;
@@ -88,8 +96,8 @@ namespace Dad_A_Store.DataAccess
       var tempOrder = new Order();
 
       //Setting up the order locally so we can pass it to query. I opted to let SQL create the OrderID rather than NewGuid()
-      tempOrder.UserID = userID;
-      tempOrder.PaymentID = paymentID;
+      tempOrder.UserID = userOrdering.PaymentID;
+      tempOrder.PaymentID = userOrdering.PaymentID;
       tempOrder.OrderAmount = thisOrderTotal;
       tempOrder.OrderDate = DateTime.Now;
       tempOrder.ShipDate = DateTime.Now;
