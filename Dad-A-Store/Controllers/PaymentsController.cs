@@ -12,11 +12,11 @@ namespace Dad_A_Store.Controllers
 {
   [Route("api/paymenttypes")]
   [ApiController]
-  public class PaymentController : ControllerBase
+  public class PaymentsController : ControllerBase
   {
     PaymentRepository _repo;
  
-    public PaymentController(PaymentRepository repo)
+    public PaymentsController(PaymentRepository repo)
     {
       _repo = repo;
     }
