@@ -27,19 +27,30 @@ namespace Dad_A_Store.Controllers
       return _repo.GetAllUsers();
     }
 
-    // GetByUserID
-    [HttpGet("{ID}")]
-    public IActionResult GetUserByID(Guid ID)
+    [HttpGet("CGetUserFirstFromList/{userFirst}")]
+    public IEnumerable<User> CGetUserFirstFromList(string userFirst)
     {
-      var user = _repo.GetUserByID(ID);
-
-      if (user == null)
-      {
-        return NotFound($"No user with the ID of {ID} was found");
-      }
-
-      return Ok(user);
+      return _repo.GetUserByNameFromList(userFirst);
     }
+
+    [HttpGet("CGetUserByNameFromDB/{userFirst}")]
+    public User CGetUserByNameFromDB(string userFirst)
+    {
+      return _repo.GetUserByNameFromDB(userFirst);
+    }
+
+    // GetByUserID
+    //[HttpGet("{ID}")]
+    //public IActionResult GetUserByID(Guid ID)
+    //{
+    //  var user = _repo.GetUserByID(ID);
+
+    //  if (user == null)
+    //  {
+    //    return NotFound($"No user with the ID of {ID} was found");
+    //  }
+    //  return Ok(user);
+    //}
 
     [HttpGet("GetUserByPAYMENTID/{paymentID}")]
     public List<User> GetUserByPAYMENTID(string paymentID)
@@ -77,12 +88,11 @@ namespace Dad_A_Store.Controllers
     [HttpPut("{ID}")]
     public IActionResult UpdateUser(Guid ID, User user)
     {
-      var userToUpdate = _repo.GetUserByID(ID);
+      var userToUpdate = _repo.GetUserByIDFromDB(ID);
 
       if (userToUpdate == null)
       {
         return NotFound($"Could not find user with that ID of {ID} for updating.");
-
       }
 
       var updateUser = _repo.UpdateUser(ID, user);
