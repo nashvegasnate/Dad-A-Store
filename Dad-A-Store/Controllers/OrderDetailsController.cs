@@ -26,10 +26,10 @@ namespace Dad_A_Store.Controllers
       return _repo.GetAll();
     }
 
-    [HttpGet("{id}")]
-    public List<OrderDetail> GetOrderDetailsByID(Guid id)
+    [HttpGet("{orderID}")]
+    public List<OrderDetail> GetOrderDetailsByID(Guid orderID)
     {
-      return _repo.GetByOrderID(id);
+      return _repo.GetByOrderID(orderID);
     }
 
     [HttpPost]
