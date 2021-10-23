@@ -96,7 +96,7 @@ namespace Dad_A_Store.DataAccess
       var tempOrder = new Order();
 
       //Setting up the order locally so we can pass it to query. I opted to let SQL create the OrderID rather than NewGuid()
-      tempOrder.UserID = userOrdering.PaymentID;
+      tempOrder.UserID = userOrdering.UserID;
       tempOrder.PaymentID = userOrdering.PaymentID;
       tempOrder.OrderAmount = thisOrderTotal;
       tempOrder.OrderDate = DateTime.Now;
