@@ -72,9 +72,9 @@ namespace Dad_A_Store.DataAccess
                                 FROM PAYMENTTYPES
                                 WHERE  PaymentType = @PaymentType
                                 )
-                   INSERT INTO PAYMENTTYPES (PaymentType)
+                   INSERT INTO PAYMENTTYPES (PaymentType, PaymentID)
                    OUTPUT INSERTED.PaymentID
-                   VALUES (@PaymentType)";
+                   VALUES (@PaymentType, @PaymentID)";
 
       var ID = db.ExecuteScalar<Guid>(sql, newPayment);
       newPayment.PaymentID = ID;
