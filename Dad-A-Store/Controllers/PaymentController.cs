@@ -14,29 +14,27 @@ namespace Dad_A_Store.Controllers
   [ApiController]
   public class PaymentController : ControllerBase
   {
-    //
     PaymentRepository _repo;
-
-    // 
+ 
     public PaymentController(PaymentRepository repo)
     {
       _repo = repo;
     }
 
     [HttpGet]
-    public IActionResult GetAllPayments()
+    public List<Payment> GetAllPAYMENTS()
     {
-      return Ok(_repo.GetAllPayments());
+      return _repo.GetAllPayments();
     }
 
     [HttpGet("{ID}")]
-    public IActionResult GetPaymentByID(Guid ID)
+    public IActionResult GetPAYMENTBYID(Guid ID)
     {
       var payment = _repo.GetPaymentByID(ID);
 
       if (payment == null)
       {
-        return NotFound($"No payment with id {ID} was found.");
+        return NotFound($"No payment with ID of {ID} was found.");
       }
       return Ok(payment);
     }
@@ -50,7 +48,7 @@ namespace Dad_A_Store.Controllers
       }
       _repo.Add(newPayment);
 
-      return Created($"/api/PAYMENTTYPE/{newPayment.PaymentID}", newPayment);
+      return Created($"/api/paymenttypes/{newPayment.PaymentID}", newPayment);
     }
 
     [HttpDelete("{ID}")]
