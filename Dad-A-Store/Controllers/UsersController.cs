@@ -80,13 +80,13 @@ namespace Dad_A_Store.Controllers
 
       if (userToUpdate == null)
       {
-        return NotFound($"Could not find bird with the ID {ID} for updating.");
+        return NotFound($"Could not find user with that ID of {ID} for updating.");
 
       }
+
       var updateUser = _repo.UpdateUser(ID, user);
       return Ok(updateUser);
     }
-
      
   }
  }
