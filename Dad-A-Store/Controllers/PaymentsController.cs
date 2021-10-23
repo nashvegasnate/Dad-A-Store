@@ -66,7 +66,7 @@ namespace Dad_A_Store.Controllers
 
       if (paymentToUpdate == null)
       {
-        return NotFound($"Could not find payment with that id {ID} to update");
+        return NotFound($"Could not find payment with ID of {ID} to update");
       }
       var updatedPayment = _repo.UpdatePayment(ID, payment);
 
