@@ -15,18 +15,18 @@ namespace Dad_A_Store.Controllers
   {
     UserRepository _repo;
 
-
     public UsersController(UserRepository repo)
     {
       _repo = repo;
     }
 
     [HttpGet]
-    public List<User> GetAllUsers()
+    public List<User> GetAllUSERS()
     {
       return _repo.GetAllUsers();
     }
 
+    // GetByUserID
     [HttpGet("{ID}")]
     public IActionResult GetUserByID(Guid ID)
     {
@@ -38,6 +38,12 @@ namespace Dad_A_Store.Controllers
       }
 
       return Ok(user);
+    }
+
+    [HttpGet("GetUserByPAYMENTID/{paymentID}")]
+    public List<User> GetUserByPAYMENTID(string paymentID)
+    {
+      return _repo.GetUserByPaymentID(paymentID);
     }
 
     //[HttpPost]
