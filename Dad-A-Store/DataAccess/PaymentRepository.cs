@@ -32,20 +32,18 @@ namespace Dad_A_Store.DataAccess
     internal List<Payment> GetAllPayments()
     {
       return _paymenttypes;
-      //// Creates connection to database
-      //using var db = new SqlConnection(_connectionString);
-      //// SQL query 
-      //var sql = @"SELECT *
-      //            FROM PAYMENTTYPES";
-      //// Query the database, store results in a list
-      //var payments = db.Query<Payment>(sql).ToList();
-      //return payments;
     }
 
     internal IEnumerable<Payment> GetPaymentByID(Guid paymentID)
     {
       return _paymenttypes.Where(payment => payment.PaymentID == paymentID);
 
+    }
+
+    internal IEnumerable<Payment> GetPaymentTypeFromList(string paymentType)
+    {
+      var temp = _paymenttypes.Where(payment => payment.PaymentType == paymentType);
+      return temp;
     }
 
     internal Payment GetByID(Guid paymentID)
