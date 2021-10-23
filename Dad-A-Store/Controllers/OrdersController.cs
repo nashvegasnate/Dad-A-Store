@@ -52,6 +52,12 @@ namespace Dad_A_Store.Controllers
       return _repo.CreateOrder(listOfItems, userID, paymentID);
     }
 
+    [HttpPut("update/{orderID}")]
+    public Order UpdateOrder(Guid orderID, List<NewOrder> updatedList)
+    {
+      return _repo.Update(orderID, updatedList);
+    }
+
     [HttpDelete("remove/{orderID}")]
     public void DeleteOrder(Guid orderID)
     {
