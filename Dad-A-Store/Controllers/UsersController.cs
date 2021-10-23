@@ -46,25 +46,24 @@ namespace Dad_A_Store.Controllers
       return _repo.GetUserByPaymentID(paymentID);
     }
 
-    //[HttpPost]
-    //public IActionResult AddUser(User newUser)
-    //{
-    //  if (string.IsNullOrEmpty(newUser.UserFirst) ||
-    //      string.IsNullOrEmpty(newUser.UserLast) ||
-    //      string.IsNullOrEmpty(newUser.UserAddress1) ||
-    //      string.IsNullOrEmpty(newUser.UserAddress2) ||
-    //      string.IsNullOrEmpty(newUser.UserCity) ||
-    //      string.IsNullOrEmpty(newUser.UserState) ||
-    //      newUser.UserZipCode.Equals(0) ||
-    //      newUser.PaymentID.Equals(string.Empty))
-    //  {
-    //    return BadRequest("User information fields are required");
-    //  }
+    [HttpPost]
+    public IActionResult AddUser(User newUser)
+    {
+      if (string.IsNullOrEmpty(newUser.UserFirst) ||
+          string.IsNullOrEmpty(newUser.UserLast) ||
+          string.IsNullOrEmpty(newUser.UserAddress1) ||
+          string.IsNullOrEmpty(newUser.UserAddress2) ||
+          string.IsNullOrEmpty(newUser.UserCity) ||
+          string.IsNullOrEmpty(newUser.UserState) ||
+          newUser.UserZipCode.Equals(0) ||
+          newUser.PaymentID.Equals(string.Empty))
+      {
+        return BadRequest("User information fields and Payment ID are required");
+      }
+      _repo.Add(newUser);
 
-    //    _repo.Add(newUser);
-
-    //    return Created($"/api/USERS/{newUser.ID}", newUser);
-    //  }
+      return Created($"/api/users/{newUser.UserID}", newUser);
+    }
 
     [HttpDelete("{ID}")]
     public IActionResult DeleteUser(Guid ID)
