@@ -40,26 +40,28 @@ namespace Dad_A_Store.DataAccess
 
     }
 
+    internal Payment GetByIDFromDB(Guid paymentID)
+    {
+      using var db = new SqlConnection(_connectionString);
+      // sql query string
+      var sql = @"SELECT *
+                  FROM PAYMENTTYPES
+                  WHERE PaymentID = @paymentID";
+      var payments = db.QueryFirstOrDefault<Payment>(sql, new { paymentID });
+      return payments;
+    }
+
     internal IEnumerable<Payment> GetPaymentTypeFromList(string paymentType)
     {
       var temp = _paymenttypes.Where(payment => payment.PaymentType == paymentType);
       return temp;
     }
 
-    internal Payment GetByID(Guid paymentID)
+    internal Payment GetPaymentTypeFromDB(string paymentType)
     {
-      //using var db = new SqlConnection(_connectionString);
-      //var temp = db.QueryFirstOrDefault<Category>("SELECT * FROM CATEGORIES WHERE CategoryID = @categoryID", new { categoryID });
-      //return temp;
-      // creates connection to db
       using var db = new SqlConnection(_connectionString);
-      // sql query string
-      var sql = @"SELECT *
-                  FROM PAYMENTTYPES
-                  WHERE PaymentID = @paymentID";
-
-      var payments = db.QueryFirstOrDefault<Payment>(sql, new { paymentID }); //.toList();
-      return payments;
+      var temp = db.QueryFirstOrDefault<Payment>("SELECT * FROM PAYMENTTYPES WHERE PaymentType = @paymentType", new { paymentType });
+      return temp;
     }
 
     internal void Add(Payment newPayment)
