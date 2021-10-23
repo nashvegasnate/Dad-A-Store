@@ -109,5 +109,17 @@ namespace Dad_A_Store.DataAccess
 
     }
 
+    internal void Remove(Guid orderID, Guid itemID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var orderDetailSql = @"DELETE
+                            FROM ORDERDETAILS
+                            WHERE OrderID = @orderID AND ItemID = @itemID";
+
+      db.Execute(orderDetailSql, new { orderID, itemID });
+
+    }
+
   }
 }
