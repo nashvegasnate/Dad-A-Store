@@ -44,7 +44,11 @@ namespace Dad_A_Store.Controllers
       return _repo.Update(orderID, itemID, orderDetail);
     }
 
-
+    [HttpDelete("/delete/{orderID}/{itemID}")]
+    public void deleteORder(Guid orderID, Guid itemID)
+    {
+      _repo.Remove(orderID, itemID);
+    }
 
   }
 }
