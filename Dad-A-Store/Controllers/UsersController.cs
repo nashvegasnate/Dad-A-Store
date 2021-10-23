@@ -33,11 +33,11 @@ namespace Dad_A_Store.Controllers
       return _repo.GetUserByNameFromList(userFirst);
     }
 
-    [HttpGet("CGetUserByNameFromDB/{userFirst}")]
-    public User CGetUserByNameFromDB(string userFirst)
-    {
-      return _repo.GetUserByNameFromDB(userFirst);
-    }
+    //[HttpGet("CGetUserByNameFromDB/{userFirst}")]
+    //public User CGetUserByNameFromDB(string userFirst)
+    //{
+    //  return _repo.GetUserByNameFromDB(userFirst);
+    //}
 
     [HttpGet("GetByUserID/{userID}")]
     public List<User> GetByUserID(string userID)
@@ -103,6 +103,6 @@ namespace Dad_A_Store.Controllers
       var updateUser = _repo.UpdateUser(ID, user);
       return Ok(updateUser);
     }
-     
+
   }
- }
+}

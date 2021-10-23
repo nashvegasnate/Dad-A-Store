@@ -44,10 +44,10 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
       // sql query string
-      var sql = @"SELECT *
-                  FROM PAYMENTTYPES
-                  WHERE PaymentID = @paymentID";
-      var payments = db.QueryFirstOrDefault<Payment>(sql, new { paymentID });
+      //var sql = @"SELECT *
+      //            FROM PAYMENTTYPES
+      //            WHERE PaymentID = @paymentID";
+      var payments = db.QueryFirstOrDefault<Payment>("SELECT * FROM PAYMENTTYPES WHERE PaymentID = @paymentID", new { paymentID });
       return payments;
     }
 

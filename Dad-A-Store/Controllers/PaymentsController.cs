@@ -62,7 +62,7 @@ namespace Dad_A_Store.Controllers
     [HttpPut("{ID}")]
     public IActionResult UpdatePayment(Guid ID, Payment payment)
     {
-      var paymentToUpdate = _repo.GetPaymentByID(ID);
+      var paymentToUpdate = _repo.GetByIDFromDB(ID);
 
       if (paymentToUpdate == null)
       {
