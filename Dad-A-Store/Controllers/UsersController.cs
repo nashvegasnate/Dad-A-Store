@@ -39,6 +39,12 @@ namespace Dad_A_Store.Controllers
       return _repo.GetUserByNameFromDB(userFirst);
     }
 
+    [HttpGet("GetByUserID/{userID}")]
+    public List<User> GetByUserID(string userID)
+    {
+      return _repo.GetUserByUserID(userID);
+    }
+
     // GetByUserID
     //[HttpGet("{ID}")]
     //public IActionResult GetUserByID(Guid ID)
@@ -74,14 +80,13 @@ namespace Dad_A_Store.Controllers
       }
       _repo.Add(newUser);
 
-      return Created($"/api/users/{newUser.UserID}", newUser);
+      return Created($"api/users/{newUser.UserID}", newUser);
     }
 
     [HttpDelete("{ID}")]
     public IActionResult DeleteUser(Guid ID)
     {
       _repo.RemoveUser(ID);
-
       return Ok();
     }
 

@@ -38,6 +38,13 @@ namespace Dad_A_Store.DataAccess
       return _users.Where(user => user.UserID == userID);
     }
 
+    internal List<User> GetUserByUserID(string userID)
+    {
+      using var db = new SqlConnection(_connectionString);
+      var temp = db.Query<User>("SELECT * FROM USERS WHERE UserID = @userID", new { userID }).ToList();
+      return temp;
+    }
+
     internal User GetUserByIDFromDB(Guid userID)
     {
       using var db = new SqlConnection(_connectionString);
