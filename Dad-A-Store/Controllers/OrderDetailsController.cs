@@ -26,10 +26,10 @@ namespace Dad_A_Store.Controllers
       return _repo.GetAll();
     }
 
-    [HttpGet("{id}")]
-    public List<OrderDetail> GetOrderDetailsByID(Guid id)
+    [HttpGet("{orderID}")]
+    public List<OrderDetail> GetOrderDetailsByID(Guid orderID)
     {
-      return _repo.GetByOrderID(id);
+      return _repo.GetByOrderID(orderID);
     }
 
     [HttpPost]
@@ -38,7 +38,17 @@ namespace Dad_A_Store.Controllers
      return _repo.Add(orderDetail);
     }
 
+    [HttpPut("/update/{orderID}/{itemID}")]
+    public OrderDetail updateOrderDetail(Guid orderID, Guid itemID, OrderDetail orderDetail)
+    {
+      return _repo.Update(orderID, itemID, orderDetail);
+    }
 
+    [HttpDelete("/delete/{orderID}/{itemID}")]
+    public void deleteORder(Guid orderID, Guid itemID)
+    {
+      _repo.Remove(orderID, itemID);
+    }
 
   }
 }

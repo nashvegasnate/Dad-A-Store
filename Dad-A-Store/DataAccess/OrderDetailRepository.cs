@@ -77,6 +77,24 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
 
+      //Query the database to get the Item Price
+      var itemSql = @"SELECT *
+                      FROM ITEMS
+                      WHERE ItemID = @itemID";
+
+      //Store that item so we can use it to set the line item pricing
+      var orderDetailItem = db.QueryFirstOrDefault<Item>(itemSql, new { itemID });
+
+      //Create a new local OrderDetail object so we can pass as parameters
+
+      var tempOrderDetail = new OrderDetail
+      {
+        OrderID = orderID,
+        ItemID = itemID,
+        ItemQuantity = orderDetail.ItemQuantity,
+        ItemPrice = orderDetailItem.ItemPrice
+      };
+
       var sql = @"UPDATE ORDERDETAILS
                   SET ItemID = @ItemID,
 		          ItemQuantity = @ItemQuantity
@@ -85,9 +103,21 @@ namespace Dad_A_Store.DataAccess
                   WHERE OrderID = @orderID AND ItemID = @itemID";
       orderDetail.ItemID = orderID;
 
-      var updatedOrderDetail = db.QuerySingleOrDefault(sql, orderDetail);
+      var updatedOrderDetail = db.QuerySingleOrDefault(sql, tempOrderDetail);
 
       return updatedOrderDetail;
+
+    }
+
+    internal void Remove(Guid orderID, Guid itemID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var orderDetailSql = @"DELETE
+                            FROM ORDERDETAILS
+                            WHERE OrderID = @orderID AND ItemID = @itemID";
+
+      db.Execute(orderDetailSql, new { orderID, itemID });
 
     }
 
