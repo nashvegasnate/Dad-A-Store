@@ -46,10 +46,10 @@ namespace Dad_A_Store.Controllers
 
     }
 
-    [HttpPost]
-    public Order AddOrder(List<NewOrder> listOfItems, Guid userID, Guid paymentID)
+    [HttpPost("create/{userID}")]
+    public Order AddOrder(Guid userID, List<NewOrder> listOfItems)
     {
-      return _repo.CreateOrder(listOfItems, userID, paymentID);
+      return _repo.CreateOrder(userID, listOfItems);
     }
 
     [HttpPut("update/{orderID}")]
