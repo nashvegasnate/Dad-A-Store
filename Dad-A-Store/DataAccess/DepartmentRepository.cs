@@ -71,9 +71,9 @@ namespace Dad_A_Store.DataAccess
                                   WHERE DepartmentName = @DepartmentName
                                   AND DepartmentDescription = @DepartmentDescription
                                 )
-                          INSERT INTO DEPARTMENTS(DepartmentName, DepartmentDescription, DepartmentID)
+                          INSERT INTO DEPARTMENTS(DepartmentName, DepartmentDescription)
                           OUTPUT INSERTED.DepartmentID
-                          VALUES (@DepartmentName, @DepartmentDescription, @DepartmentID)";
+                          VALUES (@DepartmentName, @DepartmentDescription)";
 
       var ID = db.ExecuteScalar<Guid>(sql, newDepartment);
       newDepartment.DepartmentID = ID;
