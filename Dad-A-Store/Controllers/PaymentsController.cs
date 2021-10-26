@@ -49,7 +49,8 @@ namespace Dad_A_Store.Controllers
     [HttpPost]
     public IActionResult AddPayment(Payment newPayment)
     {
-      if (string.IsNullOrEmpty(newPayment.PaymentType))
+      if (string.IsNullOrEmpty(newPayment.PaymentType) ||
+          newPayment.PaymentID.Equals(string.Empty))
       {
         return BadRequest("Payment Type is a required field");
       }

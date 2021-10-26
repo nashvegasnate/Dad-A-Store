@@ -73,7 +73,7 @@ namespace Dad_A_Store.Controllers
           string.IsNullOrEmpty(newUser.UserAddress2) ||        
           string.IsNullOrEmpty(newUser.UserCity) ||
           string.IsNullOrEmpty(newUser.UserState) ||
-          newUser.UserZipCode.Equals(0) || // int.Equals(0) ||
+          newUser.UserZipCode.Equals(int.MinValue) || // int.Equals(0) ||
           newUser.PaymentID.Equals(string.Empty))
       {
         return BadRequest("User information fields and Payment ID are required");
