@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Data.SqlClient;
 
 namespace Dad_A_Store.DataAccess
 {
@@ -45,7 +44,7 @@ namespace Dad_A_Store.DataAccess
 
       // SQL Query string
       var sql = @"SELECT *
-                  FROM PAYMENTS
+                  FROM USERS
                   WHERE UserID = @userID";
 
       // UsersID List() variable
