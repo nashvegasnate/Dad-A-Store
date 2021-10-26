@@ -79,13 +79,7 @@ namespace Dad_A_Store.DataAccess
       var sql = @"IF NOT EXISTS(SELECT * 
                                 FROM USERS
                                 WHERE  UserFirst = @UserFirst
-                                AND       UserLast = @UserLast
-                                AND       UserAddress1 = @UserAddress1
-                                AND       UserAddress2 = @UserAddress2
-                                AND       UserCity = @UserCity
-                                AND       UserState = @UserState
-                                AND       UserZipeCode = @UserZipCode
-                                AND       PaymentID = @PaymentID
+                                AND    UserLast = @UserLast
                                 )
                    INSERT INTO USERS (UserFirst, UserLast, UserAddress1, UserAddress2, UserCity, UserState, UserZipCode, PaymentID)
                    OUTPUT INSERTED.UserID
@@ -131,7 +125,7 @@ namespace Dad_A_Store.DataAccess
                         OUTPUT INSERTED.*
                         Where UserID = @UserID";
 
-      //user.UserID = UserID;
+      user.UserID = UserID;
       var updatedUser = db.QuerySingleOrDefault<User>(sql, user);
 
       return updatedUser;
