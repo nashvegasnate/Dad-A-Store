@@ -26,7 +26,7 @@ namespace Dad_A_Store.Controllers
     {
       return _repo.GetAllPayments();
     }
-
+    // Get PaymentID 
     [HttpGet("GetPaymentmentByPaymentID/{paymentID}")]
     public List<Payment> GetPaymentByPaymentID(string paymentID)
     {
@@ -35,13 +35,13 @@ namespace Dad_A_Store.Controllers
 
     // PaymentID IACTION
     [HttpGet("{paymentID}")]
-    public IActionResult GetPAYMENTBYID(Guid ID)
+    public IActionResult GetPAYMENTBYID(Guid paymentID)
     {
-      var payment = _repo.GetPaymentByID(ID);
+      var payment = _repo.GetPaymentByID(paymentID);
 
       if (payment == null)
       {
-        return NotFound($"No payment with ID of {ID} was found.");
+        return NotFound($"No payment with ID of {paymentID} was found.");
       }
       return Ok(payment);
     }
