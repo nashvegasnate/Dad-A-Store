@@ -33,11 +33,11 @@ namespace Dad_A_Store.Controllers
       return _repo.GetUserByNameFromList(userFirst);
     }
 
-    //[HttpGet("CGetUserByNameFromDB/{userFirst}")]
-    //public User CGetUserByNameFromDB(string userFirst)
-    //{
-    //  return _repo.GetUserByNameFromDB(userFirst);
-    //}
+    [HttpGet("CGetUserByNameFromDB/{userFirst}")]
+    public User CGetUserByNameFromDB(string userFirst)
+    {
+      return _repo.GetUserByNameFromDB(userFirst);
+    }
 
     [HttpGet("GetByUserID/{userID}")]
     public List<User> GetByUserID(string userID)
@@ -45,18 +45,18 @@ namespace Dad_A_Store.Controllers
       return _repo.GetUserByUserID(userID);
     }
 
-    // GetByUserID
-    //[HttpGet("{ID}")]
-    //public IActionResult GetUserByID(Guid ID)
-    //{
-    //  var user = _repo.GetUserByID(ID);
+   // GetByUserID
+   [HttpGet("{ID}")]
+    public IActionResult GetUserByID(Guid userID)
+    {
+      var user = _repo.GetUserByIDFromDB(userID);
 
-    //  if (user == null)
-    //  {
-    //    return NotFound($"No user with the ID of {ID} was found");
-    //  }
-    //  return Ok(user);
-    //}
+      if (user == null)
+      {
+        return NotFound($"No user with the ID of {userID} was found");
+      }
+      return Ok(user);
+    }
 
     [HttpGet("GetUserByPAYMENTID/{paymentID}")]
     public List<User> GetUserByPAYMENTID(string paymentID)
@@ -64,24 +64,24 @@ namespace Dad_A_Store.Controllers
       return _repo.GetUserByPaymentID(paymentID);
     }
 
-    //[HttpPost]
-    //public IActionResult AddUser(User newUser)
-    //{
-    //  if (string.IsNullOrEmpty(newUser.UserFirst) ||
-    //      string.IsNullOrEmpty(newUser.UserLast) ||
-    //      string.IsNullOrEmpty(newUser.UserAddress1) ||
-    //      string.IsNullOrEmpty(newUser.UserAddress2) ||
-    //      string.IsNullOrEmpty(newUser.UserCity) ||
-    //      string.IsNullOrEmpty(newUser.UserState) ||
-    //      newUser.UserZipCode.Equals(0) ||
-    //      newUser.PaymentID.Equals(string.Empty))
-    //  {
-    //    return BadRequest("User information fields and Payment ID are required");
-    //  }
-    //  _repo.Add(newUser);
+    [HttpPost]
+    public IActionResult AddUser(User newUser)
+    {
+      if (string.IsNullOrEmpty(newUser.UserFirst) ||
+          string.IsNullOrEmpty(newUser.UserLast) ||
+          string.IsNullOrEmpty(newUser.UserAddress1) ||
+          string.IsNullOrEmpty(newUser.UserAddress2) ||        
+          string.IsNullOrEmpty(newUser.UserCity) ||
+          string.IsNullOrEmpty(newUser.UserState) ||
+          newUser.UserZipCode.Equals(0) || // int.Equals(0) ||
+          newUser.PaymentID.Equals(string.Empty))
+      {
+        return BadRequest("User information fields and Payment ID are required");
+      }
+      _repo.Add(newUser);
 
-    //  return Created($"api/users/{newUser.UserID}", newUser);
-    //}
+      return Created($"api/users/{newUser.UserID}", newUser);
+    }  
 
     [HttpDelete("{ID}")]
     public IActionResult DeleteUser(Guid ID)

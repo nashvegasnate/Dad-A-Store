@@ -27,7 +27,14 @@ namespace Dad_A_Store.Controllers
       return _repo.GetAllPayments();
     }
 
-    [HttpGet("{ID}")]
+    [HttpGet("GetPaymentmentByPaymentID/{paymentID}")]
+    public List<Payment> GetPaymentByPaymentID(string paymentID)
+    {
+      return _repo.GetPaymentByPaymentID(paymentID);
+    }
+
+    // PaymentID IACTION
+    [HttpGet("{paymentID}")]
     public IActionResult GetPAYMENTBYID(Guid ID)
     {
       var payment = _repo.GetPaymentByID(ID);
@@ -39,17 +46,17 @@ namespace Dad_A_Store.Controllers
       return Ok(payment);
     }
 
-    //[HttpPost]
-    //public IActionResult AddPayment(Payment newPayment)
-    //{
-    //  if (string.IsNullOrEmpty(newPayment.PaymentType))
-    //  {
-    //    return BadRequest("Payment Type is a required field");
-    //  }
-    //  _repo.Add(newPayment);
+    [HttpPost]
+    public IActionResult AddPayment(Payment newPayment)
+    {
+      if (string.IsNullOrEmpty(newPayment.PaymentType))
+      {
+        return BadRequest("Payment Type is a required field");
+      }
+      _repo.Add(newPayment);
 
-    //  return Created($"/api/paymenttypes/{newPayment.PaymentID}", newPayment);
-    //}
+      return Created($"/api/paymenttypes/{newPayment.PaymentID}", newPayment);
+    }
 
     [HttpDelete("{ID}")]
     public IActionResult DeletePayemnt(Guid ID)

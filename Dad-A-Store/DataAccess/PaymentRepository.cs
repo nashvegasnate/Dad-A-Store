@@ -47,8 +47,15 @@ namespace Dad_A_Store.DataAccess
       //var sql = @"SELECT *
       //            FROM PAYMENTTYPES
       //            WHERE PaymentID = @paymentID";
-      var payments = db.QueryFirstOrDefault<Payment>("SELECT * FROM PAYMENTTYPES WHERE PaymentID = @paymentID", new { paymentID });
-      return payments;
+      var payID = db.QueryFirstOrDefault<Payment>("SELECT * FROM PAYMENTTYPES WHERE PaymentID = @paymentID", new { paymentID });
+      return payID;
+    }
+
+    internal List<Payment> GetPaymentByPaymentID(string paymentID)
+    {
+      using var db = new SqlConnection(_connectionString);
+      var temp = db.Query<Payment>("SELECT * FROM PAYMENTTYPES WHERE PaymentID = @paymentID", new { paymentID }).ToList();
+      return temp;
     }
 
     internal IEnumerable<Payment> GetPaymentTypeFromList(string paymentType)
@@ -99,12 +106,12 @@ namespace Dad_A_Store.DataAccess
       using var db = new SqlConnection(_connectionString);
       var sql = @"IF EXISTS(SELECT * 
                             FROM PAYMENTTYPES
-                            WHERE  PaymentID = @PaymentID
+                            WHERE  PaymentID = @paymentID
                             )
                    UPDATE PAYMENTTYPES 
                    SET PaymentType = @PaymentType
                    OUTPUT INSERTED.*
-                   WHERE PaymentID = @PaymentID";
+                   WHERE PaymentID = @paymentID";
 
       // payment.PaymentID = ID;
       var updatePayment = db.QuerySingleOrDefault<Payment>(sql, payment);
