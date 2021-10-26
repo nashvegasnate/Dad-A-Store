@@ -27,6 +27,30 @@ namespace Dad_A_Store.Controllers
       return _repo.GetAllUsers();
     }
 
+    [HttpGet("GetByUserID/{userID}")]
+    public List<User> GetByUserID(string userID)
+    {
+      return _repo.GetUserByUserID(userID);
+    }
+
+    [HttpGet("{ID}")]
+    public IActionResult GetUserByID(Guid ID)
+    {
+      var user = _repo.GetUserByIDFromDB(ID);
+
+      if (user == null)
+      {
+        return NotFound($"No user with the ID of {ID} was found");
+      }
+      return Ok(user);
+    }
+
+    [HttpGet("GetUserByPAYMENTID/{paymentID}")]
+    public List<User> GetUserByPAYMENTID(string paymentID)
+    {
+      return _repo.GetUserByPaymentID(paymentID);
+    }
+
     [HttpGet("CGetUserFirstFromList/{userFirst}")]
     public IEnumerable<User> CGetUserFirstFromList(string userFirst)
     {
@@ -39,31 +63,6 @@ namespace Dad_A_Store.Controllers
       return _repo.GetUserByNameFromDB(userFirst);
     }
 
-    [HttpGet("GetByUserID/{userID}")]
-    public List<User> GetByUserID(string userID)
-    {
-      return _repo.GetUserByUserID(userID);
-    }
-
-   // GetByUserID
-   [HttpGet("{ID}")]
-    public IActionResult GetUserByID(Guid userID)
-    {
-      var user = _repo.GetUserByIDFromDB(userID);
-
-      if (user == null)
-      {
-        return NotFound($"No user with the ID of {userID} was found");
-      }
-      return Ok(user);
-    }
-
-    [HttpGet("GetUserByPAYMENTID/{paymentID}")]
-    public List<User> GetUserByPAYMENTID(string paymentID)
-    {
-      return _repo.GetUserByPaymentID(paymentID);
-    }
-
     [HttpPost]
     public IActionResult AddUser(User newUser)
     {
@@ -73,7 +72,7 @@ namespace Dad_A_Store.Controllers
           string.IsNullOrEmpty(newUser.UserAddress2) ||        
           string.IsNullOrEmpty(newUser.UserCity) ||
           string.IsNullOrEmpty(newUser.UserState) ||
-          newUser.UserZipCode.Equals(int.MinValue) || // int.Equals(0)
+          newUser.UserZipCode.Equals(0) || // int.Equals(0) int.MinValue
           newUser.PaymentID.Equals(string.Empty))
       {
         return BadRequest("User information fields and Payment ID are required");
