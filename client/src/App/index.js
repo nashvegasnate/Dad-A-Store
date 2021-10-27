@@ -10,11 +10,13 @@ function App() {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
 
+  console.warn(typeof orders);
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
       if (authed) {
         const userInfoObj = {
-          user: authed.displayName,
+          userName: authed.displayName,
           uid: authed.uid
         };
         setUser(userInfoObj);

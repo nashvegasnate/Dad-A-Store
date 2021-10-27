@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import OrderCard from '../components/OrderCard';
 
 function Orders({ user, orders }) {
+  console.warn(typeof orders);
   return (
     <div>
-      <h2>This is Orders {user.uid}</h2>
+      <h3>Order Info {user.userName}</h3>
       {
         orders.map((orderInfo) => (
           <OrderCard

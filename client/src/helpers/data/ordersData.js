@@ -5,7 +5,7 @@ const dbURL = firebaseConfig.databaseURL;
 
 const getOrders = () => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/api/orders`)
-    .then((response) => resolve(Object.values(response.data)))
+    .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
 

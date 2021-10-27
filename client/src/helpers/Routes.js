@@ -26,9 +26,11 @@ function Routes({
         <Route exact path='/' component={() => <Home user={user} />} />
         <PrivateRoute
         user={user}
-        orders={orders}
         path='/orders'
-        component={() => <Orders />}
+        component={() => <Orders
+          user={user}
+          orders={orders}
+        />}
         />
         <PrivateRoute
         user={user}
