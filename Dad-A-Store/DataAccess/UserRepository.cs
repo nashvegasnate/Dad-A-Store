@@ -61,7 +61,7 @@ namespace Dad_A_Store.DataAccess
     internal User GetUserByNameFromDB(string userFirst)
     {
       using var db = new SqlConnection(_connectionString);
-      var temp = db.QueryFirstOrDefault<User>("SELECT * FROM USERS WHERE UserFirst = @userFirst AND UserLast = @userLast", new { userFirst });
+      var temp = db.QueryFirstOrDefault<User>("SELECT * FROM USERS WHERE UserFirst = @userFirst", new { userFirst });
       return temp;
     }
 
