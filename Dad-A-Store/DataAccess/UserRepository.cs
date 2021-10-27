@@ -124,7 +124,7 @@ namespace Dad_A_Store.DataAccess
                            ,UserAddress2 = @UserAddress2
 	                       ,UserCity = @UserCity
                            ,UserState = @UserState
-                           ,UserZipCode = @UserZip
+                           ,UserZip = @UserZip
                            ,PaymentID = @PaymentID
                         OUTPUT INSERTED.*
                         Where UserID = @UserID";
