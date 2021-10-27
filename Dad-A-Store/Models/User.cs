@@ -16,7 +16,7 @@ namespace Dad_A_Store.Models
     public string UserAddress2 { get; set; }
     public string UserCity { get; set; }
     public string UserState { get; set; }
-    public int UserZipCode { get; set; }
+    public int UserZip { get; set; }
     public Guid PaymentID { get; set; }
   }
 }

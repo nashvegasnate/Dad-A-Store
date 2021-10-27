@@ -76,17 +76,21 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
 
-      var sql = @"IF NOT EXISTS(SELECT * 
-                                FROM USERS
-                                WHERE  UserFirst = @UserFirst
-                                AND    UserLast = @UserLast
-                                )
-                   INSERT INTO USERS (UserFirst, UserLast, UserAddress1, UserAddress2, UserCity, UserState, UserZipCode, PaymentID)
-                   OUTPUT INSERTED.UserID
-                   VALUES (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZipeCode,
-                           CAST((SELECT PaymentID
-                           FROM PAYMENTTYPES
-                           WHERE PaymentID = @PaymentID) AS uniqeidentifier))";
+      //var sql = @"IF NOT EXISTS(SELECT * 
+      //                          FROM USERS
+      //                          WHERE  UserFirst = @UserFirst
+      //                          AND    UserLast = @UserLast
+      //                          )
+      //             INSERT INTO USERS (UserFirst, UserLast, UserAddress1, UserAddress2, UserCity, UserState, UserZipCode, PaymentID)
+      //             OUTPUT INSERTED.UserID
+      //             VALUES (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZipeCode,
+      //                     CAST((SELECT PaymentID
+      //                     FROM PAYMENTTYPES
+      //                     WHERE PaymentID = @PaymentID) AS uniqeidentifier))";
+
+      var sql = @"INSERT into USERS(UserFirst,UserLast,UserAddress1,UserAddress2,UserCity,UserState,UserZip,PaymentID)
+                        output INSERTED.UserID
+                        values (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZip, @PaymentID)";
 
       var ID = db.ExecuteScalar<Guid>(sql, newUser);
       newUser.UserID = ID;
@@ -120,7 +124,7 @@ namespace Dad_A_Store.DataAccess
                            ,UserAddress2 = @UserAddress2
 	                       ,UserCity = @UserCity
                            ,UserState = @UserState
-                           ,UserZipCode = @UserZipCode
+                           ,UserZipCode = @UserZip
                            ,PaymentID = @PaymentID
                         OUTPUT INSERTED.*
                         Where UserID = @UserID";
