@@ -65,6 +65,8 @@ namespace Dad_A_Store
 
       app.UseAuthorization();
 
+      app.UseCors(cfg => cfg.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();

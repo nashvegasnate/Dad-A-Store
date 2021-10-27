@@ -18,6 +18,7 @@ PrivateRoute.propTypes = {
 };
 function Routes({
   user,
+  orders
 }) {
   return (
     <div>
@@ -26,7 +27,10 @@ function Routes({
         <PrivateRoute
         user={user}
         path='/orders'
-        component={() => <Orders />}
+        component={() => <Orders
+          user={user}
+          orders={orders}
+        />}
         />
         <PrivateRoute
         user={user}
@@ -39,7 +43,8 @@ function Routes({
 }
 
 Routes.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  orders: PropTypes.array.isRequired,
 };
 
 export default Routes;
