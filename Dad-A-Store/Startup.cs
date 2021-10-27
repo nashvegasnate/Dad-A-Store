@@ -39,6 +39,9 @@ namespace Dad_A_Store
 
       services.AddTransient<DepartmentRepository>();
 
+      services.AddTransient<PaymentRepository>();
+      services.AddTransient<UserRepository>();
+
       services.AddControllers();
       services.AddSwaggerGen(c =>
       {
