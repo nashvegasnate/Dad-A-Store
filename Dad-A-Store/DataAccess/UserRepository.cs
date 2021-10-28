@@ -5,13 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-using Dapper;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-=======
-using Microsoft.Data.SqlClient;
->>>>>>> main
 
 namespace Dad_A_Store.DataAccess
 {
@@ -82,12 +76,6 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
 
-<<<<<<< HEAD
-      // SQL Query string
-      var sql = @"SELECT *
-                  FROM USERS
-                  WHERE UserID = @userID";
-=======
       //var sql = @"IF NOT EXISTS(SELECT * 
       //                          FROM USERS
       //                          WHERE  UserFirst = @UserFirst
@@ -140,7 +128,6 @@ namespace Dad_A_Store.DataAccess
                            ,PaymentID = @PaymentID
                         OUTPUT INSERTED.*
                         Where UserID = @UserID";
->>>>>>> main
 
       user.UserID = UserID;
       var updatedUser = db.QuerySingleOrDefault<User>(sql, user);

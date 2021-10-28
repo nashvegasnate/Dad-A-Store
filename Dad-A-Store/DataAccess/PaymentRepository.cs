@@ -22,22 +22,6 @@ namespace Dad_A_Store.DataAccess
       LoadAllPayments();
     }
 
-<<<<<<< HEAD
-    // GetALL Method
-    internal IEnumerable<Payment> GetAll()
-    {
-      // Creates connection to database
-      using var db = new SqlConnection(_connectionString);
-
-      // SQL query 
-      var sql = @"SELECT *
-                  FROM PAYMENTTYPES";
-
-      // Query the database, store results in a list
-      var payments = db.Query<Payment>(sql).ToList();
-
-      return payments;
-=======
     internal void LoadAllPayments()
     {
       using var db = new SqlConnection(_connectionString);
@@ -54,7 +38,6 @@ namespace Dad_A_Store.DataAccess
     {
       return _paymenttypes.Where(payment => payment.PaymentID == paymentID);
 
->>>>>>> main
     }
 
     internal Payment GetByIDFromDB(Guid paymentID)
@@ -68,12 +51,6 @@ namespace Dad_A_Store.DataAccess
       return payID;
     }
 
-<<<<<<< HEAD
-      // SQL Query string
-      var sql = @"SELECT *
-                  FROM PAYMENTTYPES
-                  WHERE PaymentID = @paymentID";
-=======
     internal List<Payment> GetPaymentByPaymentID(string paymentID)
     {
       using var db = new SqlConnection(_connectionString);
@@ -135,7 +112,6 @@ namespace Dad_A_Store.DataAccess
                    SET PaymentType = @PaymentType
                    OUTPUT INSERTED.*
                    WHERE PaymentID = @paymentID";
->>>>>>> main
 
       // payment.PaymentID = ID;
       var updatePayment = db.QuerySingleOrDefault<Payment>(sql, payment);
