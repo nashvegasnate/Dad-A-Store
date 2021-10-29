@@ -4,13 +4,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
-import { getItems } from '../helpers/data/itemsData';
+import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
 
 function App() {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -21,8 +21,7 @@ function App() {
         };
         setUser(userInfoObj);
         getOrders().then((ordersArray) => setOrders(ordersArray));
-        getItems().then((itemsArray) => setCategories(itemsArray));
-        categories
+        getItems().then((itemsArray) => setItems(itemsArray));
       } else if (user || user === null) {
         setUser(false);
       }
@@ -36,8 +35,7 @@ function App() {
         <Routes
         user={user}
         orders={orders}
-        categories={categories}
-
+        items={items}
         />
       </Router>
     </div>
