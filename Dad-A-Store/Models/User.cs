@@ -18,5 +18,7 @@ namespace Dad_A_Store.Models
     public string UserState { get; set; }
     public int UserZip { get; set; }
     public Guid PaymentID { get; set; }
+    public string UserUID { get; set; }
+    public string UserRole { get; set; }
   }
 }
