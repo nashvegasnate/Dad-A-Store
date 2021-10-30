@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Dad_A_Store.DataAccess
 {
-  public class CartRepostiory
+  public class CartRepository
   {
     readonly string _connectionString;
 
-    public CartRepostiory(IConfiguration config)
+    public CartRepository(IConfiguration config)
     {
       _connectionString = config.GetConnectionString("TempDataAStore");
     }
