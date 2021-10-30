@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import Items from '../views/Items';
-import Payments from '../views/Payments';
+import Payments from '../views/PaymentTypes';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (attributes) => (user
