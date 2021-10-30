@@ -36,9 +36,9 @@ namespace Dad_A_Store.DataAccess
       return _items.Where(Item => Item.ItemID == ItemID);
     }
 
-    internal IEnumerable<Item> GetItemByNameFromList(string ItemName)
+    internal List<Item> GetItemByNameFromList(string ItemName)
     {
-      var tempItem = _items.Where(Item => Item.ItemName == ItemName);
+      var tempItem = _items.Where(Item => Item.ItemName == ItemName).ToList();
       return tempItem;
     }
 

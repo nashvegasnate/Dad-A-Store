@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Dad_A_Store.Controllers
 {
-  [Route("api/Items")]
+  [Route("api/items")]
   [ApiController]
   public class ItemsController : Controller
   {
@@ -24,7 +24,7 @@ namespace Dad_A_Store.Controllers
     }
 
     [HttpGet("CGetItemByNameFromList/{ItemName}")]
-    public IEnumerable<Item> CGetItemByNameFromList(string ItemName)
+    public List<Item> CGetItemByNameFromList(string ItemName)
     {
       return _repo.GetItemByNameFromList(ItemName);
     }

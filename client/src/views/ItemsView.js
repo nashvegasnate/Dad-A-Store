@@ -16,6 +16,7 @@ function Items({ user, items }) {
           itemDescription={itemInfo.itemDescription}
           itemPrice={itemInfo.itemPrice}
           categoryID={itemInfo.categoryID}
+          sellerID={itemInfo.SellerID}
           user={user}
           />
         ))
