@@ -56,7 +56,7 @@ namespace Dad_A_Store.DataAccess
       return temp;
     }
 
-    internal List<Item> GetItemsByNameCategoryID(string categoryID)
+    internal List<Item> GetItemsByNameCategoryID(Guid categoryID)
     {
       using var db = new SqlConnection(_connectionString);
       var temp = db.Query<Item>("SELECT * FROM ITEMS WHERE CategoryID = @categoryID", new { categoryID }).ToList();
@@ -81,7 +81,7 @@ namespace Dad_A_Store.DataAccess
                                         FROM CATEGORIES
                                         WHERE  CategoryID = @CategoryID
                                  ) AS uniqueidentifier)
-                          ,CAST(@SellerID)  AS uniqueidentifier)";
+                          ,CAST(@SellerID  AS uniqueidentifier))";
 
       return db.QueryFirstOrDefault<Item>(sql, newItem);
       //newItem.ItemID = ID;
