@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import Items from '../views/Items';
+import Payments from '../views/Payments';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (attributes) => (user
@@ -18,7 +19,8 @@ PrivateRoute.propTypes = {
 };
 function Routes({
   user,
-  orders
+  orders,
+  payments
 }) {
   return (
     <div>
@@ -37,6 +39,11 @@ function Routes({
         path='/items'
         component={() => <Items />}
         />
+        <PrivateRoute
+        user={user}
+        path='/payments'
+        component={() => <Payments />}
+        />
       </Switch>
     </div>
   );
@@ -45,6 +52,7 @@ function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
+  payments: PropTypes.array.isRequired,
 };
 
 export default Routes;
