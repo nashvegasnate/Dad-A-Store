@@ -13,6 +13,6 @@ namespace Dad_A_Store.Models
     public decimal  OrderAmount { get; set; }
     public DateTime OrderDate   { get; set; }
     public DateTime ShipDate    { get; set; }
-    public bool     Complete    { get; set; }
+    public bool     Completed    { get; set; }
   }
 }

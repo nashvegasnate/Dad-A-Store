@@ -217,7 +217,7 @@ namespace Dad_A_Store.DataAccess
                              OrderAmount = @OrderAmount,
                              OrderDate = @OrderDate,
                              ShipDate =  @ShipDate
-                             Complete = @Complete
+                             Completed = @Completed
                              OUTPUT inserted.*
                              WHERE OrderID = @OrderID";
 
