@@ -15,7 +15,7 @@ namespace Dad_A_Store.DataAccess
 
     public OrderDetailRepository(IConfiguration config)
     {
-      _connectionString = config.GetConnectionString("TempDataAStore");
+      _connectionStrings = config.GetConnectionString("TempDataAStore");
     }
 
     internal List<OrderDetail> GetAll()
