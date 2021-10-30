@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
-import Items from '../views/Items';
+import ItemsView from '../views/ItemsView';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (attributes) => (user
@@ -18,7 +18,8 @@ PrivateRoute.propTypes = {
 };
 function Routes({
   user,
-  orders
+  orders,
+  items
 }) {
   return (
     <div>
@@ -35,7 +36,10 @@ function Routes({
         <PrivateRoute
         user={user}
         path='/items'
-        component={() => <Items />}
+        component={() => <ItemsView
+          user={user}
+          items={items}
+        />}
         />
       </Switch>
     </div>
@@ -45,6 +49,7 @@ function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired
 };
 
 export default Routes;

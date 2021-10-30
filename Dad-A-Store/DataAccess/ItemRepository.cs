@@ -72,7 +72,7 @@ namespace Dad_A_Store.DataAccess
                                 WHERE  ItemName = @ItemName
                                   AND  ItemDescription = @ItemDescription
                                 )
-                   INSERT INTO ITEMS (ItemName, ItemDescription, ItemPrice, CategoryID)
+                   INSERT INTO ITEMS (ItemName, ItemDescription, ItemPrice, CategoryID, SellerID)
                    OUTPUT INSERTED.*
                    VALUES (@ItemName
                           ,@ItemDescription
@@ -80,7 +80,8 @@ namespace Dad_A_Store.DataAccess
                           ,CAST((SELECT CategoryID 
                                         FROM CATEGORIES
                                         WHERE  CategoryID = @CategoryID
-                                 ) AS uniqueidentifier))";
+                                 ) AS uniqueidentifier)
+                          ,CAST(@SellerID)  AS uniqueidentifier)";
 
       return db.QueryFirstOrDefault<Item>(sql, newItem);
       //newItem.ItemID = ID;
