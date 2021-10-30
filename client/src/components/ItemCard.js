@@ -10,6 +10,7 @@ function ItemCard({
   itemDescription,
   itemPrice,
   categoryID,
+  sellerID,
   user
 }) {
   return (
@@ -21,7 +22,9 @@ function ItemCard({
           <CardText>Item Price: {itemPrice}</CardText>
           <CardText>Item Category: {categoryID}</CardText>
           <CardText>Item ID: {itemID}</CardText>
+          <CardText>Seller ID: {sellerID}</CardText>
           <CardText>User: {user.uid}</CardText>
+
         </CardBody>
       </Card>
     </div>
@@ -34,5 +37,6 @@ ItemCard.propTypes = {
   itemDescription: PropTypes.any.isRequired,
   itemPrice: PropTypes.any.isRequired,
   categoryID: PropTypes.any.isRequired,
+  sellerID: PropTypes.any.isRequired,
   user: PropTypes.any.isRequired
 };
