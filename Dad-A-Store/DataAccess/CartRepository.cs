@@ -18,5 +18,15 @@ namespace Dad_A_Store.DataAccess
       _connectionString = config.GetConnectionString("TempDataAStore");
     }
 
+    internal List<Cart> GetAll()
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var carts = db.Query<Cart>(@"SELECT * FROM CARTS").ToList();
+
+      return carts;
+    }
+
+
   }
 }

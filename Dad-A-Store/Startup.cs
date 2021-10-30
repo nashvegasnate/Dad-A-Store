@@ -34,6 +34,8 @@ namespace Dad_A_Store
       services.AddTransient<OrderRepository>();
       services.AddTransient<OrderDetailRepository>();
 
+      services.AddTransient<CartRepository>();
+
       services.AddTransient<CategoryRepository>();
       services.AddTransient<ItemRepository>();
 
