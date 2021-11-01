@@ -21,6 +21,8 @@ function PaymentTypeCard({
 }
 
 PaymentTypeCard.propTypes = {
-    paymentID: PropTypes.any.isRequired,
-    paymentType: PropTypes.any.isRequired
+  paymentID: PropTypes.any.isRequired,
+  paymentType: PropTypes.any.isRequired
 };
+
+export default PaymentTypeCard;
