@@ -126,6 +126,8 @@ namespace Dad_A_Store.DataAccess
                            ,UserState = @UserState
                            ,UserZip = @UserZip
                            ,PaymentID = @PaymentID
+                           ,UserUID = @UserUID
+                           ,UserRole = @UserRole
                         OUTPUT INSERTED.*
                         Where UserID = @UserID";
 

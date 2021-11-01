@@ -19,7 +19,7 @@ function OrderCard({
           <CardTitle tag="h3">Order: {orderID}</CardTitle>
           <CardText>UserID: {userID}</CardText>
           <CardText>PaymentID: {paymentID}</CardText>
-          <CardText>Order Amount: ${orderAmount}</CardText>
+          <CardText>Order Amount: {orderAmount}</CardText>
           <CardText>Order Date: {orderDate}</CardText>
           <CardText>Ship Date: {shipDate}</CardText>
         </CardBody>

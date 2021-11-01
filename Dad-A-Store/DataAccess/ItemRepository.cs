@@ -36,9 +36,9 @@ namespace Dad_A_Store.DataAccess
       return _items.Where(Item => Item.ItemID == ItemID);
     }
 
-    internal IEnumerable<Item> GetItemByNameFromList(string ItemName)
+    internal List<Item> GetItemByNameFromList(string ItemName)
     {
-      var tempItem = _items.Where(Item => Item.ItemName == ItemName);
+      var tempItem = _items.Where(Item => Item.ItemName == ItemName).ToList();
       return tempItem;
     }
 
@@ -56,7 +56,7 @@ namespace Dad_A_Store.DataAccess
       return temp;
     }
 
-    internal List<Item> GetItemsByNameCategoryID(string categoryID)
+    internal List<Item> GetItemsByNameCategoryID(Guid categoryID)
     {
       using var db = new SqlConnection(_connectionString);
       var temp = db.Query<Item>("SELECT * FROM ITEMS WHERE CategoryID = @categoryID", new { categoryID }).ToList();
@@ -72,7 +72,7 @@ namespace Dad_A_Store.DataAccess
                                 WHERE  ItemName = @ItemName
                                   AND  ItemDescription = @ItemDescription
                                 )
-                   INSERT INTO ITEMS (ItemName, ItemDescription, ItemPrice, CategoryID)
+                   INSERT INTO ITEMS (ItemName, ItemDescription, ItemPrice, CategoryID, SellerID)
                    OUTPUT INSERTED.*
                    VALUES (@ItemName
                           ,@ItemDescription
@@ -80,7 +80,8 @@ namespace Dad_A_Store.DataAccess
                           ,CAST((SELECT CategoryID 
                                         FROM CATEGORIES
                                         WHERE  CategoryID = @CategoryID
-                                 ) AS uniqueidentifier))";
+                                 ) AS uniqueidentifier)
+                          ,CAST(@SellerID  AS uniqueidentifier))";
 
       return db.QueryFirstOrDefault<Item>(sql, newItem);
       //newItem.ItemID = ID;
