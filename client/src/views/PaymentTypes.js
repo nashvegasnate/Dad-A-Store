@@ -5,7 +5,7 @@ import PaymentTypeCard from '../components/PaymentCard';
 export default function Payments({ user, payments }) {
   return (
     <div>
-      <h2>{user.userName} Payment Type Info </h2>
+      <h2>Payment Type Info for {user.userName}  </h2>
       {
         payments.map((paymentInfo) => (
           <PaymentTypeCard

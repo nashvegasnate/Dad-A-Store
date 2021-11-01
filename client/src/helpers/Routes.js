@@ -45,7 +45,7 @@ function Routes({
         />
         <PrivateRoute
         user={user}
-        path='/paymenttypes'
+        path='/payments'
         component={() => <Payments
           user={user}
           payments={payments}

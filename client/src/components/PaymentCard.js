@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 
 function PaymentTypeCard({
   paymentID,
-  paymentType
+  paymentType,
+  user
 }) {
   return (
     <div>
@@ -14,6 +15,7 @@ function PaymentTypeCard({
         <CardBody>
           <CardTitle tag="h3">Payment Type: {paymentType}</CardTitle>
           <CardText>PaymentID: {paymentID}</CardText>
+          <CardText>User: {user.uid}</CardText>
         </CardBody>
       </Card>
     </div>
@@ -22,7 +24,8 @@ function PaymentTypeCard({
 
 PaymentTypeCard.propTypes = {
   paymentID: PropTypes.any.isRequired,
-  paymentType: PropTypes.any.isRequired
+  paymentType: PropTypes.any.isRequired,
+  user: PropTypes.any.isRequired
 };
 
 export default PaymentTypeCard;
