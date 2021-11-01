@@ -6,11 +6,13 @@ import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
+import getPaymentTypes from '../helpers/data/paymentTypesData';
 
 function App() {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
   const [items, setItems] = useState([]);
+  const [payemnts, setPayments] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -36,6 +38,7 @@ function App() {
         user={user}
         orders={orders}
         items={items}
+        payments={payments}
         />
       </Router>
     </div>

@@ -3,12 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
-<<<<<<< HEAD
-import Items from '../views/Items';
-import Payments from '../views/PaymentTypes';
-=======
 import ItemsView from '../views/ItemsView';
->>>>>>> main
+import Payments from '../views/PaymentTypes';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (attributes) => (user
@@ -24,11 +20,8 @@ PrivateRoute.propTypes = {
 function Routes({
   user,
   orders,
-<<<<<<< HEAD
+  items,
   payments
-=======
-  items
->>>>>>> main
 }) {
   return (
     <div>
