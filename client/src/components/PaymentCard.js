@@ -5,17 +5,22 @@ import {
 import PropTypes from 'prop-types';
 
 function PaymentTypeCard({
-  orderID,
-  userID
+  paymentID,
+  paymentType
 }) {
   return (
     <div>
-      <Card className='order-cards'>
+      <Card className='payment-cards'>
         <CardBody>
-          <CardTitle tag="h3">User: {userName}</CardTitle>
-          <CardText>UserID: {userID}</CardText>
+          <CardTitle tag="h3">Payment Type: {paymentType}</CardTitle>
+          <CardText>PaymentID: {paymentID}</CardText>
         </CardBody>
       </Card>
     </div>
   );
 }
+
+PaymentTypeCard.propTypes = {
+    paymentID: PropTypes.any.isRequired,
+    paymentType: PropTypes.any.isRequired
+};
