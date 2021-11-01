@@ -12,7 +12,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
   const [items, setItems] = useState([]);
-  const [payemnts, setPayments] = useState([]);
+  const [payments, setPayments] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
