@@ -47,8 +47,8 @@ function Routes({
         user={user}
         path='/payments'
         component={() => <Payments
-        user={user}
-        payments={payments}  
+          user={user}
+          payments={payments}  
         />}
         />
       </Switch>

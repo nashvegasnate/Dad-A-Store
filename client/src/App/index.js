@@ -24,6 +24,7 @@ function App() {
         setUser(userInfoObj);
         getOrders().then((ordersArray) => setOrders(ordersArray));
         getItems().then((itemsArray) => setItems(itemsArray));
+        getPaymentTypes().then((paymentsArray) => setPayments(paymentsArray));
       } else if (user || user === null) {
         setUser(false);
       }
