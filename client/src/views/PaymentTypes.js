@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import PaymentTypeCard from '../components/PaymentCard';
@@ -14,7 +14,22 @@ export default function Payments({
   };
 
   return (
+    <div className="paymentView">
+      <div className="card-container">
+      <br />
+
     <div>
+    {!showAddPayment
+      ? <Button className="addPayBtn" onClick={handleClick}>Add Payment</Button>
+      : <div>
+            <Button className="closeForm" onClick={handleClick}>Close Form</Button>
+            <PaymentForm
+              setPayments={setPayments}
+              user={user}
+            />
+        </div>
+    }
+
       <h2>Payment Type Info for {user.userName}</h2>
       {
         payments.map((paymentInfo) => (
@@ -24,13 +39,15 @@ export default function Payments({
           paymentType={paymentInfo.paymentType}
           user={user}
           />
-        ))
-      }
+        ))}
+    </div>
+    </div>
     </div>
   );
 }
 
 Payments.propTypes = {
   user: PropTypes.any,
-  payments: PropTypes.array.isRequired
+  payments: PropTypes.array.isRequired,
+  setPayments: PropTypes.func
 };
