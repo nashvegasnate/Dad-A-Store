@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody, CardTitle
 } from 'reactstrap';
-import PropTypes from 'prop-types';
+import { deletePaymentType } from '../helpers/data/paymentTypesData';
+import PaymentForm from '../forms/PaymentForm';
 
 function PaymentTypeCard({
   paymentID,

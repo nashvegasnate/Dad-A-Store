@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
-import './App.scss';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
 import getPaymentTypes from '../helpers/data/paymentTypesData';
+import './App.scss';
 
 function App() {
   const [user, setUser] = useState(null);
