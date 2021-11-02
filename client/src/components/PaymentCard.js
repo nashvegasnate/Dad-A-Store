@@ -50,6 +50,7 @@ function PaymentTypeCard({
             user={user}
             firebaseKey={firebaseKey}
             paymentType={paymentType}
+            paymentID={paymentID}
             setPayments={setPayments}
           />
         }
