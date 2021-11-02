@@ -27,6 +27,17 @@ namespace Dad_A_Store.DataAccess
       return carts;
     }
 
+    internal List<Cart> GetOpenCarts()
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"SELECT * FROM CARTS WHERE Completed = 0";
+
+      var openCarts = db.Query<Cart>(sql).ToList();
+
+      return openCarts;
+    }
+
 
   }
 }

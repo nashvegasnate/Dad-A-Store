@@ -25,5 +25,12 @@ namespace Dad_A_Store.Controllers
     {
       return _repo.GetAll();
     }
+
+    [HttpGet("openCarts")]
+    public List<Cart> GetOpenCarts()
+    {
+      return _repo.GetOpenCarts();
+    }
+
   }
 }
