@@ -4,9 +4,9 @@ import firebaseConfig from '../apiKeys';
 const dbURL = firebaseConfig.databaseURL;
 
 const getItems = () => new Promise((resolve, reject) => {
-  axios.get(`${dbURL}api/items`)
-    .then((response) => resolve(Object.values(response.data)))
+  axios.get(`${dbURL}/api/items`)
+    .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
 
-export default { getItems };
+export default getItems;
