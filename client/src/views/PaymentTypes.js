@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 import PaymentTypeCard from '../components/PaymentCard';
+import PaymentForm from '../forms/PaymentForm';
 
 export default function Payments({ user, payments }) {
   return (
