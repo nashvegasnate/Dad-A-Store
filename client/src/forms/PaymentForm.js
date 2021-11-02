@@ -7,44 +7,44 @@ import {
 import { addPaymentType, updatePaymentType } from '../helpers/data/paymentTypesData';
 
 const PaymentForm = ({
-    formTitle,
-    setPayments,
-    paymentType,
-    firebaseKey,
-  }) => {
-    const [payment, setPayments] = useState({
-      paymentType: paymentType || '',
-      firebaseKey: firebaseKey || null
-    });
+  formTitle,
+  setPayments,
+  paymentType,
+  firebaseKey,
+}) => {
+  const [payment, setPayment] = useState({
+    paymentType: paymentType || '',
+    firebaseKey: firebaseKey || null
+  });
 
-    const handleInputChange = (e) => {
-        setProject((prevState) => ({
-          ...prevState,
-          [e.target.name]: e.target.value,
-        }));
-};
+  const handleInputChange = (e) => {
+    setPayment((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-const history = useHistory();
+  const history = useHistory();
 
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (payment.firebaseKey) {
-        updatePaymentType(payment).then(setPayments);
+      updatePaymentType(payment).then(setPayments);
     } else {
-        addPaymentType(payment).then((Response) => {
-            setPayments(Response);
-            history.push('/payments');
-        });
+      addPaymentType(payment).then((Response) => {
+        setPayments(Response);
+        history.push('/payments');
+      });
 
-        // Clears Input Fields
+      // Clears Input Fields
       setPayments({
         paymentType: '',
         firebaseKey: null
       });
     }
-};
+  };
 
-return (
+  return (
     <div className='payment-form'>
       <Form
         id='addPaymentForm'
@@ -64,8 +64,16 @@ return (
             onChange={handleInputChange}
           />
         </FormGroup>
-        
         </Form>
     </div>
-        );
-}
+  );
+};
+
+PaymentForm.propTypes = {
+  formTitle: PropTypes.string,
+  setPayments: PropTypes.func,
+  paymentType: PropTypes.string,
+  firebaseKey: PropTypes.string
+};
+
+export default PaymentForm;
