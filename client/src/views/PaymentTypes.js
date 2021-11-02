@@ -40,7 +40,7 @@ export default function Payments({
           user={user}
           />
         ))}
-    </div>
+      </div>
     </div>
     </div>
   );
