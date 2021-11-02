@@ -15,4 +15,10 @@ const deletePaymentType = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getPaymentTypes, deletePaymentType };
+const updatePaymentType = (payment) => new Promise((resolve, reject) => {
+  axios.patch(`${dbURL}/api/paymenttypes/${payment.firebaseKey}.json`, payment)
+    .then(() => getPaymentTypes().then(resolve))
+    .catch((error) => reject(error));
+});
+
+export { getPaymentTypes, deletePaymentType, updatePaymentType };
