@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-  Card, CardText, CardBody, CardTitle
+  Card, CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
 import { deletePaymentType } from '../helpers/data/paymentTypesData';
 import PaymentForm from '../forms/PaymentForm';
@@ -35,12 +35,24 @@ function PaymentTypeCard({
   };
 
   return (
-    <div>
+    <div className="paymentCard">
       <Card className='payment-cards'>
         <CardBody>
           <CardTitle tag="h3">Payment Type: {paymentType}</CardTitle>
           <CardText>PaymentID: {paymentID}</CardText>
+          <br />
           <CardText>User: {user.uid}</CardText>
+          <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
+        <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
+        {editing
+          && <PaymentForm
+            formTitle='Edit Payment Type'
+            user={user}
+            firebaseKey={firebaseKey}
+            paymentType={paymentType}
+            setPayments={setPayments}
+          />
+        }
         </CardBody>
       </Card>
     </div>
