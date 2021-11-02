@@ -40,3 +40,5 @@ ItemCard.propTypes = {
   sellerID: PropTypes.any.isRequired,
   user: PropTypes.any.isRequired
 };
+
+eport default ItemCard;

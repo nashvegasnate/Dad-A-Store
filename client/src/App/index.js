@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.scss';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
-import getItems from '../helpers/data/itemsData';
+import { getItems } from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
         user={user}
         orders={orders}
         items={items}
+        setItems={setItems}
         />
       </Router>
     </div>

@@ -25,6 +25,9 @@ const NavBar = ({ user }) => {
       <NavItem>
         <Link className="nav-link" to="/items">Items</Link>
       </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/itemsForms">Forms</Link>
+      </NavItem>
     </>
   );
 
