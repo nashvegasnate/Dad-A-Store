@@ -4,7 +4,15 @@ import { Button } from 'reactstrap';
 import PaymentTypeCard from '../components/PaymentCard';
 import PaymentForm from '../forms/PaymentForm';
 
-export default function Payments({ user, payments }) {
+export default function Payments({
+  user, payments, setPayments
+}) {
+  const [showAddPayment, setAddPayment] = useState(false);
+
+  const handleClick = () => {
+    setAddPayment((prevState) => !prevState);
+  };
+
   return (
     <div>
       <h2>Payment Type Info for {user.userName}</h2>
