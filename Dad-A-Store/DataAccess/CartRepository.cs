@@ -38,6 +38,18 @@ namespace Dad_A_Store.DataAccess
       return openCarts;
     }
 
+    internal Cart UserOpenCart(Guid userID)
+    {
+      {
+        using var db = new SqlConnection(_connectionString);
+
+        var sql = @"SELECT * FROM CARTS WHERE UserID=@userID AND Completed = 0";
+
+        var theUserCart = db.QueryFirstOrDefault<Cart>(sql, new { userID });
+
+        return theUserCart;
+      }
+    }
 
   }
 }

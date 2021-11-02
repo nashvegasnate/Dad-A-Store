@@ -32,5 +32,12 @@ namespace Dad_A_Store.Controllers
       return _repo.GetOpenCarts();
     }
 
+    [HttpGet("/userCart/{userID}")]
+    public Cart GetUserOpenCart(Guid userID)
+    {
+      return _repo.UserOpenCart(userID);
+    }
+
+
   }
 }
