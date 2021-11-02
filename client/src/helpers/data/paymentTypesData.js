@@ -32,4 +32,5 @@ const updatePaymentType = (payment) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getPaymentTypes, addPaymentType, deletePaymentType, updatePaymentType };
+export { getPaymentTypes, addPaymentType,
+  deletePaymentType, updatePaymentType };
