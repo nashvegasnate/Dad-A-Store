@@ -9,6 +9,17 @@ const getPaymentTypes = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const addPaymentType = (obj) => new Promise((resolve, reject) => {
+  axios.post(`${dbURL}/api/paymenttypes.json`, obj)
+    .then((response) => {
+      const body = { firebaseKey: response.data.name };
+      axios.patch(`${dbURL}/api/paymenttypes/${response.data.name}.json`, body)
+        .then(() => {
+          getPaymentTypes().then((resp) => resolve(resp));
+        });
+    }).catch((error) => reject(error));
+});
+
 const deletePaymentType = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbURL}/api/paymenttypes/${firebaseKey}.json`)
     .then(() => getPaymentTypes().then((paymentsArray) => resolve(paymentsArray)))
@@ -21,4 +32,4 @@ const updatePaymentType = (payment) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getPaymentTypes, deletePaymentType, updatePaymentType };
+export { getPaymentTypes, addPaymentType, deletePaymentType, updatePaymentType };
