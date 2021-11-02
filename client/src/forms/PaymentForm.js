@@ -26,5 +26,46 @@ const PaymentForm = ({
 
 const history = useHistory();
 
+const handleSubmit = (e) => {
+    e.preventDefault();
+    if (payment.firebaseKey) {
+        updatePaymentType(payment).then(setPayments);
+    } else {
+        addPaymentType(payment).then((Response) => {
+            setPayments(Response);
+            history.push('/payments');
+        });
 
-  }
+        // Clears Input Fields
+      setPayments({
+        paymentType: '',
+        firebaseKey: null
+      });
+    }
+};
+
+return (
+    <div className='payment-form'>
+      <Form
+        id='addPaymentForm'
+        autoComplete='off'
+        onSubmit={handleSubmit}
+      >
+        <h2>{formTitle}</h2>
+
+        <FormGroup>
+          <Label for="paymentType">Payment Type: </Label>
+          <Input
+            name='paymentType'
+            id='paymentType'
+            value={payment.paymentType}
+            type='text'
+            placeholder='Enter Payment Type'
+            onChange={handleInputChange}
+          />
+        </FormGroup>
+        
+        </Form>
+    </div>
+        );
+}
