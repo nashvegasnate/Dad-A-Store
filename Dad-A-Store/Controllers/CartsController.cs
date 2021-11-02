@@ -38,6 +38,12 @@ namespace Dad_A_Store.Controllers
       return _repo.UserOpenCart(userID);
     }
 
+    [HttpPost("/newCart/{userID}")]
+    public Cart newCart(Guid userID)
+    {
+      return _repo.CreateNewCart(userID);
+    }
+
 
   }
 }

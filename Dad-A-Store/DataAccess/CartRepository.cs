@@ -51,5 +51,28 @@ namespace Dad_A_Store.DataAccess
       }
     }
 
+    internal Cart CreateNewCart(Guid userID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"IF NOT EXISTS(SELECT * 
+                  FROM CARTS 
+                  WHERE UserID=@userID AND Completed = 0)
+                  INSERT INTO CARTS 
+                  (UserID
+                  ,OrderAmount
+                  ,Completed)
+            OUTPUT INSERTED.*
+            VALUES
+                (@userID
+                ,0.0
+                ,0)";
+
+      var newCart = db.QueryFirstOrDefault<Cart>(sql, new { userID });
+
+      return newCart;
+
+    }
+
   }
 }
