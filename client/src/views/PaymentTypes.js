@@ -29,19 +29,20 @@ export default function Payments({
             />
         </div>
     }
-
+    </div>
       <h2>Payment Type Info for {user.userName}</h2>
       {
         payments.map((paymentInfo) => (
           <PaymentTypeCard
           Key={paymentInfo.paymentID}
+          firebaseKey={paymentInfo.firebaseKey}
           paymentID={paymentInfo.paymentID}
           paymentType={paymentInfo.paymentType}
+          setPayments={setPayments}
           user={user}
           />
         ))}
       </div>
-    </div>
     </div>
   );
 }
