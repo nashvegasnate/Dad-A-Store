@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
+import DepartmentsView from '../views/DepartmentsView';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (attributes) => (user
@@ -19,7 +20,8 @@ PrivateRoute.propTypes = {
 function Routes({
   user,
   orders,
-  items
+  items,
+  departments
 }) {
   return (
     <div>
@@ -41,6 +43,14 @@ function Routes({
           items={items}
         />}
         />
+        <PrivateRoute
+        user={user}
+        path='/departments'
+        component={() => <DepartmentsView
+          user={user}
+          departments={departments}
+        />}
+        />
       </Switch>
     </div>
   );
@@ -49,7 +59,8 @@ function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  departments: PropTypes.array.isRequired
 };
 
 export default Routes;
