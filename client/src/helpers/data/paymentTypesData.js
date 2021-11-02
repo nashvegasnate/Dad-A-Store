@@ -9,4 +9,10 @@ const getPaymentTypes = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getPaymentTypes;
+const deletePaymentType = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbURL}/api/paymenttypes/${firebaseKey}.json`)
+    .then(() => getPaymentTypes().then((paymentsArray) => resolve(paymentsArray)))
+    .catch((error) => reject(error));
+});
+
+export { getPaymentTypes, deletePaymentType };
