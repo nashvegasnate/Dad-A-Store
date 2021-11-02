@@ -8,10 +8,32 @@ import { deletePaymentType } from '../helpers/data/paymentTypesData';
 import PaymentForm from '../forms/PaymentForm';
 
 function PaymentTypeCard({
+  user,
+  firebaseKey,
   paymentID,
   paymentType,
-  user
+  setPayments
 }) {
+  const [editing, setEditing] = useState(false);
+  const history = useHistory();
+
+  const handleClick = (type) => {
+    switch (type) {
+      case 'delete':
+        deletePaymentType(firebaseKey)
+          .then(setPayments);
+        break;
+      case 'edit':
+        setEditing((prevState) => !prevState);
+        break;
+      case 'view':
+        history.push(`/paymenttypes/${firebaseKey}`);
+        break;
+      default:
+        console.warn('nothing selected');
+    }
+  };
+
   return (
     <div>
       <Card className='payment-cards'>
