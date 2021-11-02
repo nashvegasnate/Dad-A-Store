@@ -10,10 +10,12 @@ const PaymentForm = ({
   formTitle,
   setPayments,
   paymentType,
+  paymentID,
   firebaseKey,
 }) => {
   const [payment, setPayment] = useState({
     paymentType: paymentType || '',
+    paymentID: paymentID || null,
     firebaseKey: firebaseKey || null
   });
 
@@ -37,7 +39,7 @@ const PaymentForm = ({
       });
 
       // Clears Input Fields
-      setPayments({
+      setPayment({
         paymentType: '',
         firebaseKey: null
       });
@@ -74,6 +76,7 @@ PaymentForm.propTypes = {
   formTitle: PropTypes.string,
   setPayments: PropTypes.func,
   paymentType: PropTypes.string,
+  paymentID: PropTypes.string,
   firebaseKey: PropTypes.string
 };
 

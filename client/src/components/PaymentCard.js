@@ -27,7 +27,7 @@ function PaymentTypeCard({
         setEditing((prevState) => !prevState);
         break;
       case 'view':
-        history.push(`/paymenttypes/${firebaseKey}`);
+        history.push(`/payments/${firebaseKey}`);
         break;
       default:
         console.warn('nothing selected');
