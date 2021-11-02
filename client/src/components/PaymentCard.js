@@ -48,9 +48,11 @@ function PaymentTypeCard({
 }
 
 PaymentTypeCard.propTypes = {
+  user: PropTypes.any.isRequired,
+  firebaseKey: PropTypes.string,
   paymentID: PropTypes.any.isRequired,
   paymentType: PropTypes.any.isRequired,
-  user: PropTypes.any.isRequired
+  setPayments: PropTypes.func
 };
 
 export default PaymentTypeCard;
