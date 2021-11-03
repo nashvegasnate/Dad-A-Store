@@ -35,7 +35,6 @@ export default function Payments({
         payments.map((paymentInfo) => (
           <PaymentTypeCard
           Key={paymentInfo.paymentID}
-          firebaseKey={paymentInfo.firebaseKey}
           paymentID={paymentInfo.paymentID}
           paymentType={paymentInfo.paymentType}
           setPayments={setPayments}

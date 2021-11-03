@@ -47,8 +47,8 @@ function PaymentTypeCard({
           && <PaymentForm
             formTitle='Edit Payment Type'
             user={user}
-            paymentType={paymentType}
             paymentID={paymentID}
+            paymentType={paymentType}
             setPayments={setPayments}
           />
         }
