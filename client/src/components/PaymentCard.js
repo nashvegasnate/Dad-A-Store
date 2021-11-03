@@ -9,7 +9,6 @@ import PaymentForm from '../forms/PaymentForm';
 
 function PaymentTypeCard({
   user,
-  firebaseKey,
   paymentID,
   paymentType,
   setPayments
@@ -20,14 +19,14 @@ function PaymentTypeCard({
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePaymentType(firebaseKey)
+        deletePaymentType(paymentID)
           .then(setPayments);
         break;
       case 'edit':
         setEditing((prevState) => !prevState);
         break;
       case 'view':
-        history.push(`/payments/${firebaseKey}`);
+        history.push(`/paymenttypes/${paymentID}`);
         break;
       default:
         console.warn('nothing selected');
@@ -48,7 +47,6 @@ function PaymentTypeCard({
           && <PaymentForm
             formTitle='Edit Payment Type'
             user={user}
-            firebaseKey={firebaseKey}
             paymentType={paymentType}
             paymentID={paymentID}
             setPayments={setPayments}
@@ -62,7 +60,6 @@ function PaymentTypeCard({
 
 PaymentTypeCard.propTypes = {
   user: PropTypes.any.isRequired,
-  firebaseKey: PropTypes.string,
   paymentID: PropTypes.any.isRequired,
   paymentType: PropTypes.any.isRequired,
   setPayments: PropTypes.func

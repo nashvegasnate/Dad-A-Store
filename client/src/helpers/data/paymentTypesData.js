@@ -10,24 +10,25 @@ const getPaymentTypes = () => new Promise((resolve, reject) => {
 });
 
 const addPaymentType = (obj) => new Promise((resolve, reject) => {
-  axios.post(`${dbURL}/api/paymenttypes.json`, obj)
-    .then((response) => {
-      const body = { firebaseKey: response.data.name };
-      axios.patch(`${dbURL}/api/paymenttypes/${response.data.name}.json`, body)
+  axios.post(`${dbURL}/api/paymenttypes`, obj)
+    .then(() => {
+      // const body = { paymentID: response.paymentID };
+      axios.put(`${dbURL}/api/paymenttypes`)
         .then(() => {
           getPaymentTypes().then((resp) => resolve(resp));
         });
     }).catch((error) => reject(error));
 });
 
-const deletePaymentType = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbURL}/api/paymenttypes/${firebaseKey}.json`)
+const deletePaymentType = (paymentID) => new Promise((resolve, reject) => {
+  axios.delete(`${dbURL}/api/paymenttypes/${paymentID}`)
     .then(() => getPaymentTypes().then((paymentsArray) => resolve(paymentsArray)))
     .catch((error) => reject(error));
 });
 
 const updatePaymentType = (payment) => new Promise((resolve, reject) => {
-  axios.patch(`${dbURL}/api/paymenttypes/${payment.firebaseKey}.json`, payment)
+  console.warn(payment);
+  axios.put(`${dbURL}/api/paymenttypes/${payment.paymentID}`, payment)
     .then(() => getPaymentTypes().then(resolve))
     .catch((error) => reject(error));
 });

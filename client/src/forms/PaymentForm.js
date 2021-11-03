@@ -10,13 +10,11 @@ const PaymentForm = ({
   formTitle,
   setPayments,
   paymentType,
-  paymentID,
-  firebaseKey,
+  paymentID
 }) => {
   const [payment, setPayment] = useState({
     paymentType: paymentType || '',
-    paymentID: paymentID || null,
-    firebaseKey: firebaseKey || null
+    paymentID: paymentID || null
   });
 
   const handleInputChange = (e) => {
@@ -30,18 +28,19 @@ const PaymentForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (payment.firebaseKey) {
+    if (payment.paymentID) {
+      console.warn(payment);
       updatePaymentType(payment).then(setPayments);
     } else {
       addPaymentType(payment).then((Response) => {
         setPayments(Response);
-        history.push('/payments');
+        history.push('/paymenttypes');
       });
 
       // Clears Input Fields
       setPayment({
         paymentType: '',
-        firebaseKey: null
+        paymentID: null
       });
     }
   };
@@ -76,8 +75,7 @@ PaymentForm.propTypes = {
   formTitle: PropTypes.string,
   setPayments: PropTypes.func,
   paymentType: PropTypes.string,
-  paymentID: PropTypes.string,
-  firebaseKey: PropTypes.string
+  paymentID: PropTypes.string
 };
 
 export default PaymentForm;
