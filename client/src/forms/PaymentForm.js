@@ -8,13 +8,13 @@ import { addPaymentType, updatePaymentType } from '../helpers/data/paymentTypesD
 
 const PaymentForm = ({
   formTitle,
-  setPayments,
+  paymentID,
   paymentType,
-  paymentID
+  setPayments
 }) => {
-  const [payment, setPayment] = useState({
-    paymentType: paymentType || '',
-    paymentID: paymentID || null
+  const [payment, setPayment] = useState({,
+    paymentID: paymentID || null,
+    paymentType: paymentType || ''
   });
 
   const handleInputChange = (e) => {
@@ -39,8 +39,8 @@ const PaymentForm = ({
 
       // Clears Input Fields
       setPayment({
-        paymentType: '',
-        paymentID: null
+        paymentID: null,
+        paymentType: ''
       });
     }
   };
@@ -73,9 +73,9 @@ const PaymentForm = ({
 
 PaymentForm.propTypes = {
   formTitle: PropTypes.string,
-  setPayments: PropTypes.func,
+  paymentID: PropTypes.string,
   paymentType: PropTypes.string,
-  paymentID: PropTypes.string
+  setPayments: PropTypes.func
 };
 
 export default PaymentForm;
