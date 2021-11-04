@@ -12,7 +12,7 @@ const PaymentForm = ({
   paymentType,
   setPayments
 }) => {
-  const [payment, setPayment] = useState({,
+  const [payment, setPayment] = useState({
     paymentID: paymentID || null,
     paymentType: paymentType || ''
   });
