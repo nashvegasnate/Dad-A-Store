@@ -25,5 +25,11 @@ namespace Dad_A_Store.Controllers
     {
       return _repo.GetAll();
     }
+
+    [HttpGet("/getByCartID/{cartID}")]
+    public List<CartDetail> GetByCartDetails(Guid cartID)
+    {
+      return _repo.GetByCartID(cartID);
+    }
   }
 }

@@ -22,10 +22,23 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
 
-      var OrderDetails = db.Query<CartDetail>(@"SELECT *
+      var cartDetails = db.Query<CartDetail>(@"SELECT *
                                           FROM CARTDETAILS").ToList();
 
-      return OrderDetails;
+      return cartDetails;
+    }
+
+    internal List<CartDetail> GetByCartID(Guid cartID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"SELECT *
+                  FROM CARTDETAILS
+                  WHERE CartID = @cartID";
+
+      var thisCartDetails = db.Query<CartDetail>(sql, new { cartID }).ToList();
+
+      return thisCartDetails;
     }
   }
 }
