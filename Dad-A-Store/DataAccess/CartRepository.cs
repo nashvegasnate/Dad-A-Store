@@ -92,11 +92,11 @@ namespace Dad_A_Store.DataAccess
 
       var cartID = cartToUpdate.CartID;
 
-      var currentCartItemsSql = @"SELCT *
+      var currentCartItemsSql = @"SELECT *
                                   FROM CARTDETAILS
-                                  WHERE CartID=@cartID";
+                                  WHERE CartID=@thisQueryParam";
 
-      var currentCartDetails = db.Query<CartDetail>(currentCartItemsSql, new { cartID }).ToList();
+      var currentCartDetails = db.Query<CartDetail>(currentCartItemsSql, new { thisQueryParam = cartID }).ToList();
 
       var currentListOfItems = new List<NewOrder>();
 
@@ -137,7 +137,7 @@ namespace Dad_A_Store.DataAccess
                             SET CartID = @CartID
                                 ,UserID = @UserID
                                 ,OrderAmount = @OrderAmount
-                                ,Completed = false
+                                ,Completed = @Completed
                              WHERE CartID = @CartID";
 
       var theUpdatedCart = db.Execute(updateCartSql, cartToReturn);
@@ -166,18 +166,18 @@ namespace Dad_A_Store.DataAccess
         var createCartDetailSql = @"IF NOT EXISTS(SELECT *
                                                   FROM CARTDETAILS
                                                   WHERE CartID=@CartID AND ItemID=@ItemID)
-                                                  INSERT INTO CARTS
+                                                  INSERT INTO CARTDETAILS
                                                   (CartID
-                                                  ,ItemID,
+                                                  ,ItemID
                                                   ,ItemQuantity
                                                   ,ItemPrice
                                                   ,Completed)
                                               VALUES
                                                   (@CartID
                                                   ,@ItemID
-                                                  ,ItemQuantity
-                                                  ,ItemPrice
-                                                  ,Completed)";
+                                                  ,@ItemQuantity
+                                                  ,@ItemPrice
+                                                  ,@Completed)";
 
         var resultOfAdd = db.Execute(createCartDetailSql, createCartDetailToCreate);
       }

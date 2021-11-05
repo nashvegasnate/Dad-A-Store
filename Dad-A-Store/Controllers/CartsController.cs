@@ -44,7 +44,7 @@ namespace Dad_A_Store.Controllers
       return _repo.CreateNewCart(userID);
     }
 
-    [HttpPut("/updateCart/{userID}")]
+    [HttpPut("/addItemToCart/{userID}")]
     public Cart addItem(Guid userID, NewOrder cartItem)
     {
       return _repo.AddToCart(userID, cartItem);
