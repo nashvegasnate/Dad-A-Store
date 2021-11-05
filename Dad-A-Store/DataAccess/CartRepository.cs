@@ -288,5 +288,112 @@ namespace Dad_A_Store.DataAccess
       return theFinalCart;
     }
 
+    internal Cart Update(Guid userID, List<NewOrder> updatedCart)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      //Get the original cart so that we can start updating it 
+      var originalCartSql = @"SELECT *
+                              FROM CARTS 
+                              WHERE UserID=@userID AND Completed=0";
+
+      var originalCart = db.QueryFirstOrDefault<Cart>(originalCartSql, new { userID });
+
+      var cartID = originalCart.CartID;
+
+      //To update the cart, we will need the cart subtotal
+      var thisCartSubtotal = 0m;
+
+      //We need to remove each line item from the cart details so we can update
+      var cartDetailsDelete = @"DELETE
+                                FROM CARTDETAILS
+                                WHERE CartID=@cartID";
+
+      db.Execute(cartDetailsDelete, new { cartID });
+
+      //Loop through each item in the list of items to get Cart Total
+      foreach (var cartItem in updatedCart)
+      {
+        //Querying items to get the item based on ItemID
+        var itemsQuery = @"SELECT *
+                         FROM ITEMS
+                         WHERE ItemID = @id";
+
+        //Creating the parameter for the query, and then storying the item in a local variable
+        var cartItemID = cartItem.ItemID;
+        var thisItem = db.QueryFirstOrDefault<Item>(itemsQuery, new { id = cartItemID });
+
+        //Taking the item we received from query, and multiplying by quantity to update the CartTotal
+        var thisCartItemTotal = 0m;
+        thisCartItemTotal = Convert.ToDecimal(thisItem.ItemPrice * cartItem.Quantity);
+        thisCartSubtotal += thisCartItemTotal;
+      }
+
+      //Create a new local cart to update the database
+      var tempCart = new Cart
+      {
+        CartID = originalCart.CartID,
+        UserID = originalCart.UserID,
+        OrderAmount = thisCartSubtotal,
+        Completed = false
+      };
+
+      var updateCartSql = @"UPDATE CARTS
+                            SET CartID = @CartID
+                                ,UserID = @UserID
+                                ,OrderAmount = @OrderAmount
+                                ,Completed = @Completed
+                             WHERE CartID = @CartID";
+
+      var theUpdatedCart = db.Execute(updateCartSql, tempCart);
+
+      //Now query the database to return the cart now that it is updated
+      var theFinalCart = db.QueryFirstOrDefault<Cart>(originalCartSql, new { userID });
+
+      //Querying all items again, this time to create the line items for OrderDetails
+      foreach (var cartItemDetails in updatedCart)
+      {
+        //Query to get the LineItem to create each OrderDetail for the Order
+        var itemsQuery = @"SELECT *
+                         FROM ITEMS
+                         WHERE ItemID = @id";
+
+        //This is the parameter being passed to the query to filter by ItemID, storing the returned Item as a local variable
+        var cartItemID = cartItemDetails.ItemID;
+        var thisItem = db.QueryFirstOrDefault<Item>(itemsQuery, new { id = cartItemID });
+
+        //Creating the OrderDetail to create using a model, parsing data that we stored with OrderID and ItemID from previous queries
+        var cartDetailToCreate = new CartDetail
+        {
+          CartID = theFinalCart.CartID,
+          ItemID = thisItem.ItemID,
+          ItemQuantity = cartItemDetails.Quantity,
+          ItemPrice = thisItem.ItemPrice,
+          Completed = false
+        };
+
+        //Now that we have the model created, query to insert into database.
+        var createCartDetailsQuery = @"INSERT INTO CARTDETAILS
+                                                  (CartID
+                                                  ,ItemID
+                                                  ,ItemQuantity
+                                                  ,ItemPrice
+                                                  ,Completed)
+                                              VALUES
+                                                  (@CartID
+                                                  ,@ItemID
+                                                  ,@ItemQuantity
+                                                  ,@ItemPrice
+                                                  ,@Completed)";
+
+        //Execute the query, pass in the model we create as the parameter object
+        var resultOfAdd = db.Execute(createCartDetailsQuery, cartDetailToCreate);
+
+      }
+
+      //Now return the Cart
+      return theFinalCart;
+    }
+
   }
 }
