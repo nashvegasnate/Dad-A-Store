@@ -56,7 +56,7 @@ namespace Dad_A_Store.Controllers
       return _repo.RemoveItem(userID, itemID);
     }
 
-    [HttpPut("/updateCartItems/{uesrID}")]
+    [HttpPut("/updateCartItems/{userID}")]
     public Cart updateItems(Guid userID, List<NewOrder> updatedList)
     {
       return _repo.Update(userID, updatedList);
