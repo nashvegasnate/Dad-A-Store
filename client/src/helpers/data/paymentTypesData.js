@@ -10,15 +10,22 @@ const getPaymentTypes = () => new Promise((resolve, reject) => {
 });
 
 const addPaymentType = (obj) => new Promise((resolve, reject) => {
-  axios.post(`${dbURL}/api/paymenttypes`, obj)
-    .then(() => {
-      // const body = { paymentID: response.paymentID };
-      axios.put(`${dbURL}/api/paymenttypes`)
-        .then(() => {
-          getPaymentTypes().then((resp) => resolve(resp));
-        });
+  axios.post(`${dbURL}/api/paymenttypes/`, obj)
+    .then((resp) => { 
+      resolve(resp.data);
     }).catch((error) => reject(error));
 });
+
+// const addPaymentType = (obj) => new Promise((resolve, reject) => {
+//   axios.post(`${dbURL}/api/paymenttypes`, obj)
+//     .then(() => {
+//       // const body = { paymentID: response.paymentID };
+//       axios.put(`${dbURL}/api/paymenttypes/`)
+//         .then(() => {
+//           getPaymentTypes().then((resp) => resolve(resp));
+//         });
+//     }).catch((error) => reject(error));
+// });
 
 const deletePaymentType = (paymentID) => new Promise((resolve, reject) => {
   axios.delete(`${dbURL}/api/paymenttypes/${paymentID}`)
