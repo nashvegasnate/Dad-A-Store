@@ -20,7 +20,7 @@ function App() {
       if (authed) {
         const userInfoObj = {
           userName: authed.displayName,
-          uid: authed.uid,
+          uid: authed.uid
         };
         getUserWithUID(authed.uid).then((resp) => setUserFromDB(resp));
         getValidUser(authed.uid).then((validResp) => setRegisteredUser(validResp));
