@@ -21,6 +21,7 @@ const deletePaymentType = (paymentID) => new Promise((resolve, reject) => {
     .then(() => getPaymentTypes().then((paymentArray) => resolve(paymentArray)))
     .catch((error) => reject(error));
 });
+
 // console.warn(payment); resolve(response.data))
 const updatePaymentType = (payment) => new Promise((resolve, reject) => {
   axios.put(`${dbURL}/api/paymenttypes/${payment.paymentID}`, payment)
