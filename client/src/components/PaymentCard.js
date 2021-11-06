@@ -26,7 +26,7 @@ function PaymentTypeCard({
         setEditing((prevState) => !prevState);
         break;
       case 'view':
-        history.push(`/paymenttypes/${paymentID}`);
+        history.push(`paymenttypes/${paymentID}`);
         break;
       default:
         console.warn('nothing selected');

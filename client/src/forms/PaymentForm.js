@@ -8,12 +8,10 @@ import { addPaymentType, updatePaymentType } from '../helpers/data/paymentTypesD
 
 const PaymentForm = ({
   formTitle,
-  paymentID,
   paymentType,
   setPayments
 }) => {
   const [payment, setPayment] = useState({
-    paymentID: paymentID || null,
     paymentType: paymentType || ''
   });
 
@@ -29,8 +27,9 @@ const PaymentForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (payment.paymentID) {
-      console.warn(payment);
-      updatePaymentType(payment).then(setPayments);
+      // console.warn(payment);
+      updatePaymentType(payment.paymentID, updatePaymentType)
+        .then(setPayments);
     } else {
       addPaymentType(payment).then((Response) => {
         setPayments(Response);
@@ -39,7 +38,6 @@ const PaymentForm = ({
 
       // Clears Input Fields
       setPayment({
-        paymentID: null,
         paymentType: ''
       });
     }
@@ -73,7 +71,6 @@ const PaymentForm = ({
 
 PaymentForm.propTypes = {
   formTitle: PropTypes.string,
-  paymentID: PropTypes.string,
   paymentType: PropTypes.string,
   setPayments: PropTypes.func
 };
