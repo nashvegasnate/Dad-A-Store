@@ -6,9 +6,11 @@ import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
+import getValidUser from '../helpers/data/usersData';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [registeredUser, setRegisteredUser] = useState(false);
   const [orders, setOrders] = useState([]);
   const [items, setItems] = useState([]);
 
@@ -19,23 +21,31 @@ function App() {
           userName: authed.displayName,
           uid: authed.uid
         };
+        getValidUser(authed.uid).then((validResp) => setRegisteredUser(validResp));
         setUser(userInfoObj);
         getOrders().then((ordersArray) => setOrders(ordersArray));
         getItems().then((itemsArray) => setItems(itemsArray));
       } else if (user || user === null) {
         setUser(false);
+        setRegisteredUser(false);
       }
     });
   }, []);
 
+  console.warn(registeredUser);
+
   return (
     <div className='App'>
       <Router>
-        <NavBar user={user} />
+        <NavBar
+        user={user}
+        registeredUser={registeredUser}
+        />
         <Routes
         user={user}
         orders={orders}
         items={items}
+        registeredUser={registeredUser}
         />
       </Router>
     </div>
