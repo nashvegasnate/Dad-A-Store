@@ -14,10 +14,12 @@ namespace Dad_A_Store.Controllers
   public class OrdersController : ControllerBase
   {
     OrderRepository _repo;
+    CartRepository _repoForCart;
 
-    public OrdersController(OrderRepository repo)
+    public OrdersController(OrderRepository repo, CartRepository repoCart)
     {
       _repo = repo;
+      _repoForCart = repoCart;
     }
 
     [HttpGet]
@@ -50,6 +52,14 @@ namespace Dad_A_Store.Controllers
     public Order AddOrder(Guid userID, List<NewOrder> listOfItems)
     {
       return _repo.CreateOrder(userID, listOfItems);
+    }
+
+    [HttpPost("createFromCart/{userID}")]
+    public Order AddOrderFromCart(Guid userID)
+    {
+      var completedOrder = _repo.CreateOrderFromCart(userID);
+      _repoForCart.CreateNewCart(userID);
+      return completedOrder;
     }
 
     [HttpPut("update/{orderID}")]
