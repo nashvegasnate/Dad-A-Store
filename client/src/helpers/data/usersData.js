@@ -9,4 +9,10 @@ const getValidUser = (userUID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getValidUser;
+const getUserWithUID = (userUID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/users/getUserByUserUID/${userUID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export { getValidUser, getUserWithUID };

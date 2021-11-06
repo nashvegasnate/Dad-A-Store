@@ -26,17 +26,21 @@ function Routes({
   user,
   orders,
   items,
-  registeredUser
+  registeredUser,
+  userFromDB
 }) {
   return (
     <div>
       <Switch>
         <Route exact path='/' component={() => <Home
         user={user}
-        registeredUser={registeredUser} />} />
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
+         />} />
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
+        userFromDB={userFromDB}
         path='/orders'
         component={() => <Orders
           user={user}
@@ -46,6 +50,7 @@ function Routes({
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
+        userFromDB={userFromDB}
         path='/items'
         component={() => <ItemsView
           user={user}
@@ -62,7 +67,8 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
-  registeredUser: PropTypes.bool.isRequired
+  registeredUser: PropTypes.bool.isRequired,
+  userFromDB: PropTypes.any
 };
 
 export default Routes;

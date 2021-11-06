@@ -6,10 +6,11 @@ import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
-import getValidUser from '../helpers/data/usersData';
+import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [userFromDB, setUserFromDB] = useState(null);
   const [registeredUser, setRegisteredUser] = useState(false);
   const [orders, setOrders] = useState([]);
   const [items, setItems] = useState([]);
@@ -19,20 +20,22 @@ function App() {
       if (authed) {
         const userInfoObj = {
           userName: authed.displayName,
-          uid: authed.uid
+          uid: authed.uid,
         };
+        getUserWithUID(authed.uid).then((resp) => setUserFromDB(resp));
         getValidUser(authed.uid).then((validResp) => setRegisteredUser(validResp));
-        setUser(userInfoObj);
         getOrders().then((ordersArray) => setOrders(ordersArray));
         getItems().then((itemsArray) => setItems(itemsArray));
+        setUser(userInfoObj);
       } else if (user || user === null) {
         setUser(false);
         setRegisteredUser(false);
+        setUserFromDB(false);
       }
     });
   }, []);
 
-  console.warn(registeredUser);
+  console.warn(userFromDB);
 
   return (
     <div className='App'>
@@ -46,6 +49,7 @@ function App() {
         orders={orders}
         items={items}
         registeredUser={registeredUser}
+        userFromDB={userFromDB}
         />
       </Router>
     </div>
