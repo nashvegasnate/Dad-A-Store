@@ -27,14 +27,17 @@ const PaymentForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (payment.paymentID) {
-      // console.warn(payment);
-      updatePaymentType(payment.paymentID, updatePaymentType)
+      // console.warn(payment); .paymentID, payment
+      updatePaymentType(payment)
+      //   .then((resp) => setPayments(resp));
+      // setPayment(!payment);
         .then(setPayments);
     } else {
-      addPaymentType(payment).then((Response) => {
-        setPayments(Response);
-        history.push('/paymenttypes');
-      });
+      addPaymentType(payment)
+        .then((Response) => {
+          setPayments(Response);
+          history.push('/paymenttypes');
+        });
 
       // Clears Input Fields
       setPayment({

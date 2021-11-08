@@ -8,12 +8,12 @@ const getPaymentTypes = () => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
-
+//  .thenthen(() => getPaymentTypes()
 const addPaymentType = (paymentObj) => new Promise((resolve, reject) => {
   axios.post(`${dbURL}/api/paymenttypes/`, paymentObj)
-    .thenthen(() => getPaymentTypes().then((resp) => {
+    .then((resp) => {
       resolve(resp.data);
-    }).catch((error) => reject(error)));
+    }).catch((error) => reject(error));
 });
 
 const deletePaymentType = (paymentID) => new Promise((resolve, reject) => {
@@ -22,10 +22,10 @@ const deletePaymentType = (paymentID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// console.warn(payment); resolve(response.data))
+// console.warn(payment); resolve(response.data))    .then(() => getPaymentTypes()
 const updatePaymentType = (payment) => new Promise((resolve, reject) => {
   axios.put(`${dbURL}/api/paymenttypes/${payment.paymentID}`, payment)
-    .then(() => getPaymentTypes().then((paymentArray) => resolve(paymentArray)))
+    .then((paymentArray) => resolve(paymentArray))
     .catch((error) => reject(error));
 });
 

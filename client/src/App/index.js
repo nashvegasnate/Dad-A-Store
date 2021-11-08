@@ -40,6 +40,7 @@ function App() {
         orders={orders}
         items={items}
         payments={payments}
+        setPayments={setPayments}
         />
       </Router>
     </div>
