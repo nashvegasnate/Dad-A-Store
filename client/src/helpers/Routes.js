@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
+import Categories from '../views/Categories';
 
 const PrivateRoute = ({
   component: Component,
@@ -26,6 +27,7 @@ function Routes({
   user,
   orders,
   items,
+  categories,
   registeredUser,
   userFromDB
 }) {
@@ -58,6 +60,17 @@ function Routes({
           registeredUser={registeredUser}
         />}
         />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
+        path='/categories'
+        component={() => <Categories
+          user={user}
+          categories={categories}
+          registeredUser={registeredUser}
+        />}
+        />
       </Switch>
     </div>
   );
@@ -67,6 +80,7 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
   registeredUser: PropTypes.bool.isRequired,
   userFromDB: PropTypes.any
 };
