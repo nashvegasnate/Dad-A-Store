@@ -63,6 +63,8 @@ function Routes({
         />
         <PrivateRoute
         user={user}
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
         path='/paymenttypes'
         component={() => <Payments
           user={user}
