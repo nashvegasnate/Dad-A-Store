@@ -17,4 +17,10 @@ const addCategory = (categoryObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getCategories, addCategory };
+const deleteCategory = (categoryID) => new Promise((resolve, reject) => {
+  axios.delete(`${dbURL}/api/categories/${categoryID}`)
+    .then(() => getCategories().then((categoryArray) => resolve(categoryArray)))
+    .catch((error) => reject(error));
+});
+
+export { getCategories, addCategory, deleteCategory };
