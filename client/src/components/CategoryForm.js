@@ -41,7 +41,6 @@ const CategoryForm = ({
 
       // Clears Input Fields
       setCategoryUpdate({
-        // paymentID: null,
         categoryName: '',
         categoryDescription: '',
         departmentID: null
@@ -61,11 +60,33 @@ const CategoryForm = ({
         <FormGroup>
           <Label for="category">Category: </Label>
           <Input
-            name='paymentType'
-            id='paymentType'
+            name='categoryName'
+            id='categoryName'
             defaultValue={categoryName}
             type='text'
             placeholder='Enter Category'
+            onChange={handleInputChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="category">Category Description: </Label>
+          <Input
+            name='categoryDescription'
+            id='categoryDescription'
+            defaultValue={categoryDescription}
+            type='text'
+            placeholder='Enter Description'
+            onChange={handleInputChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="category">Department ID: </Label>
+          <Input
+            name='departmentID'
+            id='departmentID'
+            defaultValue={departmentID}
+            type='text'
+            placeholder='Enter Department ID'
             onChange={handleInputChange}
           />
         </FormGroup>
