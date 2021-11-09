@@ -23,7 +23,8 @@ function PaymentTypeCard({
           .then(setPayments);
         break;
       case 'edit':
-        setEditing((prevState) => !prevState);
+      //  setEditing((prevState) => !prevState);
+        setEditing(!editing);
         break;
       case 'view':
         history.push(`paymenttypes/${paymentID}`);
@@ -38,7 +39,6 @@ function PaymentTypeCard({
       <Card className='payment-cards'>
         <CardBody>
           <CardTitle tag="h3">Payment Type: {paymentType}</CardTitle>
-          <CardText>PaymentID: {paymentID}</CardText>
           <br />
           <CardText>User: {user.uid}</CardText>
           <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
@@ -61,7 +61,7 @@ function PaymentTypeCard({
 PaymentTypeCard.propTypes = {
   user: PropTypes.any.isRequired,
   paymentID: PropTypes.any.isRequired,
-  paymentType: PropTypes.any.isRequired,
+  paymentType: PropTypes.string.isRequired,
   setPayments: PropTypes.func
 };
 

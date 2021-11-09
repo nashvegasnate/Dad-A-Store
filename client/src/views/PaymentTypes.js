@@ -24,6 +24,7 @@ export default function Payments({
       : <div>
             <Button className="closeForm" onClick={handleClick}>Close Form</Button>
             <PaymentForm
+            setAddPayment={setAddPayment}
               setPayments={setPayments}
               user={user}
             />
@@ -32,15 +33,18 @@ export default function Payments({
     </div>
       <h2>Payment Type Info for {user.userName}</h2>
       {
-        payments.map((paymentInfo) => (
+        payments.length > 0
+          ? payments.map((paymentInfo, i) => (
           <PaymentTypeCard
-          Key={paymentInfo.paymentID}
+          Key={i}
           paymentID={paymentInfo.paymentID}
           paymentType={paymentInfo.paymentType}
-          setPayments={setPayments}
           user={user}
+          setPayments={setPayments}
           />
-        ))}
+          ))
+          : <h1>No Payments</h1>
+      }
       </div>
     </div>
   );
@@ -48,6 +52,6 @@ export default function Payments({
 
 Payments.propTypes = {
   user: PropTypes.any,
-  payments: PropTypes.array.isRequired,
+  payments: PropTypes.array,
   setPayments: PropTypes.func
 };

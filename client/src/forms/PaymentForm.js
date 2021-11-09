@@ -8,15 +8,17 @@ import { addPaymentType, updatePaymentType } from '../helpers/data/paymentTypesD
 
 const PaymentForm = ({
   formTitle,
+  paymentID,
   paymentType,
   setPayments
 }) => {
-  const [payment, setPayment] = useState({
+  const [paymentUpdate, setPaymentUpdate] = useState({
+    paymentID: paymentID || null,
     paymentType: paymentType || ''
   });
 
   const handleInputChange = (e) => {
-    setPayment((prevState) => ({
+    setPaymentUpdate((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
@@ -26,21 +28,20 @@ const PaymentForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (payment.paymentID) {
-      // console.warn(payment); .paymentID, payment
-      updatePaymentType(payment)
-      //   .then((resp) => setPayments(resp));
-      // setPayment(!payment);
-        .then(setPayments);
+    if (paymentUpdate.paymentID !== null) {
+      // console.warn(paymentUpdate); .paymentID, payment
+      updatePaymentType(paymentUpdate).then(setPayments);
+      // setPaymentUpdate(!paymentUpdate);
     } else {
-      addPaymentType(payment)
-        .then((Response) => {
-          setPayments(Response);
-          history.push('/paymenttypes');
-        });
+      const newPaymentType = { paymentType: paymentUpdate.paymentType };
+      addPaymentType(newPaymentType).then((response) => {
+        setPaymentUpdate(response);
+        history.push('/paymenttypes');
+      });
 
       // Clears Input Fields
-      setPayment({
+      setPaymentUpdate({
+        // paymentID: null,
         paymentType: ''
       });
     }
@@ -60,7 +61,7 @@ const PaymentForm = ({
           <Input
             name='paymentType'
             id='paymentType'
-            value={payment.paymentType}
+            defaultValue={paymentType}
             type='text'
             placeholder='Enter Payment Type'
             onChange={handleInputChange}
@@ -74,6 +75,7 @@ const PaymentForm = ({
 
 PaymentForm.propTypes = {
   formTitle: PropTypes.string,
+  paymentID: PropTypes.any,
   paymentType: PropTypes.string,
   setPayments: PropTypes.func
 };

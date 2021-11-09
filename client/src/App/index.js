@@ -34,7 +34,7 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <NavBar user={user} />
+        <NavBar user={user} setPayments={setPayments} />
         <Routes
         user={user}
         orders={orders}
