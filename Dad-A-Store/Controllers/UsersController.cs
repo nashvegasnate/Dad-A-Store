@@ -103,5 +103,18 @@ namespace Dad_A_Store.Controllers
       return Ok(updateUser);
     }
 
+
+    [HttpGet("validateUser/{userUID}")]
+    public bool validateUser(string userUID)
+    {
+      return _repo.IsAUser(userUID);
+    }
+
+    [HttpGet("getUserByUserUID/{userUID}")]
+    public User getUserByUID(string userUID)
+    {
+      return _repo.GetByUserUID(userUID);
+    }
+
   }
 }

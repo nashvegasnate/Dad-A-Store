@@ -6,7 +6,9 @@ import {
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../helpers/auth';
 
-function Home({ user }) {
+function Home({
+  user,
+}) {
   const authenticated = () => (
     <>
     <CardText>Get started by browsing our items.</CardText>
