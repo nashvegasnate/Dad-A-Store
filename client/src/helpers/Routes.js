@@ -21,7 +21,8 @@ function Routes({
   user,
   orders,
   items,
-  payments
+  payments,
+  setPayments
 }) {
   return (
     <div>
@@ -49,6 +50,7 @@ function Routes({
         component={() => <Payments
           user={user}
           payments={payments}
+          setPayments={setPayments}
         />}
         />
       </Switch>
@@ -60,7 +62,8 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
-  payments: PropTypes.array.isRequired
+  payments: PropTypes.array.isRequired,
+  setPayments: PropTypes.func.isRequired
 };
 
 export default Routes;

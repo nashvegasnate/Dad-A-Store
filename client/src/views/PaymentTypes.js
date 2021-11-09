@@ -31,19 +31,17 @@ export default function Payments({
         </div>
     }
     </div>
-      <h2>Payment Type Info for {user.userName}</h2>
+      {/* <h2>Payment Type Info for {user.userName}</h2> */}
       {
-        payments.length > 0
-          ? payments.map((paymentInfo, i) => (
+         payments.map((paymentInfo) => (
           <PaymentTypeCard
-          Key={i}
+          Key={paymentInfo.paymentID}
           paymentID={paymentInfo.paymentID}
           paymentType={paymentInfo.paymentType}
           user={user}
           setPayments={setPayments}
           />
-          ))
-          : <h1>No Payments</h1>
+         ))
       }
       </div>
     </div>

@@ -35,7 +35,7 @@ const PaymentForm = ({
     } else {
       const newPaymentType = { paymentType: paymentUpdate.paymentType };
       addPaymentType(newPaymentType).then((response) => {
-        setPaymentUpdate(response);
+        setPayments(response);
         history.push('/paymenttypes');
       });
 
