@@ -9,4 +9,12 @@ const getCategories = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getCategories;
+const addCategory = (categoryObj) => new Promise((resolve, reject) => {
+  // console.warn(paymentObj);
+  axios.post(`${dbURL}/api/categories`, categoryObj)
+    .then(() => getCategories().then(resolve))
+    // resolve(resp.data);
+    .catch((error) => reject(error));
+});
+
+export { getCategories, addCategory };
