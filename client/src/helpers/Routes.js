@@ -5,6 +5,8 @@ import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
 import Cart from '../views/Cart';
+import Payments from '../views/PaymentTypes';
+import ItemsFormView from '../views/ItemsFormsView';
 
 const PrivateRoute = ({
   component: Component,
@@ -27,8 +29,11 @@ function Routes({
   user,
   orders,
   items,
+  payments,
+  setPayments,
   registeredUser,
-  userFromDB
+  userFromDB,
+  setItems
 }) {
   return (
     <div>
@@ -56,7 +61,29 @@ function Routes({
         component={() => <ItemsView
           user={user}
           items={items}
-          registeredUser={registeredUser}
+          setItems={setItems}
+          userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/itemsForms'
+        component={() => <ItemsFormView
+          user={user}
+          setItems={setItems}
+          userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
+        path='/paymenttypes'
+        component={() => <Payments
+          user={user}
+          payments={payments}
+          setPayments={setPayments}
         />}
         />
         <PrivateRoute
@@ -76,8 +103,11 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
+  payments: PropTypes.array.isRequired,
+  setPayments: PropTypes.func.isRequired,
   registeredUser: PropTypes.bool.isRequired,
-  userFromDB: PropTypes.any
+  userFromDB: PropTypes.any,
+  setItems: PropTypes.func.isRequired
 };
 
 export default Routes;
