@@ -4,7 +4,7 @@ import {
   Card, CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
 import { deleteCategory } from '../helpers/data/categoriesData';
-import CategoryForm from './CategoryForm';
+import CategoryForm from '../forms/CategoryForm';
 
 function CategoryCard({
   user,
