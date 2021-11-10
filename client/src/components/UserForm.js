@@ -110,7 +110,7 @@ function UserForm() {
   );
 }
 
-UserForm.PropTypes = {
+UserForm.propTypes = {
   user: PropTypes.any
 };
 
