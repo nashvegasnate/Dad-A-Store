@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 import CategoryCard from '../components/CategoryCard';
+import CategoryForm from '../forms/CategoryForm';
 
-function Categories({ user, categories }) {
+export default function Categories({ 
+  user, categories, setCategories }) {
+  const [showAddCategory, setAddCategory] = useState(false);
+
+  const handleClick = () => {
+    setAddCategory((prevState) => !prevState);
+  };
+
   return (
         <div>
           <h3>Categories for {user.userName}</h3>
@@ -26,5 +35,3 @@ Categories.propTypes = {
   user: PropTypes.any,
   categories: PropTypes.array.isRequired
 };
-
-export default Categories;
