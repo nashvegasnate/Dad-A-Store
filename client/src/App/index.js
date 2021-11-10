@@ -5,7 +5,7 @@ import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
-import getCategories from '../helpers/data/categoriesData';
+import { getCategories } from '../helpers/data/categoriesData';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 import './App.scss';
 
@@ -52,6 +52,7 @@ function App() {
         orders={orders}
         items={items}
         categories={categories}
+        setCategories={setCategories}
         registeredUser={registeredUser}
         userFromDB={userFromDB}
         />

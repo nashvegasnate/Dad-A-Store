@@ -5,7 +5,7 @@ import CategoryCard from '../components/CategoryCard';
 function Categories({ user, categories }) {
   return (
         <div>
-          <h3>Categories fro {user.userName}</h3>
+          <h3>Categories for {user.userName}</h3>
           {
         categories.map((categoryInfo) => (
           <CategoryCard
