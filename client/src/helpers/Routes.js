@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
-<<<<<<< HEAD
 import Categories from '../views/Categories';
-=======
 import Payments from '../views/PaymentTypes';
->>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
 
 const PrivateRoute = ({
   component: Component,
@@ -31,12 +28,9 @@ function Routes({
   user,
   orders,
   items,
-<<<<<<< HEAD
   categories,
-=======
   payments,
   setPayments,
->>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
   registeredUser,
   userFromDB
 }) {
@@ -73,19 +67,22 @@ function Routes({
         user={user}
         registeredUser={registeredUser}
         userFromDB={userFromDB}
-<<<<<<< HEAD
         path='/categories'
         component={() => <Categories
           user={user}
           categories={categories}
           registeredUser={registeredUser}
-=======
+          />}
+          />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
         path='/paymenttypes'
         component={() => <Payments
           user={user}
           payments={payments}
           setPayments={setPayments}
->>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
         />}
         />
       </Switch>
@@ -97,12 +94,9 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
-<<<<<<< HEAD
   categories: PropTypes.array.isRequired,
-=======
   payments: PropTypes.array.isRequired,
   setPayments: PropTypes.func.isRequired,
->>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
   registeredUser: PropTypes.bool.isRequired,
   userFromDB: PropTypes.any
 };

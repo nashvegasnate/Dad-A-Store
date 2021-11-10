@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card, CardText, CardBody, CardTitle
+  Card, CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
-import {deleteCategory } from '../helpers/data/categoriesData';
+import { deleteCategory } from '../helpers/data/categoriesData';
 import CategoryForm from './CategoryForm';
 
 function CategoryCard({
@@ -41,14 +41,16 @@ function CategoryCard({
               <CardText>Department ID: {departmentID}</CardText>
               <CardText>User: {user.uid}</CardText>
               <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
-        <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
+              <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
         {editing
-          && <PaymentForm
+          && <CategoryForm
             formTitle='Edit Payment Type'
             user={user}
-            paymentID={paymentID}
-            paymentType={paymentType}
-            setPayments={setPayments}
+            categoryID={categoryID}
+            categoryName={categoryName}
+            categoryDescription={categoryDescription}
+            departmentID={departmentID}
+            setCategories={setCategories}
           />
         }
           </CardBody>
@@ -58,11 +60,12 @@ function CategoryCard({
 }
 
 CategoryCard.propTypes = {
+  user: PropTypes.any.isRequired,
   categoryID: PropTypes.any.isRequired,
   categoryName: PropTypes.any.isRequired,
   categoryDescription: PropTypes.any.isRequired,
   departmentID: PropTypes.any.isRequired,
-  user: PropTypes.any.isRequired
+  setCategories: PropTypes.func
 };
 
 export default CategoryCard;
