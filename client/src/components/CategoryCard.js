@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody, CardTitle
 } from 'reactstrap';
-import PropTypes from 'prop-types';
+import {deleteCategory } from '../helpers/data/categoriesData';
+import CategoryForm from './CategoryForm';
 
 function CategoryCard({
+  user,
   categoryID,
   categoryName,
   categoryDescription,
   departmentID,
-  user
+  setCategories
 }) {
+  const [editing, setEditing] = useState(false);
+
+  const handleClick = (type) => {
+    switch (type) {
+      case 'delete':
+        deleteCategory(categoryID)
+          .then(setCategories);
+        break;
+      case 'edit':
+      //  setEditing((prevState) => !prevState);
+        setEditing(!editing);
+        break;
+      default:
+        console.warn('nothing selected');
+    }
+  };
+
   return (
         <div>
-            <Card className='department-cards'>
+            <Card className='category-cards'>
           <CardBody>
               <CardTitle tag="h3">CategoryName: {categoryName}</CardTitle>
               <CardText>Category ID: {categoryID}</CardText>
