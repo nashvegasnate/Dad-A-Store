@@ -3,11 +3,10 @@ import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
-import getItems from '../helpers/data/itemsData';
+import { getItems } from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 import { getPaymentTypes } from '../helpers/data/paymentTypesData';
-
 import './App.scss';
 
 function App() {
@@ -39,8 +38,6 @@ function App() {
     });
   }, []);
 
-  console.warn(userFromDB);
-
   return (
     <div className='App'>
       <Router>
@@ -56,6 +53,7 @@ function App() {
         setPayments={setPayments}
         registeredUser={registeredUser}
         userFromDB={userFromDB}
+        setItems={setItems}
         />
       </Router>
     </div>

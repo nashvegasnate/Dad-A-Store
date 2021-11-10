@@ -5,8 +5,37 @@ const dbURL = firebaseConfig.databaseURL;
 
 const getItems = () => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/api/items`)
-    .then((response) => resolve(response.data))
-    .catch((error) => reject(error));
+    .then((response) => {
+      if (response) {
+        resolve(response.data);
+      } else {
+        resolve([]);
+      }
+    }).catch((error) => reject(error));
 });
 
-export default getItems;
+const additem = (itemObject) => new Promise((resolve, reject) => {
+  axios.post(`${dbURL}/api/items`, itemObject)
+    .then(() => {
+      getItems().then((resolve));
+    }).catch((error) => reject(error));
+});
+
+const updateItem = (itemObject) => new Promise((resolve, reject) => {
+  console.warn(itemObject);
+  axios.put(`${dbURL}/api/items/${itemObject.itemID}`, itemObject)
+    .then(() => {
+      getItems().then((resolve));
+    }).catch((error) => reject(error));
+});
+
+const deleteItem = (itemID) => new Promise((resolve, reject) => {
+  axios.delete(`${dbURL}/api/items/${itemID}`)
+    .then(() => {
+      getItems().then((resolve));
+    }).catch((error) => reject(error));
+});
+
+export {
+  getItems, additem, updateItem, deleteItem
+};
