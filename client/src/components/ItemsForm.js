@@ -17,7 +17,8 @@ const ItemsForm = ({
   sellerID,
   formTitle,
   // user,
-  setItems
+  setItems,
+  userFromDB
 }) => {
   const [item, setItem] = useState({
     itemID: itemID || '',
@@ -25,7 +26,7 @@ const ItemsForm = ({
     itemDescription: itemDescription || '',
     itemPrice: itemPrice || '',
     categoryID: categoryID || '',
-    sellerID: sellerID || '',
+    sellerID: userFromDB.userID || sellerID,
     categoryName: categoryName || '',
     sellerFirstName: sellerFirstName || '',
     sellerLastName: sellerLastName || '',
@@ -105,39 +106,6 @@ const ItemsForm = ({
               onChange={handleInputChange}
              />
           </FormGroup>
-          <FormGroup>
-            <Label>SellerID</Label>
-            <Input
-              name='sellerID'
-              id='sellerID'
-              type='text'
-              placeholder='Please enter the item&#39;s SellerID'
-              value={item.sellerID}
-              onChange={handleInputChange}
-             />
-          </FormGroup>
-          {/* <FormGroup>
-            <Label>User ID</Label>
-            <Input
-              name='userID'
-              id='userID'
-              type='text'
-              placeholder='Please enter the item&#39;s user ID'
-              value={item.userID}
-              onChange={handleInputChange}
-             />
-          </FormGroup> */}
-          {/* <FormGroup>
-            <Label>Item SellerID{sellerID}</Label>
-            <Input
-              name='sellerID'
-              id='sellerID'
-              type='text'
-              placeholder='Please enter the item&#39;s Description'
-              value={item.sellerID}
-              onChange={handleInputChange}
-             />
-          </FormGroup> */}
           <Button type='submit'>Submit</Button>
         </Form>
       </div>
@@ -146,18 +114,19 @@ const ItemsForm = ({
 };
 
 ItemsForm.propTypes = {
-  itemID: PropTypes.any.isRequired,
-  itemName: PropTypes.any.isRequired,
-  itemDescription: PropTypes.any.isRequired,
-  itemPrice: PropTypes.any.isRequired,
-  categoryID: PropTypes.any.isRequired,
-  categoryName: PropTypes.any.isRequired,
-  sellerFirstName: PropTypes.any.isRequired,
-  sellerLastName: PropTypes.any.isRequired,
-  sellerID: PropTypes.any.isRequired,
-  formTitle: PropTypes.any.isRequired,
+  itemID: PropTypes.any,
+  itemName: PropTypes.any,
+  itemDescription: PropTypes.any,
+  itemPrice: PropTypes.any,
+  categoryID: PropTypes.any,
+  categoryName: PropTypes.any,
+  sellerFirstName: PropTypes.any,
+  sellerLastName: PropTypes.any,
+  sellerID: PropTypes.any,
+  formTitle: PropTypes.any,
   // user: PropTypes.any.isRequired,
-  setItems: PropTypes.func.isRequired
+  setItems: PropTypes.func.isRequired,
+  userFromDB: PropTypes.any.isRequired
 };
 
 export default ItemsForm;

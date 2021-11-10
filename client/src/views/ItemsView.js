@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from '../components/ItemCard';
 
-function Items({ user, items, setItems }) {
+function Items({
+  user, items, setItems, userFromDB
+}) {
   return (
     <div>
       <h3> Items Info for {user.userName} </h3>
@@ -21,6 +23,7 @@ function Items({ user, items, setItems }) {
           sellerLastName={itemInfo.sellerLastName}
           user={user}
           setItems={setItems}
+          userFromDB={userFromDB}
           />
         ))
       }
@@ -31,7 +34,8 @@ function Items({ user, items, setItems }) {
 Items.propTypes = {
   user: PropTypes.any,
   items: PropTypes.array.isRequired,
-  setItems: PropTypes.any.isRequired
+  setItems: PropTypes.any.isRequired,
+  userFromDB: PropTypes.any.isRequired
 };
 
 export default Items;

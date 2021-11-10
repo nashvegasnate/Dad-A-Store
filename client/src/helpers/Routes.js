@@ -28,8 +28,7 @@ function Routes({
   orders,
   items,
   registeredUser,
-  userFromDB
-  items,
+  userFromDB,
   setItems
 }) {
   return (
@@ -59,15 +58,17 @@ function Routes({
           user={user}
           items={items}
           setItems={setItems}
+          userFromDB={userFromDB}
         />}
         />
         <PrivateRoute
         user={user}
+        registeredUser={registeredUser}
         path='/itemsForms'
         component={() => <ItemsFormView
           user={user}
           setItems={setItems}
-          registeredUser={registeredUser}
+          userFromDB={userFromDB}
         />}
         />
       </Switch>
@@ -80,8 +81,7 @@ Routes.propTypes = {
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
   registeredUser: PropTypes.bool.isRequired,
-  userFromDB: PropTypes.any
-  items: PropTypes.array.isRequired,
+  userFromDB: PropTypes.any,
   setItems: PropTypes.func.isRequired
 };
 

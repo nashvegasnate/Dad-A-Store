@@ -17,7 +17,8 @@ function ItemCard({
   sellerFirstName,
   sellerLastName,
   user,
-  setItems
+  setItems,
+  userFromDB
 }) {
   const [editing, setEditing] = useState(false);
 
@@ -69,7 +70,8 @@ function ItemCard({
                           sellerLastName={sellerLastName}
                           sellerID={sellerID}
                           formTitle='Edit Item'
-                          setItems={setItems} />}
+                          setItems={setItems}
+                          userFromDB={userFromDB} />}
         </CardBody>
       </Card>
     </div>
@@ -87,7 +89,8 @@ ItemCard.propTypes = {
   sellerFirstName: PropTypes.any.isRequired,
   sellerLastName: PropTypes.any.isRequired,
   user: PropTypes.any.isRequired,
-  setItems: PropTypes.any.isRequired
+  setItems: PropTypes.any.isRequired,
+  userFromDB: PropTypes.any.isRequired
 };
 
 export default ItemCard;
