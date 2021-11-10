@@ -7,7 +7,6 @@ import { getItems } from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 import { getPaymentTypes } from '../helpers/data/paymentTypesData';
-
 import './App.scss';
 
 function App() {

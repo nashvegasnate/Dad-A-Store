@@ -72,7 +72,6 @@ function Routes({
           user={user}
           setItems={setItems}
           userFromDB={userFromDB}
-          registeredUser={registeredUser}
         />}
         />
         <PrivateRoute
