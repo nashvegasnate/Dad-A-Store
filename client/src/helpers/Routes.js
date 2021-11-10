@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
+import Payments from '../views/PaymentTypes';
 import ItemsFormView from '../views/ItemsFormsView';
 
 const PrivateRoute = ({
@@ -27,6 +28,8 @@ function Routes({
   user,
   orders,
   items,
+  payments,
+  setPayments,
   registeredUser,
   userFromDB,
   setItems
@@ -69,6 +72,18 @@ function Routes({
           user={user}
           setItems={setItems}
           userFromDB={userFromDB}
+          registeredUser={registeredUser}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
+        path='/paymenttypes'
+        component={() => <Payments
+          user={user}
+          payments={payments}
+          setPayments={setPayments}
         />}
         />
       </Switch>
@@ -80,6 +95,8 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
+  payments: PropTypes.array.isRequired,
+  setPayments: PropTypes.func.isRequired,
   registeredUser: PropTypes.bool.isRequired,
   userFromDB: PropTypes.any,
   setItems: PropTypes.func.isRequired
