@@ -75,11 +75,7 @@ namespace Dad_A_Store.DataAccess
     {
       using var db = new SqlConnection(_connectionString);
 
-      var sql = @"IF NOT EXISTS(SELECT * 
-                                FROM PAYMENTTYPES
-                                WHERE  PaymentType = @PaymentType
-                                )
-                   INSERT INTO PAYMENTTYPES (PaymentType)
+      var sql = @"INSERT INTO PAYMENTTYPES (PaymentType)
                    OUTPUT INSERTED.PaymentID
                    VALUES (@PaymentType)";
 
