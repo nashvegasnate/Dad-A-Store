@@ -23,4 +23,12 @@ const deleteCategory = (categoryID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getCategories, addCategory, deleteCategory };
+const updateCategory = (category) => new Promise((resolve, reject) => {
+  axios.put(`${dbURL}/api/categories/${category.categoryID}`, category)
+    .then(() => getCategories().then((categoryArray) => resolve(categoryArray)))
+    .catch((error) => reject(error));
+});
+
+export {
+  getCategories, addCategory, deleteCategory, updateCategory
+};
