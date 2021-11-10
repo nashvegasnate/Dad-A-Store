@@ -23,7 +23,27 @@ namespace Dad_A_Store.DataAccess
     internal void LoadAllITEMS()
     {
       using var db = new SqlConnection(_connectionString);
-      _items = db.Query<Item>("SELECT * FROM ITEMS").ToList();
+      //_items = db.Query<Item>("SELECT * FROM ITEMS").ToList();
+      _items = db.Query<Item>(@"
+                                SELECT ItemID 
+                                      ,ItemName
+                                      ,ItemDescription
+                                      ,ItemPrice
+                                      ,CategoryID
+                                      ,(SELECT  CategoryName
+                                             FROM CATEGORIES AS C
+                                             WHERE  C.CategoryID = I.CategoryID
+                                             ) AS CategoryName
+                                      ,(SELECT UserFirst
+                                        FROM USERS 
+                                        WHERE USERID = SellerID
+                                        ) AS SellerFirstName
+                                      ,(SELECT UserLast
+                                        FROM USERS 
+                                        WHERE USERID = SellerID
+                                        ) AS SellerLastName
+                                      ,SellerID
+                                       FROM ITEMS AS I").ToList();
     }
 
     internal List<Item> GetAllItems()
@@ -45,14 +65,54 @@ namespace Dad_A_Store.DataAccess
     internal Item GetItemByNameFromDB(string ItemName)
     {
       using var db = new SqlConnection(_connectionString);
-      var temp = db.QueryFirstOrDefault<Item>("SELECT * FROM ITEMS WHERE ItemName = @ItemName", new { ItemName });
+      var temp = db.QueryFirstOrDefault<Item>(@"
+                                                SELECT ItemID 
+                                                      ,ItemName
+                                                      ,ItemDescription
+                                                      ,ItemPrice
+                                                      ,CategoryID
+                                                      ,(SELECT  CategoryName
+                                                            FROM CATEGORIES AS C
+                                                            WHERE  C.CategoryID = I.CategoryID
+                                                            ) AS CategoryName
+                                                      ,(SELECT UserFirst
+                                                        FROM USERS
+                                                        WHERE USERID = SellerID
+                                                        ) AS SellerFirstName
+                                                      ,(SELECT UserLast
+                                                        FROM USERS
+                                                        WHERE USERID = SellerID
+                                                        ) AS SellerLastName
+                                                      , SellerID
+                                                FROM ITEMS AS I 
+                                                WHERE ItemName = @ItemName", new { ItemName });
       return temp;
     }
 
     internal Item GetItemByIDFromDB(Guid ItemID)
     {
       using var db = new SqlConnection(_connectionString);
-      var temp = db.QueryFirstOrDefault<Item>("SELECT * FROM ITEMS WHERE ItemID = @ItemID", new { ItemID });
+      var temp = db.QueryFirstOrDefault<Item>(@"
+                                                SELECT ItemID 
+                                                      ,ItemName
+                                                      ,ItemDescription
+                                                      ,ItemPrice
+                                                      ,CategoryID
+                                                      ,(SELECT  CategoryName
+                                                            FROM CATEGORIES AS C
+                                                            WHERE  C.CategoryID = I.CategoryID
+                                                            ) AS CategoryName
+                                                      ,(SELECT UserFirst
+                                                        FROM USERS
+                                                        WHERE USERID = SellerID
+                                                        ) AS SellerFirstName
+                                                      ,(SELECT UserLast
+                                                        FROM USERS
+                                                        WHERE USERID = SellerID
+                                                        ) AS SellerLastName
+                                                      , SellerID
+                                                FROM ITEMS AS I 
+                                                WHERE ItemID = @ItemID", new { ItemID });
       return temp;
     }
 
@@ -77,9 +137,9 @@ namespace Dad_A_Store.DataAccess
                    VALUES (@ItemName
                           ,@ItemDescription
                           ,@ItemPrice
-                          ,CAST((SELECT CategoryID 
-                                        FROM CATEGORIES
-                                        WHERE  CategoryID = @CategoryID
+                          ,CAST((SELECT CategoryID
+                                 FROM CATEGORIES
+                                 WHERE  CategoryName = @CategoryName
                                  ) AS uniqueidentifier)
                           ,CAST(@SellerID  AS uniqueidentifier))";
 
@@ -115,13 +175,20 @@ namespace Dad_A_Store.DataAccess
                    OUTPUT INSERTED.*
                    WHERE ItemID = @ItemID";
 
+      var sql2 = new
+      {
+        ItemID = Item.ItemID,
+        ItemName = Item.ItemName,
+        ItemDescription = Item.ItemDescription,
+        CategoryID = Item.CategoryID
+      };
+
+
       Item.ItemID = ID;
-      var updateItem = db.QuerySingleOrDefault<Item>(sql, Item);
+      var updateItem = db.QuerySingleOrDefault<Item>(sql, sql2);
 
       return updateItem;
     }
-
-
 
 
 

@@ -8,7 +8,11 @@ import ItemsView from '../views/ItemsView';
 import Categories from '../views/Categories';
 =======
 import Payments from '../views/PaymentTypes';
+<<<<<<< HEAD
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
+=======
+import ItemsFormView from '../views/ItemsFormsView';
+>>>>>>> 5abb8935e27baad712b9f4ce3d3604fc6a589ee2
 
 const PrivateRoute = ({
   component: Component,
@@ -38,7 +42,8 @@ function Routes({
   setPayments,
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
   registeredUser,
-  userFromDB
+  userFromDB,
+  setItems
 }) {
   return (
     <div>
@@ -66,7 +71,18 @@ function Routes({
         component={() => <ItemsView
           user={user}
           items={items}
-          registeredUser={registeredUser}
+          setItems={setItems}
+          userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/itemsForms'
+        component={() => <ItemsFormView
+          user={user}
+          setItems={setItems}
+          userFromDB={userFromDB}
         />}
         />
         <PrivateRoute
@@ -104,7 +120,8 @@ Routes.propTypes = {
   setPayments: PropTypes.func.isRequired,
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
   registeredUser: PropTypes.bool.isRequired,
-  userFromDB: PropTypes.any
+  userFromDB: PropTypes.any,
+  setItems: PropTypes.func.isRequired
 };
 
 export default Routes;

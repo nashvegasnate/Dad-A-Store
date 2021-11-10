@@ -3,15 +3,18 @@ import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
-import getItems from '../helpers/data/itemsData';
+import { getItems } from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
 import { getCategories } from '../helpers/data/categoriesData';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 <<<<<<< HEAD
 =======
 import { getPaymentTypes } from '../helpers/data/paymentTypesData';
+<<<<<<< HEAD
 
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
+=======
+>>>>>>> 5abb8935e27baad712b9f4ce3d3604fc6a589ee2
 import './App.scss';
 
 function App() {
@@ -51,8 +54,6 @@ function App() {
     });
   }, []);
 
-  console.warn(userFromDB);
-
   return (
     <div className='App'>
       <Router>
@@ -73,6 +74,7 @@ function App() {
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
         registeredUser={registeredUser}
         userFromDB={userFromDB}
+        setItems={setItems}
         />
       </Router>
     </div>
