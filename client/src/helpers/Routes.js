@@ -21,7 +21,8 @@ function Routes({
   user,
   orders,
   items,
-  departments
+  departments,
+  setDepartments
 }) {
   return (
     <div>
@@ -49,6 +50,7 @@ function Routes({
         component={() => <DepartmentsView
           user={user}
           departments={departments}
+          setDepartments={setDepartments}
         />}
         />
       </Switch>
@@ -60,7 +62,8 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
-  departments: PropTypes.array.isRequired
+  departments: PropTypes.array.isRequired,
+  setDepartments: PropTypes.func
 };
 
 export default Routes;

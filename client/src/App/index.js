@@ -6,7 +6,7 @@ import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
-import getDepartments from '../helpers/data/departmentsData';
+import { getDepartments } from '../helpers/data/departmentsData';
 
 function App() {
   const [user, setUser] = useState(null);
