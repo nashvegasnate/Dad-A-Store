@@ -7,6 +7,7 @@ import NavBar from '../components/NavBar';
 import getItems from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
+// import getOpenCart from '../helpers/data/cartData';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +36,7 @@ function App() {
     });
   }, []);
 
-  console.warn(userFromDB);
+  // console.warn(cart);
 
   return (
     <div className='App'>

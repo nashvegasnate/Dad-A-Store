@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
+import Cart from '../views/Cart';
 
 const PrivateRoute = ({
   component: Component,
@@ -56,6 +57,14 @@ function Routes({
           user={user}
           items={items}
           registeredUser={registeredUser}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/cart'
+        component={() => <Cart
+        userFromDB={userFromDB}
         />}
         />
       </Switch>
