@@ -40,6 +40,17 @@ function CategoryCard({
               <CardText>Category Description: {categoryDescription}</CardText>
               <CardText>Department ID: {departmentID}</CardText>
               <CardText>User: {user.uid}</CardText>
+              <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
+        <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
+        {editing
+          && <PaymentForm
+            formTitle='Edit Payment Type'
+            user={user}
+            paymentID={paymentID}
+            paymentType={paymentType}
+            setPayments={setPayments}
+          />
+        }
           </CardBody>
       </Card>
         </div>
