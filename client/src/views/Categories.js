@@ -5,14 +5,19 @@ import CategoryCard from '../components/CategoryCard';
 import CategoryForm from '../forms/CategoryForm';
 
 export default function Categories({ 
-  user, categories, setCategories }) {
-  const [showAddCategory, setAddCategory] = useState(false);
+  user, categories, setCategories 
+}) {
+const [showAddCategory, setAddCategory] = useState(false);
 
   const handleClick = () => {
     setAddCategory((prevState) => !prevState);
   };
 
   return (
+    <div className="paymentView">
+    <div className="card-container">
+    <br />
+
         <div>
           <h3>Categories for {user.userName}</h3>
           {
@@ -28,10 +33,13 @@ export default function Categories({
         ))
       }
         </div>
+        </div>
+    </div>
   );
 }
 
 Categories.propTypes = {
   user: PropTypes.any,
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
+  setCategories: PropTypes.any
 };
