@@ -11,50 +11,56 @@ const ItemsForm = ({
   itemDescription,
   itemPrice,
   categoryID,
+  categoryName,
+  sellerFirstName,
+  sellerLastName,
   sellerID,
-  user,
+  formTitle,
+  // user,
   setItems
 }) => {
   const [item, setItem] = useState({
-    itemID: itemID || null,
+    itemID: itemID || '',
     itemName: itemName || '',
     itemDescription: itemDescription || '',
     itemPrice: itemPrice || '',
     categoryID: categoryID || '',
-    sellerID: user ? user.uid : ''
+    sellerID: sellerID || '',
+    categoryName: categoryName || '',
+    sellerFirstName: sellerFirstName || '',
+    sellerLastName: sellerLastName || '',
+    // userID: user ? user.id : '',
   });
 
   const handleInputChange = (e) => {
     setItem((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
-      sellerID: user ? user.uid : '',
+      [e.target.name]: e.target.value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (item.itemID) {
-      updateItem(item, user.uid).then((itemsArray) => setItems(itemsArray));
+      updateItem(item).then((itemsArray) => setItems(itemsArray));
     } else {
-      additem(item, user.uid).then((itemsArray) => setItems(itemsArray));
+      additem(item).then((itemsArray) => setItems(itemsArray));
+
+      // setItem({
+      //   itemName: '',
+      //   itemDescription: '',
+      //   itemPrice: '',
+      //   categoryName: '',
+      //   sellerID: ''
+      // });
     }
   };
-
-  setItem({
-    itemID: null,
-    itemName: '',
-    itemDescription: '',
-    itemPrice: '',
-    categoryID: '',
-    sellerID: ''
-  });
 
   return (
     <>
       <div className='item-form'>
         <Form id='add-item-form' autoComplete='off' onSubmit={handleSubmit}>
-          <h2>FORM TITLE HERE</h2>
+          <h2>{formTitle}</h2>
           <FormGroup>
             <Label>Item Name</Label>
             <Input
@@ -89,17 +95,39 @@ const ItemsForm = ({
              />
           </FormGroup>
           <FormGroup>
-            <Label>Item Category</Label>
+            <Label>Category Name</Label>
             <Input
-              name='categoryID'
-              id='categoryID'
+              name='categoryName'
+              id='categoryName'
               type='text'
-              placeholder='Please enter the item&#39;s categoryID'
-              value={item.categoryID}
+              placeholder='Please enter the item&#39;s category Name'
+              value={item.categoryName}
               onChange={handleInputChange}
              />
           </FormGroup>
           <FormGroup>
+            <Label>SellerID</Label>
+            <Input
+              name='sellerID'
+              id='sellerID'
+              type='text'
+              placeholder='Please enter the item&#39;s SellerID'
+              value={item.sellerID}
+              onChange={handleInputChange}
+             />
+          </FormGroup>
+          {/* <FormGroup>
+            <Label>User ID</Label>
+            <Input
+              name='userID'
+              id='userID'
+              type='text'
+              placeholder='Please enter the item&#39;s user ID'
+              value={item.userID}
+              onChange={handleInputChange}
+             />
+          </FormGroup> */}
+          {/* <FormGroup>
             <Label>Item SellerID{sellerID}</Label>
             <Input
               name='sellerID'
@@ -109,7 +137,7 @@ const ItemsForm = ({
               value={item.sellerID}
               onChange={handleInputChange}
              />
-          </FormGroup>
+          </FormGroup> */}
           <Button type='submit'>Submit</Button>
         </Form>
       </div>
@@ -123,9 +151,13 @@ ItemsForm.propTypes = {
   itemDescription: PropTypes.any.isRequired,
   itemPrice: PropTypes.any.isRequired,
   categoryID: PropTypes.any.isRequired,
+  categoryName: PropTypes.any.isRequired,
+  sellerFirstName: PropTypes.any.isRequired,
+  sellerLastName: PropTypes.any.isRequired,
   sellerID: PropTypes.any.isRequired,
-  user: PropTypes.any.isRequired,
-  setItems: PropTypes.any.isRequired
+  formTitle: PropTypes.any.isRequired,
+  // user: PropTypes.any.isRequired,
+  setItems: PropTypes.func.isRequired
 };
 
 export default ItemsForm;

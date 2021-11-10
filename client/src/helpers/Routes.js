@@ -41,14 +41,14 @@ function Routes({
         component={() => <ItemsView
           user={user}
           items={items}
+          setItems={setItems}
         />}
         />
         <PrivateRoute
         user={user}
-        path='/itemsForm'
+        path='/itemsForms'
         component={() => <ItemsFormView
           user={user}
-          items={items}
           setItems={setItems}
         />}
         />

@@ -20,6 +20,7 @@ function App() {
           uid: authed.uid
         };
         setUser(userInfoObj);
+
         getOrders().then((ordersArray) => setOrders(ordersArray));
         getItems().then((itemsArray) => setItems(itemsArray));
       } else if (user || user === null) {
