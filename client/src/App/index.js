@@ -3,10 +3,10 @@ import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
-import { getItems } from '../helpers/data/itemsData';
-import getOrders from '../helpers/data/ordersData';
-import { getCategories } from '../helpers/data/categoriesData';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
+import getOrders from '../helpers/data/ordersData';
+import { getItems } from '../helpers/data/itemsData';
+import { getCategories } from '../helpers/data/categoriesData';
 import { getPaymentTypes } from '../helpers/data/paymentTypesData';
 
 import './App.scss';
@@ -51,15 +51,15 @@ function App() {
         />
         <Routes
         user={user}
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
         orders={orders}
         items={items}
+        setItems={setItems}
         categories={categories}
         setCategories={setCategories}
         payments={payments}
         setPayments={setPayments}
-        registeredUser={registeredUser}
-        userFromDB={userFromDB}
-        setItems={setItems}
         />
       </Router>
     </div>
