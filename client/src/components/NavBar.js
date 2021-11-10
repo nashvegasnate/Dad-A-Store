@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../helpers/auth';
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, registeredUser }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -27,6 +27,10 @@ const NavBar = ({ user }) => {
       </NavItem>
       <NavItem>
         <Link className="nav-link" to="/departments">Departments</Link>
+        <Link className="nav-link" to="/paymenttypes">Payments</Link>
+      </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/itemsForms">Items-Form</Link>
       </NavItem>
     </>
   );
@@ -41,7 +45,7 @@ const NavBar = ({ user }) => {
         <NavItem>
           <Link className="nav-link" to="/">Home</Link>
         </NavItem>
-        { user && authenticated() }
+        { (user && registeredUser) && authenticated() }
         {
             user !== null
             && <NavItem>
@@ -60,7 +64,8 @@ const NavBar = ({ user }) => {
 };
 
 NavBar.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  registeredUser: PropTypes.bool
 };
 
 export default NavBar;

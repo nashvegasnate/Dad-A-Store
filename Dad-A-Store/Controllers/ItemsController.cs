@@ -47,7 +47,7 @@ namespace Dad_A_Store.Controllers
       if (string.IsNullOrEmpty(newItem.ItemName) ||
           string.IsNullOrEmpty(newItem.ItemDescription) ||
           newItem.ItemPrice.Equals(0) ||
-          newItem.CategoryID.Equals(string.Empty))
+          string.IsNullOrEmpty(newItem.CategoryName))
       {
         return BadRequest("Sorry the Item: Name, Description, Price, and Category ID are required.");
       }

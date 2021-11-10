@@ -95,7 +95,7 @@ export default function AddDepartmentForm({
 
 AddDepartmentForm.propTypes = {
   formTitle: PropTypes.string,
-  setDepartments: PropTypes.func,
+  setDepartments: PropTypes.func.isRequired,
   setShowButton: PropTypes.func,
   // user: PropTypes.any,
   departmentName: PropTypes.string,

@@ -137,5 +137,31 @@ namespace Dad_A_Store.DataAccess
       return updatedUser;
     }
 
+    internal bool IsAUser(string userUID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"IF EXISTS(SELECT *
+                  FROM USERS
+                  WHERE UserUID=@userUID) SELECT 1 ELSE SELECT 0";
+
+      var result = db.QueryFirstOrDefault<bool>(sql, new { userUID });
+
+      return result;
+    }
+
+    internal User GetByUserUID(string userUID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"SELECT *
+                  FROM USERS
+                  WHERE UserUID=@userUID";
+
+      var user = db.QueryFirstOrDefault<User>(sql, new { userUID });
+
+      return user;
+    }
+
   }
 }

@@ -60,7 +60,7 @@ function Departments({ user }) {
 Departments.propTypes = {
   user: PropTypes.any,
   departments: PropTypes.array.isRequired,
-  setDepartments: PropTypes.func
+  setDepartments: PropTypes.func.isRequired
 
 };
 
