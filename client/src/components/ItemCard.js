@@ -37,6 +37,10 @@ function ItemCard({
     }
   };
 
+  const handleAddItemToCart = () => {
+    console.warn(`Add Item ${itemID} to the Cart`);
+  };
+
   return (
     <div>
       <Card className='item-cards'>
@@ -72,6 +76,11 @@ function ItemCard({
                           formTitle='Edit Item'
                           setItems={setItems}
                           userFromDB={userFromDB} />}
+          <Button
+            color="info"
+            onClick={() => handleAddItemToCart()}
+            size="sm">Add To Cart
+          </Button>
         </CardBody>
       </Card>
     </div>
