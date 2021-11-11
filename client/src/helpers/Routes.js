@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
+import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
 import ItemsFormView from '../views/ItemsFormsView';
 
@@ -83,6 +84,14 @@ function Routes({
           user={user}
           payments={payments}
           setPayments={setPayments}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/cart'
+        component={() => <Cart
+        userFromDB={userFromDB}
         />}
         />
       </Switch>
