@@ -11,7 +11,7 @@ function CartDetailCard({
   itemQuantity,
   itemPrice
 }) {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState(null);
 
   useEffect(() => {
     getItemByItemID(itemID).then((itemObject) => setItem(itemObject));
@@ -20,8 +20,8 @@ function CartDetailCard({
     <div>
       <Card className='expense-cards'>
         <CardBody>
-          <CardTitle tag="h3">{item.itemName}</CardTitle>
-          <CardText>Description: {item.itemDescription}</CardText>
+           { item && <CardTitle tag="h3">{item[0].itemName}</CardTitle> }
+           { item && <CardText>Description: {item[0].itemDescription}</CardText> }
           <CardText>Item Price: ${itemPrice}</CardText>
           <CardText>Quantity: {itemQuantity}</CardText>
         </CardBody>
