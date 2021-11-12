@@ -15,4 +15,4 @@ const updateCartSingleItem = (userID, cartObj) => new Promise((resolve, reject) 
     .catch((error) => reject(error));
 });
 
-export default { getOpenCart, updateCartSingleItem };
+export { getOpenCart, updateCartSingleItem };
