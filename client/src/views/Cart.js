@@ -28,6 +28,7 @@ function Cart({ userFromDB }) {
         cartDetails.map((cartInfo) => (
           <CartDetailCard
           key={cartInfo.cartID + cartInfo.itemID}
+          userID={userFromDB.userID}
           itemID={cartInfo.itemID}
           itemQuantity={cartInfo.itemQuantity}
           itemPrice={cartInfo.itemPrice}
