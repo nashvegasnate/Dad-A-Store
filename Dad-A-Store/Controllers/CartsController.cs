@@ -63,7 +63,7 @@ namespace Dad_A_Store.Controllers
     }
 
     [HttpPut("/updateCartDetailItem/{userID}")]
-    public CartDetail updateSingleItem(Guid userID, NewOrder updatedItem)
+    public List<CartDetail> updateSingleItem(Guid userID, NewOrder updatedItem)
     {
       return _repo.UpdateCartItem(userID, updatedItem);
     }

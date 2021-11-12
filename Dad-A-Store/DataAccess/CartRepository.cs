@@ -395,7 +395,7 @@ namespace Dad_A_Store.DataAccess
       return theFinalCart;
     }
 
-    internal CartDetail UpdateCartItem(Guid userID, NewOrder updatedCartItem)
+    internal List<CartDetail> UpdateCartItem(Guid userID, NewOrder updatedCartItem)
     {
       using var db = new SqlConnection(_connectionString);
 
@@ -466,15 +466,14 @@ namespace Dad_A_Store.DataAccess
 
       var newCartDetailObj = new
       {
-        cartID = cartID,
-        itemID = itemID
+        cartID = cartID
       };
 
       var finalCartDetailSql = @"SELECT * 
                                  FROM CARTDETAILS
-                                 WHERE CartID = @cartID AND ItemID = @itemID";
+                                 WHERE CartID = @cartID";
 
-      var theFinalCartDetail = db.QueryFirstOrDefault<CartDetail>(finalCartDetailSql, newCartDetailObj);
+      var theFinalCartDetail = db.Query<CartDetail>(finalCartDetailSql, newCartDetailObj).ToList();
 
       return theFinalCartDetail;
     }
