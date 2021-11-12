@@ -423,10 +423,9 @@ namespace Dad_A_Store.DataAccess
       //Query to update the quantity for the cart item, and then get the updated cart details to return
       var cartDetailUpdateSql = @"UPDATE CARTDETAILS
                                   SET ItemQuantity = @quantity
-                                  WHERE CartID = @cartID AND ItemID = @itemID
-                                  OUTPUT INSERTED.*";
+                                  WHERE CartID = @cartID AND ItemID = @itemID";
 
-      var updatedCartDetail = db.QueryFirstOrDefault<CartDetail>(cartDetailUpdateSql, cartDetailObj);
+      db.Execute(cartDetailUpdateSql, cartDetailObj);
 
       //Now we need to get all of the cart details so we can update the cart total
       var newCartDetailsSql = @"SELECT *
@@ -463,9 +462,21 @@ namespace Dad_A_Store.DataAccess
                             SET OrderAmount = @orderAmount
                             WHERE CartID = @cartID";
 
-      db.Execute(updateCartSql);
+      db.Execute(updateCartSql, cartObj);
 
-      return updatedCartDetail;
+      var newCartDetailObj = new
+      {
+        cartID = cartID,
+        itemID = itemID
+      };
+
+      var finalCartDetailSql = @"SELECT * 
+                                 FROM CARTDETAILS
+                                 WHERE CartID = @cartID AND ItemID = @itemID";
+
+      var theFinalCartDetail = db.QueryFirstOrDefault<CartDetail>(finalCartDetailSql, newCartDetailObj);
+
+      return theFinalCartDetail;
     }
 
   }
