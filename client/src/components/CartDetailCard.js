@@ -11,7 +11,8 @@ function CartDetailCard({
   userID,
   itemID,
   itemQuantity,
-  itemPrice
+  itemPrice,
+  setCartDetails
 }) {
   const [item, setItem] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -44,6 +45,7 @@ function CartDetailCard({
             userID={userID}
             itemID={itemID}
             quantity={itemQuantity}
+            setCartDetails={setCartDetails}
             />
           }
           <br />
@@ -58,6 +60,7 @@ CartDetailCard.propTypes = {
   itemID: PropTypes.string.isRequired,
   itemQuantity: PropTypes.number.isRequired,
   itemPrice: PropTypes.number.isRequired,
+  setCartDetails: PropTypes.func.isRequired
 };
 
 export default CartDetailCard;

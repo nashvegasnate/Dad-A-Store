@@ -32,6 +32,7 @@ function Cart({ userFromDB }) {
           itemID={cartInfo.itemID}
           itemQuantity={cartInfo.itemQuantity}
           itemPrice={cartInfo.itemPrice}
+          setCartDetails={setCartDetails}
           />
         ))
       }

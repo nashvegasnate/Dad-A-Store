@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
+import { updateCartSingleItem } from '../helpers/data/cartData';
 
 function CartDetailForm({
   userID,
   itemID,
-  quantity
+  quantity,
+  setCartDetails
 }) {
   const [cartDetail, setCartDetail] = useState({
     itemID: itemID || '',
@@ -21,7 +23,7 @@ function CartDetailForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(`edited it bruh ${userID}`);
+    updateCartSingleItem(userID, cartDetail).then((cartDetArr) => setCartDetails(cartDetArr));
   };
 
   return (
@@ -46,7 +48,8 @@ function CartDetailForm({
 CartDetailForm.propTypes = {
   userID: PropTypes.any.isRequired,
   itemID: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.number.isRequired,
+  setCartDetails: PropTypes.func.isRequired
 };
 
 export default CartDetailForm;
