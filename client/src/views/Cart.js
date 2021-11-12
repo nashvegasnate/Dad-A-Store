@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import getOpenCart from '../helpers/data/cartData';
+import { getOpenCart } from '../helpers/data/cartData';
 import getCartDetails from '../helpers/data/cartDetailsData';
 import CartDetailCard from '../components/CartDetailCard';
 
