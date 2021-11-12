@@ -43,7 +43,7 @@ function CartDetailCard({
             editing && <CartDetailForm
             userID={userID}
             itemID={itemID}
-            itemQuantity={itemQuantity}
+            quantity={itemQuantity}
             />
           }
           <br />
