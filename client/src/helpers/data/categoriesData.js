@@ -9,6 +9,12 @@ const getCategories = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getCategoriesByNameDepartmentID = (departmentID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/paymenttypes/GetPaymentByPaymentID/${departmentID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 const addCategory = (categoryObj) => new Promise((resolve, reject) => {
   // console.warn(categoryObj);
   axios.post(`${dbURL}/api/categories`, categoryObj)
@@ -29,5 +35,6 @@ const updateCategory = (category) => new Promise((resolve, reject) => {
 });
 
 export {
-  getCategories, addCategory, deleteCategory, updateCategory
+  getCategories, getCategoriesByNameDepartmentID,
+  addCategory, deleteCategory, updateCategory
 };
