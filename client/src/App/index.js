@@ -9,7 +9,6 @@ import { getItems } from '../helpers/data/itemsData';
 import { getCategories } from '../helpers/data/categoriesData';
 import { getDepartments } from '../helpers/data/departmentsData';
 import { getPaymentTypes } from '../helpers/data/paymentTypesData';
-
 import './App.scss';
 
 function App() {
