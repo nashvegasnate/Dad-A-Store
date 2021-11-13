@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody, CardTitle, Button
@@ -14,7 +14,7 @@ function PaymentTypeCard({
   setPayments
 }) {
   const [editing, setEditing] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleClick = (type) => {
     switch (type) {
@@ -26,9 +26,9 @@ function PaymentTypeCard({
       //  setEditing((prevState) => !prevState);
         setEditing(!editing);
         break;
-      case 'view':
-        history.push(`paymenttypes/${paymentID}`);
-        break;
+      // case 'view':
+      //   history.push(`paymenttypes/${paymentID}`);
+      //   break;
       default:
         console.warn('nothing selected');
     }
