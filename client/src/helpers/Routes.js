@@ -6,8 +6,9 @@ import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
 import ItemsFormView from '../views/ItemsFormsView';
 import Categories from '../views/Categories';
-import Payments from '../views/PaymentTypes';
+import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
+import Payments from '../views/PaymentTypes';
 
 const PrivateRoute = ({
   component: Component,
@@ -33,6 +34,8 @@ function Routes({
   setItems,
   categories,
   setCategories,
+  departments,
+  setDepartments,
   payments,
   setPayments,
   registeredUser,
@@ -103,6 +106,17 @@ function Routes({
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
+        userFromDB={userFromDB}
+        path='/departments'
+        component={() => <DepartmentsView
+          user={user}
+          departments={departments}
+          setDepartments={setDepartments}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
         path='/cart'
         component={() => <Cart
         userFromDB={userFromDB}
@@ -120,6 +134,8 @@ Routes.propTypes = {
   setItems: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   setCategories: PropTypes.func.isRequired,
+  departments: PropTypes.array.isRequired,
+  setDepartments: PropTypes.func.isRequired,
   payments: PropTypes.array.isRequired,
   setPayments: PropTypes.func.isRequired,
   registeredUser: PropTypes.bool.isRequired,
