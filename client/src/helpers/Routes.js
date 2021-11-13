@@ -81,7 +81,6 @@ function Routes({
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
-        userFromDB={userFromDB}
         path='/categories'
         component={() => <Categories
           user={user}
