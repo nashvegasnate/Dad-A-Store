@@ -57,8 +57,8 @@ function DepartmentCard({
     <DeptCard>
       <Card className='department-cards p-2'>
           <CardBody>
-              <CardTitle tag="h3">Department: {departmentName}</CardTitle>
-              <CardText>Department Description: {departmentDescription}</CardText>
+              <CardTitle tag="h3">{departmentName}</CardTitle>
+              <CardText>{departmentDescription}</CardText>
               <CardText>Department ID: {departmentID}</CardText>
               <CardText>User: {user.uid}</CardText>
           </CardBody>
