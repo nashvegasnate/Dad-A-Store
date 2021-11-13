@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import getOpenCart from '../helpers/data/cartData';
+import { getOpenCart } from '../helpers/data/cartData';
 import getCartDetails from '../helpers/data/cartDetailsData';
 import CartDetailCard from '../components/CartDetailCard';
 
@@ -27,10 +27,12 @@ function Cart({ userFromDB }) {
       {
         cartDetails.map((cartInfo) => (
           <CartDetailCard
-          key={cartInfo.cartID}
+          key={cartInfo.cartID + cartInfo.itemID}
+          userID={userFromDB.userID}
           itemID={cartInfo.itemID}
           itemQuantity={cartInfo.itemQuantity}
           itemPrice={cartInfo.itemPrice}
+          setCartDetails={setCartDetails}
           />
         ))
       }

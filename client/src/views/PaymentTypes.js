@@ -35,7 +35,7 @@ export default function Payments({
       {
          payments.map((paymentInfo) => (
           <PaymentTypeCard
-          Key={paymentInfo.paymentID}
+          key={paymentInfo.paymentID}
           paymentID={paymentInfo.paymentID}
           paymentType={paymentInfo.paymentType}
           user={user}

@@ -14,6 +14,12 @@ const getItems = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+const getItemByItemID = (itemID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/items/CGetItemByItemID/${itemID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 const additem = (itemObject) => new Promise((resolve, reject) => {
   axios.post(`${dbURL}/api/items`, itemObject)
     .then(() => {
@@ -37,5 +43,5 @@ const deleteItem = (itemID) => new Promise((resolve, reject) => {
 });
 
 export {
-  getItems, additem, updateItem, deleteItem
+  getItems, getItemByItemID, additem, updateItem, deleteItem
 };

@@ -9,4 +9,10 @@ const getOpenCart = (userID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getOpenCart;
+const updateCartSingleItem = (userID, cartObj) => new Promise((resolve, reject) => {
+  axios.put(`${dbURL}/updateCartDetailItem/${userID}`, cartObj)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export { getOpenCart, updateCartSingleItem };
