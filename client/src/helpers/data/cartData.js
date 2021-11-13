@@ -15,4 +15,10 @@ const updateCartSingleItem = (userID, cartObj) => new Promise((resolve, reject) 
     .catch((error) => reject(error));
 });
 
-export { getOpenCart, updateCartSingleItem };
+const addItemCart = (userID, itemObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbURL}/addItemToCart/${userID}`, itemObj)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export { getOpenCart, updateCartSingleItem, addItemCart };
