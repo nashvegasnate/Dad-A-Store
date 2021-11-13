@@ -32,6 +32,9 @@ const NavBar = ({ user, registeredUser }) => {
       <NavItem>
         <Link className="nav-link" to="/itemsForms">Items-Form</Link>
       </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/cart">My Cart</Link>
+      </NavItem>
     </>
   );
 

@@ -51,9 +51,9 @@ namespace Dad_A_Store.DataAccess
       return _items;
     }
 
-    internal IEnumerable<Item> GetByID(Guid ItemID)
+    internal List<Item> GetByID(Guid ItemID)
     {
-      return _items.Where(Item => Item.ItemID == ItemID);
+      return _items.Where(Item => Item.ItemID == ItemID).ToList();
     }
 
     internal List<Item> GetItemByNameFromList(string ItemName)

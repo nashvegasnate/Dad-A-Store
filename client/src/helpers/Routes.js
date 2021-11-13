@@ -5,6 +5,7 @@ import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
 import DepartmentsView from '../views/DepartmentsView';
+import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
 import ItemsFormView from '../views/ItemsFormsView';
 
@@ -97,6 +98,14 @@ function Routes({
           user={user}
           departments={departments}
           setDepartments={setDepartments}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/cart'
+        component={() => <Cart
+        userFromDB={userFromDB}
         />}
         />
       </Switch>
