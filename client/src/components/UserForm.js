@@ -14,7 +14,8 @@ function UserForm() {
     userZip: 0,
     paymentID: '132fce4c-8d39-ec11-9141-6c6a77444a6b',
     userUID: '12345',
-    userRole: 'CUSTOMER'
+    userRole: 'CUSTOMER',
+    paymentType: ''
   });
 
   const handleInputChange = (e) => {
@@ -103,6 +104,16 @@ function UserForm() {
         placeholder='37122'
         value={newUser.userZip}
         onChange={handleNumberInput} />
+        <br/>
+       <br/>
+        <label>Payment Type:</label>
+        <input
+        className='ml-2'
+        name='paymentType'
+        type='text'
+        placeholder='Visa, MasterCard...'
+        value={newUser.paymentType}
+        onChange={handleInputChange} />
         <br/>
         <Button color='success' type='submit'>Submit</Button>
       </form>
