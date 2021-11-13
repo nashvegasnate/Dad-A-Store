@@ -7,6 +7,7 @@ import ItemsView from '../views/ItemsView';
 import ItemsFormView from '../views/ItemsFormsView';
 import Categories from '../views/Categories';
 import Payments from '../views/PaymentTypes';
+import Cart from '../views/Cart';
 
 const PrivateRoute = ({
   component: Component,
@@ -89,16 +90,23 @@ function Routes({
           setCategories={setCategories}
           />}
           />
-        <PrivateRoute
-        user={user}
-        registeredUser={registeredUser}
-        userFromDB={userFromDB}
+          <PrivateRoute
+          user={user}
+          registeredUser={registeredUser}
         path='/paymenttypes'
         component={() => <Payments
           user={user}
           userFromDB={userFromDB}
           payments={payments}
           setPayments={setPayments}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/cart'
+        component={() => <Cart
+        userFromDB={userFromDB}
         />}
         />
       </Switch>

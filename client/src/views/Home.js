@@ -5,10 +5,19 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../helpers/auth';
+import UserForm from '../components/UserForm';
 
 function Home({
   user,
+  registeredUser,
 }) {
+  const isNotRegistered = () => (
+    <>
+      <h2>You must register before continuing </h2>
+      <UserForm />
+    </>
+  );
+
   const authenticated = () => (
     <>
     <CardText>Get started by browsing our items.</CardText>
@@ -31,6 +40,7 @@ function Home({
           <CardSubtitle tag="h6" className="mb-2 text-muted">An e-commerce platform for the Dad in your life.</CardSubtitle>
           <CardText>Our goal is to be the one stop shop for all Dad&aposs needs.</CardText>
           { user ? authenticated() : notAuthenticated() }
+          { (user && registeredUser) && isNotRegistered() }
         </CardBody>
       </Card>
     </div>
@@ -38,7 +48,9 @@ function Home({
 }
 
 Home.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  registeredUser: PropTypes.bool.isRequired,
+  userFromDB: PropTypes.any
 };
 
 export default Home;

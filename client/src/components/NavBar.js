@@ -34,6 +34,9 @@ const NavBar = ({ user, registeredUser }) => {
       <NavItem>
       <Link className="nav-link" to="/paymenttypes">Payments</Link>
       </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/cart">My Cart</Link>
+      </NavItem>
     </>
   );
 
