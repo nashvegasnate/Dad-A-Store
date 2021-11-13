@@ -395,5 +395,88 @@ namespace Dad_A_Store.DataAccess
       return theFinalCart;
     }
 
+    internal List<CartDetail> UpdateCartItem(Guid userID, NewOrder updatedCartItem)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      //Get the original cart so that we can start updating it 
+      var originalCartSql = @"SELECT *
+                              FROM CARTS 
+                              WHERE UserID=@userID AND Completed=0";
+
+      var originalCart = db.QueryFirstOrDefault<Cart>(originalCartSql, new { userID });
+
+      //To update the cart, we will need the cart subtotal
+      var thisCartSubtotal = 0m;
+
+      var cartID = originalCart.CartID;
+
+      var itemID = updatedCartItem.ItemID;
+
+      var cartDetailObj = new
+      {
+        cartID = cartID,
+        itemID = itemID,
+        quantity =updatedCartItem.Quantity
+      };
+
+      //Query to update the quantity for the cart item, and then get the updated cart details to return
+      var cartDetailUpdateSql = @"UPDATE CARTDETAILS
+                                  SET ItemQuantity = @quantity
+                                  WHERE CartID = @cartID AND ItemID = @itemID";
+
+      db.Execute(cartDetailUpdateSql, cartDetailObj);
+
+      //Now we need to get all of the cart details so we can update the cart total
+      var newCartDetailsSql = @"SELECT *
+                  FROM CARTDETAILS
+                  WHERE CartID = @cartID";
+
+      var thisCartDetails = db.Query<CartDetail>(newCartDetailsSql, new { cartID }).ToList();
+
+      foreach (var cartItem in thisCartDetails)
+      {
+        //Get the item from the database 
+        var itemsQuery = @"SELECT *
+                         FROM ITEMS
+                         WHERE ItemID = @id";
+
+        var cartItemID = cartItem.ItemID;
+
+        var thisItem = db.QueryFirstOrDefault<Item>(itemsQuery, new { id = cartItemID });
+
+        //Add the cost of this item * quantity per line item to the cart total amount
+        var thisCartItemTotal = 0m;
+        thisCartItemTotal = Convert.ToDecimal(thisItem.ItemPrice * cartItem.ItemQuantity);
+        thisCartSubtotal += thisCartItemTotal;
+      }
+
+      //Now we need to update the cart amount with the updated amount
+      var cartObj = new
+      {
+        orderAmount = thisCartSubtotal,
+        cartID = cartID
+      };
+
+      var updateCartSql = @"UPDATE CARTS
+                            SET OrderAmount = @orderAmount
+                            WHERE CartID = @cartID";
+
+      db.Execute(updateCartSql, cartObj);
+
+      var newCartDetailObj = new
+      {
+        cartID = cartID
+      };
+
+      var finalCartDetailSql = @"SELECT * 
+                                 FROM CARTDETAILS
+                                 WHERE CartID = @cartID";
+
+      var theFinalCartDetail = db.Query<CartDetail>(finalCartDetailSql, newCartDetailObj).ToList();
+
+      return theFinalCartDetail;
+    }
+
   }
 }

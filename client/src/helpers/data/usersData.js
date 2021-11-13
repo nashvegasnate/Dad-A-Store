@@ -15,4 +15,10 @@ const getUserWithUID = (userUID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getValidUser, getUserWithUID };
+const addUserToDB = (object) => new Promise((resolve, reject) => {
+  axios.post(`${dbURL}/api/users`, object)
+    .then((response) => resolve(response))
+    .catch((error) => reject(error));
+});
+
+export { getValidUser, getUserWithUID, addUserToDB };

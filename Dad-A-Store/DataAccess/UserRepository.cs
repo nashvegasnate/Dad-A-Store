@@ -88,12 +88,11 @@ namespace Dad_A_Store.DataAccess
       //                     FROM PAYMENTTYPES
       //                     WHERE PaymentID = @PaymentID) AS uniqeidentifier))";
 
-      var sql = @"INSERT into USERS(UserFirst,UserLast,UserAddress1,UserAddress2,UserCity,UserState,UserZip,PaymentID)
+      var sql = @"INSERT into USERS(UserFirst,UserLast,UserAddress1,UserAddress2,UserCity,UserState,UserZip,PaymentID,userUID,userRole)
                         output INSERTED.UserID
-                        values (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZip, @PaymentID)";
+                        values (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZip, @PaymentID, @UserUID, @UserRole)";
 
-      var ID = db.ExecuteScalar<Guid>(sql, newUser);
-      newUser.UserID = ID;
+      var ID = db.ExecuteScalar(sql, newUser);
     }
 
     internal void RemoveUser(Guid ID)

@@ -41,6 +41,12 @@ namespace Dad_A_Store.Controllers
       return _repo.GetItemsByNameCategoryID(categoryID);
     }
 
+    [HttpGet("CGetItemByItemID/{itemID}")]
+    public List<Item> CGetItemByItemID(Guid itemID)
+    {
+      return _repo.GetByID(itemID);
+    }
+
     [HttpPost]
     public IActionResult AddItem(NewItem newItem)
     {
