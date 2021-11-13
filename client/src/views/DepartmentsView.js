@@ -5,7 +5,6 @@ import { Button } from 'reactstrap';
 import DepartmentCard from '../components/DepartmentCard';
 import AddDepartmentForm from '../components/AddDepartmentForm';
 import { getDepartments } from '../helpers/data/departmentsData';
-// import Routes from '../helpers/Routes';
 
 const DepartmentContainer = styled.div`
   display: flex;
@@ -25,7 +24,7 @@ function Departments({ user }) {
   };
 
   useEffect(() => {
-    getDepartments(user.uid).then(setDepartments);
+    getDepartments().then(setDepartments);
   }, []);
 
   return (

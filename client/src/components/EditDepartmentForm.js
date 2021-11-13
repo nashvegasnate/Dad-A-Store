@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -23,8 +22,6 @@ export default function EditDepartmentForm({
     departmentID: departmentID || null,
   });
 
-  const history = useHistory();
-
   const handleInputChange = (e) => {
     setDepartment((prevState) => ({
       ...prevState,
@@ -40,7 +37,6 @@ export default function EditDepartmentForm({
     } else {
       addDepartment(department).then((response) => {
         setDepartments(response);
-        history.push('/departments');
       });
 
       setDepartment({

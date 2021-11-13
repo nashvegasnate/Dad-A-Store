@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   Card,
   CardText,
@@ -20,14 +19,12 @@ function DepartmentCard({
   user,
 }) {
   const [updating, setUpdating] = useState(false);
-  const history = useHistory();
 
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
         deleteDepartment(departmentID)
           .then(setDepartments);
-        history.push('/departments');
         break;
       case 'update':
         setUpdating((prevState) => !prevState);
