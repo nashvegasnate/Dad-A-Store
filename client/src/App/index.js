@@ -5,7 +5,11 @@ import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import { getItems } from '../helpers/data/itemsData';
 import getOrders from '../helpers/data/ordersData';
+<<<<<<< HEAD
 import { getCategories } from '../helpers/data/categoriesData';
+=======
+import { getDepartments } from '../helpers/data/departmentsData';
+>>>>>>> a21766d0983c7f1bd6b4234cc07e964f1bab87a2
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 <<<<<<< HEAD
 =======
@@ -24,8 +28,12 @@ function App() {
   const [orders, setOrders] = useState([]);
   const [items, setItems] = useState([]);
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [categories, setCategories] = useState([]);
 =======
+=======
+  const [departments, setDepartments] = useState([]);
+>>>>>>> a21766d0983c7f1bd6b4234cc07e964f1bab87a2
   const [payments, setPayments] = useState([]);
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
 
@@ -41,8 +49,12 @@ function App() {
         getOrders().then((ordersArray) => setOrders(ordersArray));
         getItems().then((itemsArray) => setItems(itemsArray));
 <<<<<<< HEAD
+<<<<<<< HEAD
         getCategories().then((categoriesArray) => setCategories(categoriesArray));
 =======
+=======
+        getDepartments().then((departmentsAray) => setDepartments(departmentsAray));
+>>>>>>> a21766d0983c7f1bd6b4234cc07e964f1bab87a2
         getPaymentTypes().then((paymentsArray) => setPayments(paymentsArray));
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d
         setUser(userInfoObj);
@@ -66,9 +78,14 @@ function App() {
         orders={orders}
         items={items}
 <<<<<<< HEAD
+<<<<<<< HEAD
         categories={categories}
         setCategories={setCategories}
 =======
+=======
+        departments={departments}
+        setDepartments={setDepartments}
+>>>>>>> a21766d0983c7f1bd6b4234cc07e964f1bab87a2
         payments={payments}
         setPayments={setPayments}
 >>>>>>> e8855fdb5f70070d61968e8e6e189fc50b5dee3d

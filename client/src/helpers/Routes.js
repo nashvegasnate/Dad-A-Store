@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
+<<<<<<< HEAD
 import Categories from '../views/Categories';
+=======
+import DepartmentsView from '../views/DepartmentsView';
+>>>>>>> a21766d0983c7f1bd6b4234cc07e964f1bab87a2
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
 import ItemsFormView from '../views/ItemsFormsView';
@@ -30,7 +34,12 @@ function Routes({
   user,
   orders,
   items,
+<<<<<<< HEAD
   categories,
+=======
+  departments,
+  setDepartments,
+>>>>>>> a21766d0983c7f1bd6b4234cc07e964f1bab87a2
   payments,
   setPayments,
   registeredUser,
@@ -100,6 +109,17 @@ function Routes({
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
+        userFromDB={userFromDB}
+        path='/departments'
+        component={() => <DepartmentsView
+          user={user}
+          departments={departments}
+          setDepartments={setDepartments}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
         path='/cart'
         component={() => <Cart
         userFromDB={userFromDB}
@@ -114,7 +134,12 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
+<<<<<<< HEAD
   categories: PropTypes.array.isRequired,
+=======
+  departments: PropTypes.array.isRequired,
+  setDepartments: PropTypes.func.isRequired,
+>>>>>>> a21766d0983c7f1bd6b4234cc07e964f1bab87a2
   payments: PropTypes.array.isRequired,
   setPayments: PropTypes.func.isRequired,
   registeredUser: PropTypes.bool.isRequired,
