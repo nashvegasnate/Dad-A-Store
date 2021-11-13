@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import { getItemByItemID } from '../helpers/data/itemsData';
 import CartDetailForm from './CartDetailForm';
+import { removeItemCart } from '../helpers/data/cartData';
 
 function CartDetailCard({
   userID,
@@ -25,6 +26,9 @@ function CartDetailCard({
     switch (type) {
       case 'edit':
         setEditing((prevState) => !prevState);
+        break;
+      case 'delete':
+        removeItemCart(userID, itemID).then((cartDetArr) => setCartDetails(cartDetArr));
         break;
       default: console.warn('nothing selected');
     }
@@ -48,6 +52,7 @@ function CartDetailCard({
             setCartDetails={setCartDetails}
             />
           }
+          <Button className='mt-1' color='danger' onClick={() => handleClick('delete')}>Remove</Button>
           <br />
         </CardBody>
       </Card>
