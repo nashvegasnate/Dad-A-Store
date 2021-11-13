@@ -21,4 +21,12 @@ const addItemCart = (userID, itemObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getOpenCart, updateCartSingleItem, addItemCart };
+const removeItemCart = (userID, itemID) => new Promise((resolve, reject) => {
+  axios.put(`${dbURL}/removeItemFromCart/${userID}`, itemID)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export {
+  getOpenCart, updateCartSingleItem, addItemCart, removeItemCart
+};
