@@ -22,7 +22,7 @@ const addItemCart = (userID, itemObj) => new Promise((resolve, reject) => {
 });
 
 const removeItemCart = (userID, itemID) => new Promise((resolve, reject) => {
-  axios.put(`${dbURL}/removeItemFromCart/${userID}`, itemID)
+  axios.put(`${dbURL}/removeItemFromCart/${userID}/${itemID}`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
