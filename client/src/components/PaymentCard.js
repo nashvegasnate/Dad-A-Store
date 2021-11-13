@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody, CardTitle, Button
@@ -14,7 +13,6 @@ function PaymentTypeCard({
   setPayments
 }) {
   const [editing, setEditing] = useState(false);
-  // const history = useHistory();
 
   const handleClick = (type) => {
     switch (type) {

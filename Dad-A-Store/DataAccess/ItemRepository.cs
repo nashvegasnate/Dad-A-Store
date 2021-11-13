@@ -84,7 +84,7 @@ namespace Dad_A_Store.DataAccess
                                                         WHERE USERID = SellerID
                                                         ) AS SellerLastName
                                                       , SellerID
-                                      ``````````````````````````````````````````````````````````````````````````````````````````````````````          FROM ITEMS AS I 
+                                      ``````````````````````````````````````````````````````````````````````````````````````````````````````n          FROM ITEMS AS I 
                                                 WHERE ItemName = @ItemName", new { ItemName });
       return temp;
     }
