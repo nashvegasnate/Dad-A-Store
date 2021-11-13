@@ -32,7 +32,6 @@ const CategoryForm = ({
     if (categoryUpdate.categoryID !== null) {
       // console.warn(categoryUpdate); .categoryID
       updateCategory(categoryUpdate).then(setCategories);
-      // setCategoryUpdate(!categoryUpdate);
     } else {
       const newCategory = { paymentType: categoryUpdate.categoryName };
       addCategory(newCategory).then((response) => {
@@ -58,7 +57,7 @@ const CategoryForm = ({
         <h2>{formTitle}</h2>
 
         <FormGroup>
-          <Label for="category">Category: </Label>
+          <Label for="category">Category Name: </Label>
           <Input
             name='categoryName'
             id='categoryName'

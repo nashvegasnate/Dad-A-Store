@@ -35,7 +35,7 @@ function CategoryCard({
         <div>
             <Card className='category-cards'>
           <CardBody>
-              <CardTitle tag="h3">CategoryName: {categoryName}</CardTitle>
+              <CardTitle tag="h3">Category Name: {categoryName}</CardTitle>
               <CardText>Category ID: {categoryID}</CardText>
               <CardText>Category Description: {categoryDescription}</CardText>
               <CardText>Department ID: {departmentID}</CardText>
