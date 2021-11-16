@@ -34,12 +34,13 @@ function Cart({ userFromDB }) {
           itemQuantity={cartInfo.itemQuantity}
           itemPrice={cartInfo.itemPrice}
           setCartDetails={setCartDetails}
+          setCart={setCart}
           />
         ))
       }
       { cart && <CartCard
       userFromDB={userFromDB}
-      orderAmount={cart.orderAmount}
+      cart={cart}
       />
       }
     </div>

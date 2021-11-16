@@ -13,7 +13,8 @@ function CartDetailCard({
   itemID,
   itemQuantity,
   itemPrice,
-  setCartDetails
+  setCartDetails,
+  setCart
 }) {
   const [item, setItem] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -50,6 +51,7 @@ function CartDetailCard({
             itemID={itemID}
             quantity={itemQuantity}
             setCartDetails={setCartDetails}
+            setCart={setCart}
             />
           }
           <Button className='mt-1' color='danger' onClick={() => handleClick('delete')}>Remove</Button>
@@ -65,7 +67,8 @@ CartDetailCard.propTypes = {
   itemID: PropTypes.string.isRequired,
   itemQuantity: PropTypes.number.isRequired,
   itemPrice: PropTypes.number.isRequired,
-  setCartDetails: PropTypes.func.isRequired
+  setCartDetails: PropTypes.func.isRequired,
+  setCart: PropTypes.func.isRequired
 };
 
 export default CartDetailCard;

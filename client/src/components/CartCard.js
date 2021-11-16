@@ -7,22 +7,22 @@ import PropTypes from 'prop-types';
 
 function CartCard({
   userFromDB,
-  orderAmount
+  cart
 }) {
-  const [orderTax] = useState(orderAmount * 0.10);
+  const [orderTax] = useState(cart.orderAmount * 0.10);
   const [orderShipping] = useState(25);
-  const [orderTotal] = useState(orderAmount + orderTax + orderShipping);
+  const [orderTotal] = useState(cart.orderAmount + orderTax + orderShipping);
 
   return (
     <div>
-      <Card className='expense-cards'>
+     <Card className='expense-cards'>
         <CardBody>
           <CardTitle tag="h3">{userFromDB.userFirst} {userFromDB.userLast} cart total</CardTitle>
-          <CardText>Cart Subtotal: ${orderAmount}</CardText>
+          <CardText>Cart Subtotal: ${cart.orderAmount}</CardText>
           <CardText>Tax: ${orderTax}</CardText>
           <CardText>Shipping: ${orderShipping}</CardText>
           <CardText>OrderTotal: ${orderTotal}</CardText>
-          <Button className='mt-1' color='info'>{userFromDB.paymentID}</Button>
+          <Button className='mt-1' color='info' path='/items'>{userFromDB.paymentID}</Button>
         </CardBody>
       </Card>
     </div>
@@ -31,7 +31,7 @@ function CartCard({
 
 CartCard.propTypes = {
   userFromDB: PropTypes.any.isRequired,
-  orderAmount: PropTypes.number.isRequired
+  cart: PropTypes.any.isRequired
 };
 
 export default CartCard;
