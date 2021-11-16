@@ -14,7 +14,7 @@ export default function Categories({
   };
 
   return (
-    <div className="paymentView">
+    <div className="categoriesView">
     <div className="card-container">
     <br />
 
@@ -41,6 +41,7 @@ export default function Categories({
           categoryDescription={categoryInfo.categoryDescription}
           departmentID={categoryInfo.departmentID}
           user={user}
+          setCategories={setCategories}
           />
         ))
       }
