@@ -36,7 +36,7 @@ export default function Categories({
           {
         categories.map((categoryInfo) => (
           <CategoryCard
-          key={categoryInfo.categoryID}
+          key={categoryInfo.categoryID + categoryInfo.departmentID}
           categoryID={categoryInfo.categoryID}
           categoryName={categoryInfo.categoryName}
           categoryDescription={categoryInfo.categoryDescription}
