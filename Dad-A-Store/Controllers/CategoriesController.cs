@@ -39,6 +39,13 @@ namespace Dad_A_Store.Controllers
       return _repo.GetCategoryByNameFromDB(categoryName);
     }
 
+    // Get Category By CategoryID 
+    [HttpGet("GetCategoryByCategoryID/{categoryID}")]
+    public List<Category> GetCategoryByCategoryID(string categoryID)
+    {
+      return _repo.GetCategoryByCategoryID(categoryID);
+    }
+
     [HttpGet("CGetCategoriesByNameDepartmentID/{departmentID}")]
     public List<Category> CGetCategoriesByNameDepartmentID(string departmentID)
     {

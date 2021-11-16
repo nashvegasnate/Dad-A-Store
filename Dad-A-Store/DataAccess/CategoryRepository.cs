@@ -55,6 +55,13 @@ namespace Dad_A_Store.DataAccess
       return temp;
     }
 
+    internal List<Category> GetCategoryByCategoryID(string categoryID)
+    {
+      using var db = new SqlConnection(_connectionString);
+      var temp = db.Query<Category>("SELECT * FROM CATEGORIES WHERE CategoryID = @categoryID", new { categoryID }).ToList();
+      return temp;
+    }
+
     internal List<Category> GetCategoriesByNameDepartmentID(string departmentID)
     {
       using var db = new SqlConnection(_connectionString);
