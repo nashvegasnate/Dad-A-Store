@@ -10,13 +10,13 @@ import CategoryForm from '../forms/CategoryForm';
 function CategoryCard({
   user,
   categoryID,
+  departmentID,
   categoryName,
   categoryDescription,
-  departmentID,
   setCategories
 }) {
+  const [department, setDepartment] = useState(null);
   const [editing, setEditing] = useState(false);
-  const [department, setDepartment] = useState({});
 
   useEffect(() => {
     getDepartmentByDepartmentID(departmentID).then((departmentObject) => setDepartment(departmentObject));
@@ -42,8 +42,8 @@ function CategoryCard({
             <Card className='category-cards'>
           <CardBody>
               <CardTitle tag="h3">Category Name: {categoryName}</CardTitle>
-              <CardText>{department[0].departmentName}</CardText>
-              <CardText>{department[0].departmentDescription}</CardText>
+            { department && <CardText>Department: {department[0].departmentName}</CardText> }
+            { department && <CardText>{department[0].departmentDescription}</CardText> }
               {/* <CardText>Category ID: {categoryID}</CardText> */}
               <CardTitle>Description: {categoryDescription}</CardTitle>
               {/* <CardText>Department ID: {departmentID}</CardText> */}
@@ -55,24 +55,25 @@ function CategoryCard({
             formTitle='Edit Payment Type'
             user={user}
             categoryID={categoryID}
+            departmentID={departmentID}
             categoryName={categoryName}
             categoryDescription={categoryDescription}
-            departmentID={departmentID}
             setCategories={setCategories}
           />
         }
+        <br/>
           </CardBody>
-      </Card>
-        </div>
+        </Card>
+      </div>
   );
 }
 
 CategoryCard.propTypes = {
   user: PropTypes.any.isRequired,
   categoryID: PropTypes.any.isRequired,
+  departmentID: PropTypes.string.isRequired,
   categoryName: PropTypes.any.isRequired,
   categoryDescription: PropTypes.any.isRequired,
-  departmentID: PropTypes.string.isRequired,
   setCategories: PropTypes.func
 };
 
