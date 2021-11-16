@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody, CardTitle, Button
@@ -15,6 +15,11 @@ function CategoryCard({
   setCategories
 }) {
   const [editing, setEditing] = useState(false);
+  const [departmnet, setDepartment] = useState({});
+
+  useEffect(() => {
+    getDepartmentByDepartmentID(departmentID).then((departmentObject) => setDepartment(departmentObject));
+  }, []);
 
   const handleClick = (type) => {
     switch (type) {

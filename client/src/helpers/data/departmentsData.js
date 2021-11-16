@@ -9,6 +9,12 @@ const getDepartments = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getDepartmentmByDepartmentID = (departmentID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/departments/GetItemByItemID/${departmentID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 // This way doesn't show any departments in the departmentView
 // const getDepartments = () => new Promise((resolve, reject) => {
 //   axios.get(`${dbURL}/api/departments`)
@@ -43,6 +49,7 @@ const updateDepartment = (obj) => new Promise((resolve, reject) => {
 
 export {
   getDepartments,
+  getDepartmentmByDepartmentID,
   addDepartment,
   updateDepartment,
   deleteDepartment
