@@ -9,7 +9,7 @@ const getDepartments = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getDepartmentmByDepartmentID = (departmentID) => new Promise((resolve, reject) => {
+const getDepartmentByDepartmentID = (departmentID) => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/api/departments/GetItemByItemID/${departmentID}`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
@@ -49,7 +49,7 @@ const updateDepartment = (obj) => new Promise((resolve, reject) => {
 
 export {
   getDepartments,
-  getDepartmentmByDepartmentID,
+  getDepartmentByDepartmentID,
   addDepartment,
   updateDepartment,
   deleteDepartment

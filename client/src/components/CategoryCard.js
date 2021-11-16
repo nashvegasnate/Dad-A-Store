@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
-import { getDepartmentmByDepartmentID } from '../helpers/data/departmentsData';
+import { getDepartmentByDepartmentID } from '../helpers/data/departmentsData';
 import { deleteCategory } from '../helpers/data/categoriesData';
 import CategoryForm from '../forms/CategoryForm';
 
