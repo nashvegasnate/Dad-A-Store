@@ -9,6 +9,12 @@ const getCategories = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// const getCartDetails = (cartID) => new Promise((resolve, reject) => {
+//   axios.get(`${dbURL}/getByCartID/${cartID}`)
+//     .then((response) => resolve(response.data))
+//     .catch((error) => reject(error));
+// });
+
 const getCategoriesByNameDepartmentID = (departmentID) => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/api/paymenttypes/GetPaymentByPaymentID/${departmentID}`)
     .then((response) => resolve(response.data))

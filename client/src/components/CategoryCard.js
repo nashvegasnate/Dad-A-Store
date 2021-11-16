@@ -43,7 +43,7 @@ function CategoryCard({
           <CardBody>
               <CardTitle tag="h3">Category Name: {categoryName}</CardTitle>
             { department && <CardText>Department: {department[0].departmentName}</CardText> }
-            { department && <CardText>{department[0].departmentDescription}</CardText> }
+            {/* { department && <CardText>{department[0].departmentDescription}</CardText> } */}
               {/* <CardText>Category ID: {categoryID}</CardText> */}
               <CardTitle>Description: {categoryDescription}</CardTitle>
               {/* <CardText>Department ID: {departmentID}</CardText> */}
