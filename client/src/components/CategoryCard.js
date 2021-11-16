@@ -42,10 +42,9 @@ function CategoryCard({
             <Card className='category-cards'>
           <CardBody>
               <CardTitle tag="h3">Category Name: {categoryName}</CardTitle>
-            { department && <CardText>Department: {department[0].departmentName}</CardText> }
-            {/* { department && <CardText>{department[0].departmentDescription}</CardText> } */}
               {/* <CardText>Category ID: {categoryID}</CardText> */}
               <CardTitle>Description: {categoryDescription}</CardTitle>
+              { department && <CardText>Department: {department[0].departmentName}</CardText> }
               {/* <CardText>Department ID: {departmentID}</CardText> */}
               <CardText>User: {user.uid}</CardText>
               <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
