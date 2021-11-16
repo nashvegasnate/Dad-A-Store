@@ -9,11 +9,11 @@ const getCategories = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// const getCartDetails = (cartID) => new Promise((resolve, reject) => {
-//   axios.get(`${dbURL}/getByCartID/${cartID}`)
-//     .then((response) => resolve(response.data))
-//     .catch((error) => reject(error));
-// });
+const getCategoryByCategoryID = (categoryID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/categories/${categoryID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
 
 const getCategoriesByNameDepartmentID = (departmentID) => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/api/paymenttypes/GetPaymentByPaymentID/${departmentID}`)
@@ -41,6 +41,7 @@ const updateCategory = (category) => new Promise((resolve, reject) => {
 });
 
 export {
-  getCategories, getCategoriesByNameDepartmentID,
+  getCategories, getCategoryByCategoryID,
+  getCategoriesByNameDepartmentID,
   addCategory, deleteCategory, updateCategory
 };
