@@ -32,7 +32,6 @@ export default function Categories({
         </div>
     }
     </div>
-          {/* <h3>Categories for {user.userName}</h3> */}
           {
         categories.map((categoryInfo) => (
           <CategoryCard

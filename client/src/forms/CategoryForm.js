@@ -17,7 +17,7 @@ const CategoryForm = ({
     categoryID: categoryID || null,
     categoryName: categoryName || '',
     categoryDescription: categoryDescription || '',
-    departmentID: departmentID || null
+    departmentID: departmentID || ''
   });
 
   const handleInputChange = (e) => {
