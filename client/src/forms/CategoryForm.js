@@ -41,8 +41,8 @@ const CategoryForm = ({
       // Clears Input Fields
       setCategoryUpdate({
         categoryName: '',
-        categoryDescription: ''
-        // departmentID: null
+        categoryDescription: '',
+        departmentID: ''
       });
     }
   };
@@ -100,7 +100,7 @@ CategoryForm.propTypes = {
   categoryID: PropTypes.any,
   categoryName: PropTypes.string,
   categoryDescription: PropTypes.string,
-  departmentID: PropTypes.any,
+  departmentID: PropTypes.string,
   setCategories: PropTypes.func
 };
 
