@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
+import { getDepartmentmByDepartmentID } from '../helpers/data/departmentsData';
 import { deleteCategory } from '../helpers/data/categoriesData';
 import CategoryForm from '../forms/CategoryForm';
 
@@ -15,7 +16,7 @@ function CategoryCard({
   setCategories
 }) {
   const [editing, setEditing] = useState(false);
-  const [departmnet, setDepartment] = useState({});
+  const [department, setDepartment] = useState({});
 
   useEffect(() => {
     getDepartmentByDepartmentID(departmentID).then((departmentObject) => setDepartment(departmentObject));
@@ -41,6 +42,8 @@ function CategoryCard({
             <Card className='category-cards'>
           <CardBody>
               <CardTitle tag="h3">Category Name: {categoryName}</CardTitle>
+              <CardText>{department[0].departmentName}</CardText>
+              <CardText>{department[0].departmentDescription}</CardText>
               {/* <CardText>Category ID: {categoryID}</CardText> */}
               <CardTitle>Description: {categoryDescription}</CardTitle>
               {/* <CardText>Department ID: {departmentID}</CardText> */}
@@ -69,7 +72,7 @@ CategoryCard.propTypes = {
   categoryID: PropTypes.any.isRequired,
   categoryName: PropTypes.any.isRequired,
   categoryDescription: PropTypes.any.isRequired,
-  departmentID: PropTypes.any.isRequired,
+  departmentID: PropTypes.string.isRequired,
   setCategories: PropTypes.func
 };
 
