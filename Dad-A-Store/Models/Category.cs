@@ -8,5 +8,6 @@ namespace Dad_A_Store.Models
     public string CategoryName        { get; set; }
     public string CategoryDescription { get; set; }
     public Guid   DepartmentID        { get; set; }
+    public string DepartmentName      { get; set; }
   }
 }

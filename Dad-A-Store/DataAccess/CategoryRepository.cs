@@ -82,7 +82,7 @@ namespace Dad_A_Store.DataAccess
                    OUTPUT INSERTED.CategoryID
                    VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
                                                                       FROM DEPARTMENTS
-                                                                      WHERE  DepartmentID = @DepartmentID) AS uniqueidentifier))";
+                                                                      WHERE  Departmentname = @DepartmentName) AS uniqueidentifier))";
 
       var ID = db.ExecuteScalar<Guid>(sql, newCategory);
       newCategory.CategoryID = ID;
