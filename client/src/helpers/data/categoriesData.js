@@ -15,8 +15,8 @@ const getCategoryByCategoryID = (categoryID) => new Promise((resolve, reject) =>
     .catch((error) => reject(error));
 });
 
-const getCategoriesByNameDepartmentID = (departmentID) => new Promise((resolve, reject) => {
-  axios.get(`${dbURL}/api/paymenttypes/GetPaymentByPaymentID/${departmentID}`)
+const getCategoryByDepartmentID = (departmentID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/categories/GetCategoryByDepartmentID/${departmentID}`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
@@ -42,6 +42,6 @@ const updateCategory = (category) => new Promise((resolve, reject) => {
 
 export {
   getCategories, getCategoryByCategoryID,
-  getCategoriesByNameDepartmentID,
+  getCategoryByDepartmentID,
   addCategory, deleteCategory, updateCategory
 };
