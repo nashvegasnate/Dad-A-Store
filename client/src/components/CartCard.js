@@ -17,7 +17,7 @@ function CartCard({
   const history = useHistory();
 
   const handleOrder = () => {
-    history.push('/orders');
+    history.push('/checkout');
   };
 
   return (
@@ -29,7 +29,7 @@ function CartCard({
           <CardText>Tax: ${orderTax}</CardText>
           <CardText>Shipping: ${orderShipping}</CardText>
           <CardText>OrderTotal: ${orderTotal}</CardText>
-          <Button className='mt-1' color='info' onClick={handleOrder}>{userFromDB.paymentID}</Button>
+          <Button className='mt-1' color='info' onClick={handleOrder}>Proceed to checkout</Button>
         </CardBody>
       </Card>
     </div>
