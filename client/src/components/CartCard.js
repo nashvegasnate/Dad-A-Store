@@ -4,6 +4,7 @@ import {
   CardTitle, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 function CartCard({
   userFromDB,
@@ -12,6 +13,12 @@ function CartCard({
   const [orderTax] = useState(cart.orderAmount * 0.10);
   const [orderShipping] = useState(25);
   const [orderTotal] = useState(cart.orderAmount + orderTax + orderShipping);
+
+  const history = useHistory();
+
+  const handleOrder = () => {
+    history.push('/orders');
+  };
 
   return (
     <div>
@@ -22,7 +29,7 @@ function CartCard({
           <CardText>Tax: ${orderTax}</CardText>
           <CardText>Shipping: ${orderShipping}</CardText>
           <CardText>OrderTotal: ${orderTotal}</CardText>
-          <Button className='mt-1' color='info' path='/items'>{userFromDB.paymentID}</Button>
+          <Button className='mt-1' color='info' onClick={handleOrder}>{userFromDB.paymentID}</Button>
         </CardBody>
       </Card>
     </div>
