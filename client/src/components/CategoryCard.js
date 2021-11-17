@@ -10,9 +10,9 @@ import CategoryForm from '../forms/CategoryForm';
 function CategoryCard({
   user,
   categoryID,
-  departmentID,
   categoryName,
   categoryDescription,
+  departmentID,
   setCategories
 }) {
   const [department, setDepartment] = useState(null);
@@ -54,9 +54,9 @@ function CategoryCard({
             formTitle='Edit Payment Type'
             user={user}
             categoryID={categoryID}
-            departmentID={departmentID}
             categoryName={categoryName}
             categoryDescription={categoryDescription}
+            departmentID={departmentID}
             setCategories={setCategories}
           />
         }
@@ -70,9 +70,9 @@ function CategoryCard({
 CategoryCard.propTypes = {
   user: PropTypes.any.isRequired,
   categoryID: PropTypes.any.isRequired,
-  departmentID: PropTypes.string.isRequired,
   categoryName: PropTypes.any.isRequired,
   categoryDescription: PropTypes.any.isRequired,
+  departmentID: PropTypes.string.isRequired,
   setCategories: PropTypes.func
 };
 

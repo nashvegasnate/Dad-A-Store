@@ -33,7 +33,12 @@ const CategoryForm = ({
       // console.warn(categoryUpdate); .categoryID
       updateCategory(categoryUpdate).then(setCategories);
     } else {
-      const newCategory = { paymentType: categoryUpdate.categoryName };
+      const newCategory = ({
+        categoryName: categoryUpdate.categoryName,
+        categoryDescription: categoryUpdate.categoryDescription,
+        departmentID: categoryUpdate.departmentID
+      });
+      // console.warn(newCategory);
       addCategory(newCategory).then((response) => {
         setCategories(response);
       });
