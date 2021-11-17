@@ -46,7 +46,7 @@ function CategoryCard({
               <CardTitle>Description: {categoryDescription}</CardTitle>
               { department && <CardText>Department: {department[0].departmentName}</CardText> }
               {/* <CardText>Department ID: {departmentID}</CardText> */}
-              <CardText>User: {user.uid}</CardText>
+              {/* <CardText>User: {user.uid}</CardText> */}
               <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
               <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
         {editing

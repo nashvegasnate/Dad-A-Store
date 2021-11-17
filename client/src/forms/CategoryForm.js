@@ -78,7 +78,7 @@ const CategoryForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
-        {/* <FormGroup>
+        <FormGroup>
           <Label for="category">Department ID: </Label>
           <Input
             name='departmentID'
@@ -88,7 +88,7 @@ const CategoryForm = ({
             placeholder='Enter Department ID'
             onChange={handleInputChange}
           />
-        </FormGroup> */}
+        </FormGroup>
         <Button type='submit'>Submit</Button>
         </Form>
     </div>
