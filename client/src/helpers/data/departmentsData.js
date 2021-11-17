@@ -10,7 +10,7 @@ const getDepartments = () => new Promise((resolve, reject) => {
 });
 
 const getDepartmentByDepartmentID = (departmentID) => new Promise((resolve, reject) => {
-  axios.get(`${dbURL}/api/departments/GetItemByItemID/${departmentID}`)
+  axios.get(`${dbURL}/api/departments/GetDepartmentByDepartmentID/${departmentID}`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
