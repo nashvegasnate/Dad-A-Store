@@ -4,6 +4,7 @@ import {
   CardTitle, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { getUserPaymentType } from '../helpers/data/paymentTypesData';
 import { placeOrderFromCart } from '../helpers/data/ordersData';
 
@@ -11,6 +12,8 @@ function Checkout({ userFromDB }) {
   const [userPayment, setUserPayment] = useState(null);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
+
+  const history = useHistory();
 
   useEffect(() => {
     getUserPaymentType(userFromDB.paymentID).then((paymentObj) => setUserPayment(paymentObj));
@@ -22,6 +25,10 @@ function Checkout({ userFromDB }) {
     setOrderPlaced(true);
   };
 
+  const handleViewOrders = () => {
+    history.push('/myorders');
+  };
+
   const orderIsPlaced = () => (
     <>
       <Card className='expense-cards'>
@@ -31,6 +38,8 @@ function Checkout({ userFromDB }) {
           <CardText>Order Total: ${orderInfo.orderAmount}</CardText>
           <CardText>Payment Type: {userPayment[0].paymentType}</CardText>
           <CardText>Order Date: {orderInfo.orderDate}</CardText>
+          <br />
+          <Button className='mt-1' color='info' onClick={handleViewOrders}>View my orders</Button>
         </CardBody>
       </Card>
     </>

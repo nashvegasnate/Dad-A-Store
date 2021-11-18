@@ -8,6 +8,7 @@ import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
 import ItemsFormView from '../views/ItemsFormsView';
 import Checkout from '../views/Checkout';
+import MyOrders from '../views/MyOrders';
 
 const PrivateRoute = ({
   component: Component,
@@ -100,6 +101,14 @@ function Routes({
         registeredUser={registeredUser}
         path='/checkout'
         component={() => <Checkout
+        userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/myorders'
+        component={() => <MyOrders
         userFromDB={userFromDB}
         />}
         />
