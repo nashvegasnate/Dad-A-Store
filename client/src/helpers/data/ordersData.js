@@ -9,4 +9,10 @@ const getOrders = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getOrders;
+const placeOrderFromCart = (userID) => new Promise((resolve, reject) => {
+  axios.post(`${dbURL}/api/orders/createFromCart/${userID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export default { getOrders, placeOrderFromCart };
