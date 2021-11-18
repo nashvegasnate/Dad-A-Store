@@ -5,14 +5,37 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { getUserPaymentType } from '../helpers/data/paymentTypesData';
+import { placeOrderFromCart } from '../helpers/data/ordersData';
 
 function Checkout({ userFromDB }) {
   const [userPayment, setUserPayment] = useState(null);
-  const [orderPlaced] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderInfo, setOrderInfo] = useState(null);
 
   useEffect(() => {
     getUserPaymentType(userFromDB.paymentID).then((paymentObj) => setUserPayment(paymentObj));
   }, []);
+
+  const handlePlaceOrder = (e) => {
+    e.preventDefault();
+    placeOrderFromCart(userFromDB.userID).then((orderObj) => setOrderInfo(orderObj));
+    setOrderPlaced(true);
+  };
+
+  const orderIsPlaced = () => (
+    <>
+      <Card className='expense-cards'>
+        <CardBody>
+          <CardTitle tag="h3">Order Placed!</CardTitle>
+          <CardText>Order Number: {orderInfo.orderID}</CardText>
+          <CardText>Order Total: ${orderInfo.orderAmount}</CardText>
+          <CardText>Payment Type: {userPayment[0].paymentType}</CardText>
+          <CardText>Order Date: {orderInfo.orderDate}</CardText>
+        </CardBody>
+      </Card>
+    </>
+  );
+
   return (
     <div>
       <Card className='expense-cards'>
@@ -25,9 +48,10 @@ function Checkout({ userFromDB }) {
             userPayment
             && <CardText>Payment Type: {userPayment[0].paymentType}</CardText>
           }
-          { !orderPlaced && <Button className='mt-1' color='success'>Place Order</Button> }
+          { !orderPlaced && <Button className='mt-1' color='success' onClick={handlePlaceOrder}>Place Order</Button> }
         </CardBody>
       </Card>
+      { orderInfo && orderIsPlaced() }
     </div>
   );
 }
