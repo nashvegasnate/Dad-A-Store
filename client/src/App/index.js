@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import { getItems } from '../helpers/data/itemsData';
-import getOrders from '../helpers/data/ordersData';
+import { getOrders } from '../helpers/data/ordersData';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 import { getPaymentTypes } from '../helpers/data/paymentTypesData';
 import './App.scss';

@@ -15,4 +15,4 @@ const placeOrderFromCart = (userID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getOrders, placeOrderFromCart };
+export { getOrders, placeOrderFromCart };
