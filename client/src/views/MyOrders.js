@@ -3,14 +3,15 @@ import {
   Card, CardText, CardBody,
   CardTitle, Button
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-export default function MyOrders() {
+function MyOrders({ userFromDB }) {
   return (
     <div>
       <Card className='income-cards'>
         <CardBody>
           <CardTitle tag="h3">This is your orders page</CardTitle>
-          <CardText>Choose an option</CardText>
+          <CardText>{userFromDB.userFirst} {userFromDB.userLast}</CardText>
           <br />
           <Button className='mt-1' color='info'>Open Orders</Button>
           <Button className='ml-1 mt-1' color='info'>Completed Orders</Button>
@@ -19,3 +20,9 @@ export default function MyOrders() {
     </div>
   );
 }
+
+MyOrders.propTypes = {
+  userFromDB: PropTypes.any.isRequired
+};
+
+export default MyOrders;
