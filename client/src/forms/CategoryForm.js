@@ -11,13 +11,15 @@ const CategoryForm = ({
   categoryName,
   categoryDescription,
   departmentID,
+  departmentName,
   setCategories
 }) => {
   const [categoryUpdate, setCategoryUpdate] = useState({
     categoryID: categoryID || null,
     categoryName: categoryName || '',
     categoryDescription: categoryDescription || '',
-    departmentID: departmentID || ''
+    departmentID: departmentID || '',
+    departmentName: departmentName || ''
   });
 
   const handleInputChange = (e) => {
@@ -36,7 +38,8 @@ const CategoryForm = ({
       const newCategory = ({
         categoryName: categoryUpdate.categoryName,
         categoryDescription: categoryUpdate.categoryDescription,
-        departmentID: categoryUpdate.departmentID
+        departmentID: categoryUpdate.departmentID,
+        departmentName: categoryUpdate.departmentName
       });
       // console.warn(newCategory);
       addCategory(newCategory).then((response) => {
@@ -47,7 +50,8 @@ const CategoryForm = ({
       setCategoryUpdate({
         categoryName: '',
         categoryDescription: '',
-        departmentID: ''
+        departmentID: '',
+        departmentName: ''
       });
     }
   };
@@ -94,6 +98,17 @@ const CategoryForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
+        <FormGroup>
+          <Label for="category">Department Name: </Label>
+          <Input
+            name='departmentName'
+            id='departmentID'
+            defaultValue={departmentName}
+            type='text'
+            placeholder='Enter Department Name'
+            onChange={handleInputChange}
+          />
+        </FormGroup>
         <Button type='submit'>Submit</Button>
         </Form>
     </div>
@@ -106,6 +121,7 @@ CategoryForm.propTypes = {
   categoryName: PropTypes.string,
   categoryDescription: PropTypes.string,
   departmentID: PropTypes.string,
+  departmentName: PropTypes.string,
   setCategories: PropTypes.func
 };
 
