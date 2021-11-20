@@ -69,7 +69,7 @@ namespace Dad_A_Store.DataAccess
       return temp;
     }
 
-    internal void Add(Category newCategory)
+    internal Category Add(NewCategory newCategory)
     {
       using var db = new SqlConnection(_connectionString);
 
@@ -83,8 +83,8 @@ namespace Dad_A_Store.DataAccess
                    VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
                                                                       FROM DEPARTMENTS
                                                                       WHERE  Departmentname = @DepartmentName) AS uniqueidentifier))";
-      var ID = db.ExecuteScalar<Guid>(sql, newCategory);
-      newCategory.CategoryID = ID;
+      return db.QueryFirstOrDefault<Category>(sql, newCategory);
+      //newCategory.CategoryID = ID;
     }
 
     internal void RemoveCategory(Guid ID)
