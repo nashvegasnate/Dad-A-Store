@@ -53,17 +53,18 @@ namespace Dad_A_Store.Controllers
     }
 
     [HttpPost]
-    public IActionResult AddCategory(Category newCategory)
+    public IActionResult AddCategory(NewCategory newCategory)
     {
       if (string.IsNullOrEmpty(newCategory.CategoryName) ||
           string.IsNullOrEmpty(newCategory.CategoryDescription) ||
-          newCategory.DepartmentID.Equals(string.Empty))
+          //newCategory.DepartmentID.Equals(string.Empty))
+          string.IsNullOrEmpty(newCategory.DepartmentName))
       {
         return BadRequest("Sorry the Category: Name, Description, and Department ID are required.");
       }
-      _repo.Add(newCategory);
+      var newlyCreatedCategory = _repo.Add(newCategory);
 
-      return Created($"api/categories/{newCategory.CategoryID}", newCategory);
+      return Created($"api/categories/{newlyCreatedCategory.CategoryID}", newlyCreatedCategory);
     }
 
     [HttpDelete("{ID}")]
