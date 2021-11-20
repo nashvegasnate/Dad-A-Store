@@ -50,7 +50,7 @@ function CategoryCard({
               <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
         {editing
           && <CategoryForm
-            formTitle='Edit Payment Type'
+            formTitle='Edit Category'
             user={user}
             categoryID={categoryID}
             categoryName={categoryName}
