@@ -78,12 +78,20 @@ namespace Dad_A_Store.DataAccess
                                 WHERE  CategoryName = @CategoryName
                                   AND  CategoryDescription = @CategoryDescription
                                 )
-                   INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentID, DepartmentName)
+                   INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentName)
                    OUTPUT INSERTED.CategoryID
-                   VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
-                                                                      FROM DEPARTMENTS
-                                                                      WHERE  Departmentname = @DepartmentName) AS uniqueidentifier))";
+                   VALUES (@CategoryName, @CategoryDescription, @DepartmentName)";
 
+      //var sql = @"IF NOT EXISTS(SELECT * 
+      //                          FROM CATEGORIES
+      //                          WHERE  CategoryName = @CategoryName
+      //                            AND  CategoryDescription = @CategoryDescription
+      //                          )
+      //             INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentID)
+      //             OUTPUT INSERTED.CategoryID
+      //             VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
+      //                                                                FROM DEPARTMENTS
+      //                                                                WHERE  Departmentname = @DepartmentName) AS uniqueidentifier))";
       var ID = db.ExecuteScalar<Guid>(sql, newCategory);
       newCategory.CategoryID = ID;
     }

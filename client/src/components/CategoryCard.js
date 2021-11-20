@@ -74,8 +74,8 @@ CategoryCard.propTypes = {
   categoryID: PropTypes.any.isRequired,
   categoryName: PropTypes.any.isRequired,
   categoryDescription: PropTypes.any.isRequired,
-  departmentID: PropTypes.string.isRequired,
-  departmentName: PropTypes.string.isRequired,
+  departmentID: PropTypes.string,
+  departmentName: PropTypes.string,
   setCategories: PropTypes.func
 };
 

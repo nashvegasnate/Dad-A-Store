@@ -10,20 +10,20 @@ const CategoryForm = ({
   categoryID,
   categoryName,
   categoryDescription,
-  // departmentID,
+  departmentID,
   departmentName,
   setCategories
 }) => {
-  const [categoryUpdate, setCategoryUpdate] = useState({
+  const [category, setCategory] = useState({
     categoryID: categoryID || null,
     categoryName: categoryName || '',
     categoryDescription: categoryDescription || '',
-    // departmentID: departmentID || '',
+    departmentID: departmentID || '',
     departmentName: departmentName || ''
   });
 
   const handleInputChange = (e) => {
-    setCategoryUpdate((prevState) => ({
+    setCategory((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
@@ -31,23 +31,23 @@ const CategoryForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (categoryUpdate.categoryID !== null) {
+    if (category.categoryID !== null) {
       // console.warn(categoryUpdate); .categoryID
-      updateCategory(categoryUpdate).then(setCategories);
+      updateCategory(category).then(setCategories);
     } else {
-      const newCategory = ({
-        categoryName: categoryUpdate.categoryName,
-        categoryDescription: categoryUpdate.categoryDescription,
-        // departmentID: categoryUpdate.departmentID,
-        departmentName: categoryUpdate.departmentName
-      });
+      // const newCategory = ({
+      //   categoryName: category.categoryName,
+      //   categoryDescription: category.categoryDescription,
+      //   departmentID: category.departmentID,
+      //   // departmentName: categoryUpdate.departmentName
+      // });
       // console.warn(newCategory);
-      addCategory(newCategory).then((response) => {
+      addCategory(category).then((response) => {
         setCategories(response);
       });
 
       // Clears Input Fields
-      setCategoryUpdate({
+      setCategory({
         categoryName: '',
         categoryDescription: '',
         // departmentID: '',
@@ -120,8 +120,8 @@ CategoryForm.propTypes = {
   categoryID: PropTypes.any,
   categoryName: PropTypes.string,
   categoryDescription: PropTypes.string,
-  // departmentID: PropTypes.string,
-  departmentName: PropTypes.string,
+  departmentID: PropTypes.any,
+  departmentName: PropTypes.any,
   setCategories: PropTypes.func
 };
 
