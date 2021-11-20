@@ -40,6 +40,7 @@ export default function Categories({
           categoryName={categoryInfo.categoryName}
           categoryDescription={categoryInfo.categoryDescription}
           departmentID={categoryInfo.departmentID}
+          departmentName={categoryInfo.departmentName}
           user={user}
           setCategories={setCategories}
           />
