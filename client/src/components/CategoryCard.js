@@ -13,6 +13,7 @@ function CategoryCard({
   categoryName,
   categoryDescription,
   departmentID,
+  departmentName,
   setCategories
 }) {
   const [department, setDepartment] = useState(null);
@@ -57,6 +58,7 @@ function CategoryCard({
             categoryName={categoryName}
             categoryDescription={categoryDescription}
             departmentID={departmentID}
+            departmentName={departmentName}
             setCategories={setCategories}
           />
         }
@@ -73,6 +75,7 @@ CategoryCard.propTypes = {
   categoryName: PropTypes.any.isRequired,
   categoryDescription: PropTypes.any.isRequired,
   departmentID: PropTypes.string.isRequired,
+  departmentName: PropTypes.string.isRequired,
   setCategories: PropTypes.func
 };
 
