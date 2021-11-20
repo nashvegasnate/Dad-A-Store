@@ -78,7 +78,7 @@ namespace Dad_A_Store.DataAccess
                                 WHERE  CategoryName = @CategoryName
                                   AND  CategoryDescription = @CategoryDescription
                                 )
-                   INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentID)
+                   INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentID, DepartmentName)
                    OUTPUT INSERTED.CategoryID
                    VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
                                                                       FROM DEPARTMENTS
