@@ -10,7 +10,7 @@ const CategoryForm = ({
   categoryID,
   categoryName,
   categoryDescription,
-  departmentID,
+  // departmentID,
   departmentName,
   setCategories
 }) => {
@@ -18,7 +18,7 @@ const CategoryForm = ({
     categoryID: categoryID || null,
     categoryName: categoryName || '',
     categoryDescription: categoryDescription || '',
-    departmentID: departmentID || '',
+    // departmentID: departmentID || '',
     departmentName: departmentName || ''
   });
 
@@ -38,7 +38,7 @@ const CategoryForm = ({
       const newCategory = ({
         categoryName: categoryUpdate.categoryName,
         categoryDescription: categoryUpdate.categoryDescription,
-        departmentID: categoryUpdate.departmentID,
+        // departmentID: categoryUpdate.departmentID,
         departmentName: categoryUpdate.departmentName
       });
       // console.warn(newCategory);
@@ -50,7 +50,7 @@ const CategoryForm = ({
       setCategoryUpdate({
         categoryName: '',
         categoryDescription: '',
-        departmentID: '',
+        // departmentID: '',
         departmentName: ''
       });
     }
@@ -87,7 +87,7 @@ const CategoryForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="category">Department ID: </Label>
           <Input
             name='departmentID'
@@ -97,12 +97,12 @@ const CategoryForm = ({
             placeholder='Enter Department ID'
             onChange={handleInputChange}
           />
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
           <Label for="category">Department Name: </Label>
           <Input
             name='departmentName'
-            id='departmentID'
+            id='departmentName'
             defaultValue={departmentName}
             type='text'
             placeholder='Enter Department Name'
@@ -120,7 +120,7 @@ CategoryForm.propTypes = {
   categoryID: PropTypes.any,
   categoryName: PropTypes.string,
   categoryDescription: PropTypes.string,
-  departmentID: PropTypes.string,
+  // departmentID: PropTypes.string,
   departmentName: PropTypes.string,
   setCategories: PropTypes.func
 };
