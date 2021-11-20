@@ -64,7 +64,6 @@ const CategoryForm = ({
         onSubmit={handleSubmit}
       >
         <h2>{formTitle}</h2>
-
         <FormGroup>
           <Label for="category">Category Name: </Label>
           <Input
