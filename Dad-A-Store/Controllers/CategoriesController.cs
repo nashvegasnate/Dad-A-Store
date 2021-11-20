@@ -73,6 +73,7 @@ namespace Dad_A_Store.Controllers
       _repo.RemoveCategory(ID);
       return Ok();
     }
+    
 
     [HttpPut("{ID}")]
     public IActionResult UpdateCategory(Guid ID, Category category)
