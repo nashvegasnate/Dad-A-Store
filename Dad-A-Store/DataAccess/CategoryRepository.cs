@@ -78,20 +78,11 @@ namespace Dad_A_Store.DataAccess
                                 WHERE  CategoryName = @CategoryName
                                   AND  CategoryDescription = @CategoryDescription
                                 )
-                   INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentName)
+                   INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentID)
                    OUTPUT INSERTED.CategoryID
-                   VALUES (@CategoryName, @CategoryDescription, @DepartmentName)";
-
-      //var sql = @"IF NOT EXISTS(SELECT * 
-      //                          FROM CATEGORIES
-      //                          WHERE  CategoryName = @CategoryName
-      //                            AND  CategoryDescription = @CategoryDescription
-      //                          )
-      //             INSERT INTO CATEGORIES (CategoryName, CategoryDescription, DepartmentID)
-      //             OUTPUT INSERTED.CategoryID
-      //             VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
-      //                                                                FROM DEPARTMENTS
-      //                                                                WHERE  Departmentname = @DepartmentName) AS uniqueidentifier))";
+                   VALUES (@CategoryName, @CategoryDescription, CAST((SELECT DepartmentID 
+                                                                      FROM DEPARTMENTS
+                                                                      WHERE  Departmentname = @DepartmentName) AS uniqueidentifier))";
       var ID = db.ExecuteScalar<Guid>(sql, newCategory);
       newCategory.CategoryID = ID;
     }
@@ -153,7 +144,16 @@ namespace Dad_A_Store.DataAccess
                    OUTPUT INSERTED.*
                    WHERE CategoryID = @CategoryID";
 
-      var updateCategory = db.QuerySingleOrDefault<Category>(sql, category);
+      var sql2 = new
+      {
+        CategoryID = category.CategoryID,
+        CategoryName = category.CategoryName,
+        CategoryDescription = category.CategoryDescription,
+        DepartmentID = category.DepartmentID
+      };
+
+      category.CategoryID = CategoryID;
+      var updateCategory = db.QuerySingleOrDefault<Category>(sql, sql2);
 
       return updateCategory;
     }
