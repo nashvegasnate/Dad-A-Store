@@ -14,6 +14,7 @@ const CategoryForm = ({
   departmentName,
   setCategories
 }) => {
+  // Sets the Category State being Submitted for add or edit
   const [category, setCategory] = useState({
     categoryID: categoryID || null,
     categoryName: categoryName || '',
@@ -32,7 +33,6 @@ const CategoryForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (category.categoryID !== null) {
-      // console.warn(categoryUpdate); .categoryID
       updateCategory(category).then(setCategories);
     } else {
       // const newCategory = ({
@@ -41,7 +41,6 @@ const CategoryForm = ({
       //   departmentID: category.departmentID,
       //   // departmentName: categoryUpdate.departmentName
       // });
-      // console.warn(newCategory);
       addCategory(category).then((response) => {
         setCategories(response);
       });
@@ -50,7 +49,6 @@ const CategoryForm = ({
       setCategory({
         categoryName: '',
         categoryDescription: '',
-        // departmentID: '',
         departmentName: ''
       });
     }
@@ -86,17 +84,6 @@ const CategoryForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
-        {/* <FormGroup>
-          <Label for="category">Department ID: </Label>
-          <Input
-            name='departmentID'
-            id='departmentID'
-            defaultValue={departmentID}
-            type='text'
-            placeholder='Enter Department ID'
-            onChange={handleInputChange}
-          />
-        </FormGroup> */}
         <FormGroup>
           <Label for="category">Department Name: </Label>
           <Input
@@ -104,7 +91,7 @@ const CategoryForm = ({
             id='departmentName'
             defaultValue={departmentName}
             type='text'
-            placeholder='Enter Department Name'
+            placeholder='Enter Department'
             onChange={handleInputChange}
           />
         </FormGroup>
