@@ -8,6 +8,7 @@ import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
 import ItemsFormView from '../views/ItemsFormsView';
+import SingleItemView from '../views/SingleItemView';
 
 const PrivateRoute = ({
   component: Component,
@@ -105,6 +106,14 @@ function Routes({
         registeredUser={registeredUser}
         path='/cart'
         component={() => <Cart
+        userFromDB={userFromDB}
+        />}
+        />
+         <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/itemsSingleView/:itemParam'
+        component={() => <SingleItemView
         userFromDB={userFromDB}
         />}
         />
