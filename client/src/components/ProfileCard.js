@@ -1,31 +1,45 @@
-import React from 'react';
-// import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
-  Card, CardText, CardBody,
-  CardTitle
+  Card, CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-// import { getItemByItemID } from '../helpers/data/itemsData';
-// import CartDetailForm from './CartDetailForm';
+import UserForm from './UserForm';
 
 function ProfileCard({
-  userFromDB
+  user,
+  userFromDB,
+  setUserFromDB
 }) {
-  // const [item, setItem] = useState(null);
-  // const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const history = useHistory();
 
-  // useEffect(() => {
-  //   getItemByItemID(itemID).then((itemObject) => setItem(itemObject));
-  // }, []);
+  const handleClick = (type) => {
+    switch (type) {
+      case 'edit':
+        setEditing((prevState) => !prevState);
+        break;
+      default:
+        console.warn('default');
+        break;
+    }
+  };
 
-  // const handleClick = (type) => {
-  //   switch (type) {
-  //     case 'edit':
-  //       setEditing((prevState) => !prevState);
-  //       break;
-  //     default: console.warn('nothing selected');
-  //   }
-  // };
+  const handleShowOrdersCart = (type) => {
+    switch (type) {
+      case 'Order':
+        console.warn('Order');
+        history.push(`/Order/${'Order ID'}`);
+        break;
+      case 'Cart':
+        console.warn('Cart');
+        history.push(`/Cart/${'Cart ID'}`);
+        break;
+      default:
+        console.warn('Default');
+        break;
+    }
+  };
 
   return (
     <div>
@@ -36,6 +50,39 @@ function ProfileCard({
           <CardText>Address: ${userFromDB.userAddress2}</CardText>
           <CardText>City: ${userFromDB.userCity} Zip: ${userFromDB.userZip} State: ${userFromDB.userState}</CardText>
           <CardText>Role: ${userFromDB.userRole}</CardText>
+          <Button
+            color="success"
+            onClick={() => handleClick('edit')}
+            size="sm">
+            {editing ? 'Close Form' : 'Edit User' }
+          </Button>
+          <Button
+            color="info"
+            onClick={() => handleShowOrdersCart('Order')}
+            size="sm">
+            {'See my Orders'}
+          </Button>
+          <Button
+            color="info"
+            onClick={() => handleShowOrdersCart('Cart')}
+            size="sm">
+            {'See my Cart'}
+          </Button>
+            {editing && <UserForm
+                          user={user}
+                          userFirst={userFromDB.userFirst}
+                          userLast={userFromDB.userLast}
+                          userAddress1={userFromDB.userAddress1}
+                          userAddress2={userFromDB.userAddress2}
+                          userCity={userFromDB.userCity}
+                          userState={userFromDB.userState}
+                          userZip={userFromDB.userZip}
+                          paymentID={userFromDB.paymentID}
+                          userUID={userFromDB.userUID}
+                          userRole={userFromDB.userRole}
+                          paymentType={userFromDB.paymentType}
+                          userID={userFromDB.userID}
+                          setUserFromDB={setUserFromDB} />}
         </CardBody>
       </Card>
     </div>
@@ -43,7 +90,9 @@ function ProfileCard({
 }
 
 ProfileCard.propTypes = {
-  userFromDB: PropTypes.any.isRequired
+  user: PropTypes.any,
+  userFromDB: PropTypes.any.isRequired,
+  setUserFromDB: PropTypes.any
   // userID: PropTypes.any.isRequired,
   // itemID: PropTypes.string.isRequired,
   // itemQuantity: PropTypes.number.isRequired,

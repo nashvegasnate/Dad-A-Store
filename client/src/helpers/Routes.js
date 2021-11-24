@@ -37,7 +37,8 @@ function Routes({
   setPayments,
   registeredUser,
   userFromDB,
-  setItems
+  setItems,
+  setUserFromDB
 }) {
   return (
     <div>
@@ -114,6 +115,8 @@ function Routes({
         registeredUser={registeredUser}
         path='/profile'
         component={() => <ProfileView
+        user={user}
+        setUserFromDB={setUserFromDB}
         userFromDB={userFromDB}
         />}
         />
@@ -132,7 +135,8 @@ Routes.propTypes = {
   setPayments: PropTypes.func.isRequired,
   registeredUser: PropTypes.bool.isRequired,
   userFromDB: PropTypes.any,
-  setItems: PropTypes.func.isRequired
+  setItems: PropTypes.func.isRequired,
+  setUserFromDB: PropTypes.any.isRequired
 };
 
 export default Routes;

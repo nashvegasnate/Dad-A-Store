@@ -50,6 +50,7 @@ function App() {
         />
         <Routes
         user={user}
+        setUserFromDB={setUser}
         orders={orders}
         items={items}
         departments={departments}
