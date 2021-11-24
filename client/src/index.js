@@ -4,14 +4,9 @@ import firebase from 'firebase';
 import firebaseConfig from './helpers/apiKeys';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-<<<<<<< HEAD
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.scss';
-=======
-import './styles/index.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
->>>>>>> main
 
 firebase.initializeApp(firebaseConfig);
 
