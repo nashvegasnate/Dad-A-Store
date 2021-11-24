@@ -27,6 +27,12 @@ const getSingleOrder = (orderID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getSingleOrderDetails = (orderID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/orderdetails/${orderID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 const placeOrderFromCart = (userID) => new Promise((resolve, reject) => {
   axios.post(`${dbURL}/api/orders/createFromCart/${userID}`)
     .then((response) => resolve(response.data))
@@ -34,5 +40,5 @@ const placeOrderFromCart = (userID) => new Promise((resolve, reject) => {
 });
 
 export {
-  getOrders, getOpenOrders, getCompletedOrders, getSingleOrder, placeOrderFromCart
+  getOrders, getOpenOrders, getCompletedOrders, getSingleOrder, getSingleOrderDetails, placeOrderFromCart
 };

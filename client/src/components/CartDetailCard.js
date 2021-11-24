@@ -67,12 +67,12 @@ function CartDetailCard({
 }
 
 CartDetailCard.propTypes = {
-  userID: PropTypes.any.isRequired,
+  userID: PropTypes.any,
   itemID: PropTypes.string.isRequired,
   itemQuantity: PropTypes.number.isRequired,
   itemPrice: PropTypes.number.isRequired,
-  setCartDetails: PropTypes.func.isRequired,
-  setCart: PropTypes.func.isRequired
+  setCartDetails: PropTypes.func,
+  setCart: PropTypes.func
 };
 
 export default CartDetailCard;
