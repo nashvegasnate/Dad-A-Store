@@ -3,13 +3,13 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
+// import ItemsView from '../views/ItemsView';
 import ItemsView from '../views/ItemsView';
 import ItemsFormView from '../views/ItemsFormsView';
 import Categories from '../views/Categories';
 import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
-import ItemsFormView from '../views/ItemsFormsView';
 import ProfileView from '../views/ProfileView';
 
 const PrivateRoute = ({
@@ -42,7 +42,6 @@ function Routes({
   setPayments,
   registeredUser,
   userFromDB,
-  setItems,
   setUserFromDB
 }) {
   return (
@@ -154,7 +153,6 @@ Routes.propTypes = {
   setPayments: PropTypes.func.isRequired,
   registeredUser: PropTypes.bool.isRequired,
   userFromDB: PropTypes.any,
-  setItems: PropTypes.func.isRequired,
   setUserFromDB: PropTypes.any.isRequired
 };
 

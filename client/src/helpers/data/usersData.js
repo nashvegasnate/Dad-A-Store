@@ -22,7 +22,6 @@ const addUserToDB = (object) => new Promise((resolve, reject) => {
 });
 
 const updateUser = (userObject) => new Promise((resolve, reject) => {
-  debugger;
   axios.put(`${dbURL}/api/users/${userObject.userID}`, userObject)
     .then(() => {
       getUserWithUID(userObject.userID).then((resolve));
