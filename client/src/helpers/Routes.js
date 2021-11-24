@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
+import ItemsFormView from '../views/ItemsFormsView';
+import Categories from '../views/Categories';
 import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
@@ -31,6 +33,9 @@ function Routes({
   user,
   orders,
   items,
+  setItems,
+  categories,
+  setCategories,
   departments,
   setDepartments,
   payments,
@@ -83,10 +88,21 @@ function Routes({
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
-        userFromDB={userFromDB}
+        path='/categories'
+        component={() => <Categories
+          user={user}
+          userFromDB={userFromDB}
+          categories={categories}
+          setCategories={setCategories}
+          />}
+          />
+          <PrivateRoute
+          user={user}
+          registeredUser={registeredUser}
         path='/paymenttypes'
         component={() => <Payments
           user={user}
+          userFromDB={userFromDB}
           payments={payments}
           setPayments={setPayments}
         />}
@@ -129,6 +145,9 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
+  setItems: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
+  setCategories: PropTypes.func.isRequired,
   departments: PropTypes.array.isRequired,
   setDepartments: PropTypes.func.isRequired,
   payments: PropTypes.array.isRequired,
