@@ -9,6 +9,7 @@ import Payments from '../views/PaymentTypes';
 import ItemsFormView from '../views/ItemsFormsView';
 import Checkout from '../views/Checkout';
 import MyOrders from '../views/MyOrders';
+import SingleOrder from '../views/SingleOrder';
 
 const PrivateRoute = ({
   component: Component,
@@ -109,6 +110,14 @@ function Routes({
         registeredUser={registeredUser}
         path='/myorders'
         component={() => <MyOrders
+        userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/singleOrder/:orderID'
+        component={() => <SingleOrder
         userFromDB={userFromDB}
         />}
         />
