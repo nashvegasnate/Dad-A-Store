@@ -1,10 +1,12 @@
-// import axios from 'axios';
-// import firebaseConfig from '../apiKeys';
+import axios from 'axios';
+import firebaseConfig from '../apiKeys';
 
-// const dbURL = firebaseConfig.databaseURL;
+const dbURL = firebaseConfig.databaseURL;
 
-// const getItemByItemID = (itemID) => new Promise((resolve, reject) => {
-//     axios.get(`${dbURL}/api/items/CGetItemByItemID/${itemID}`)
-//       .then((response) => resolve(response.data))
-//       .catch((error) => reject(error));
-//   });
+const getItemByName = (itemName) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/items/CGetItemByNameFromDB/${itemName}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export default getItemByName;
