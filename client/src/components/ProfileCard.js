@@ -29,11 +29,11 @@ function ProfileCard({
     switch (type) {
       case 'Order':
         console.warn('Order');
-        history.push(`/Order/${'Order ID'}`);
+        history.push('/myorders');
         break;
       case 'Cart':
         console.warn('Cart');
-        history.push(`/Cart/${'Cart ID'}`);
+        history.push('/cart');
         break;
       default:
         console.warn('Default');

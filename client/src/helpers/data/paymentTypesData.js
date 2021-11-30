@@ -9,6 +9,12 @@ const getPaymentTypes = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getUserPaymentType = (paymentID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/paymenttypes/GetPaymentmentByPaymentID/${paymentID}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 const getPaymentTypeByPaymentID = (paymentID) => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/api/paymenttypes/GetPaymentByPaymentID/${paymentID}`)
     .then((response) => resolve(response.data))
@@ -37,6 +43,6 @@ const updatePaymentType = (payment) => new Promise((resolve, reject) => {
 });
 
 export {
-  getPaymentTypes, getPaymentTypeByPaymentID,
+  getPaymentTypes, getUserPaymentType, getPaymentTypeByPaymentID,
   addPaymentType, deletePaymentType, updatePaymentType
 };

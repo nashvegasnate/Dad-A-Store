@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 // import Routes from '../helpers/Routes';
-import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
-import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
-import getOrders from '../helpers/data/ordersData';
 import { getItems } from '../helpers/data/itemsData';
+import { getOrders } from '../helpers/data/ordersData';
+import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
 import { getCategories } from '../helpers/data/categoriesData';
 import { getDepartments } from '../helpers/data/departmentsData';
 import { getPaymentTypes } from '../helpers/data/paymentTypesData';
 
 import './App.scss';
+import Routes from '../helpers/Routes';
 
 function App() {
   const [user, setUser] = useState(null);

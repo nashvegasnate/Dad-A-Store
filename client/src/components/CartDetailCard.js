@@ -6,13 +6,15 @@ import {
 import PropTypes from 'prop-types';
 import { getItemByItemID } from '../helpers/data/itemsData';
 import CartDetailForm from './CartDetailForm';
+import { getOpenCart, removeItemCart } from '../helpers/data/cartData';
 
 function CartDetailCard({
   userID,
   itemID,
   itemQuantity,
   itemPrice,
-  setCartDetails
+  setCartDetails,
+  setCart
 }) {
   const [item, setItem] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -21,10 +23,17 @@ function CartDetailCard({
     getItemByItemID(itemID).then((itemObject) => setItem(itemObject));
   }, []);
 
+  const handleUpdate = () => {
+    getOpenCart(userID).then((cartArray) => setCart(cartArray));
+  };
+
   const handleClick = (type) => {
     switch (type) {
       case 'edit':
         setEditing((prevState) => !prevState);
+        break;
+      case 'delete':
+        removeItemCart(userID, itemID).then((cartDetArr) => setCartDetails(cartDetArr)).then(() => handleUpdate());
         break;
       default: console.warn('nothing selected');
     }
@@ -46,8 +55,10 @@ function CartDetailCard({
             itemID={itemID}
             quantity={itemQuantity}
             setCartDetails={setCartDetails}
+            setCart={setCart}
             />
           }
+          <Button className='mt-1' color='danger' onClick={() => handleClick('delete')}>Remove</Button>
           <br />
         </CardBody>
       </Card>
@@ -56,11 +67,12 @@ function CartDetailCard({
 }
 
 CartDetailCard.propTypes = {
-  userID: PropTypes.any.isRequired,
+  userID: PropTypes.any,
   itemID: PropTypes.string.isRequired,
   itemQuantity: PropTypes.number.isRequired,
   itemPrice: PropTypes.number.isRequired,
-  setCartDetails: PropTypes.func.isRequired
+  setCartDetails: PropTypes.func,
+  setCart: PropTypes.func
 };
 
 export default CartDetailCard;

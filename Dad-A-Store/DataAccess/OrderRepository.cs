@@ -54,6 +54,28 @@ namespace Dad_A_Store.DataAccess
       return db.Query<Order>(sql, new { userID }).ToList();
     }
 
+    internal List<Order> GetOpenOrdersByUserID(Guid userID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"SELECT *
+                  FROM ORDERS
+                  WHERE USERID = @userID AND Completed = 0";
+
+      return db.Query<Order>(sql, new { userID }).ToList();
+    }
+
+    internal List<Order> GetCompletedOrdersByUserID(Guid userID)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"SELECT *
+                  FROM ORDERS
+                  WHERE USERID = @userID AND Completed = 1";
+
+      return db.Query<Order>(sql, new { userID }).ToList();
+    }
+
 
     internal Order CreateOrder(Guid userID, List<NewOrder> listOfItems)
     {

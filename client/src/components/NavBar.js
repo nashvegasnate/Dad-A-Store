@@ -19,9 +19,6 @@ const NavBar = ({ user, registeredUser }) => {
 
   const authenticated = () => (
     <>
-      <NavItem>
-        <Link className="nav-link" to="/orders">Orders</Link>
-      </NavItem>
 
       <NavItem>
         <Link className="nav-link" to="/items">Items</Link>
@@ -45,6 +42,9 @@ const NavBar = ({ user, registeredUser }) => {
 
       <NavItem>
         <Link className="nav-link" to="/cart">My Cart</Link>
+      </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/myorders">My Orders</Link>
       </NavItem>
     </>
   );

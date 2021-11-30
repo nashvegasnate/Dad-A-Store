@@ -45,7 +45,19 @@ namespace Dad_A_Store.Controllers
     public List<Order> GetOrderByUserID(Guid userID)
     {
       return _repo.GetByUserID(userID);
+    }
 
+    [HttpGet("userOpenOrders/{userID}")]
+    public List<Order> GetOpenOrdersByUserID(Guid userID)
+    {
+      return _repo.GetOpenOrdersByUserID(userID);
+
+    }
+
+    [HttpGet("userCompletedOrders/{userID}")]
+    public List<Order> GetCompleteOrdersByUserID(Guid userID)
+    {
+      return _repo.GetCompletedOrdersByUserID(userID);
     }
 
     [HttpPost("create/{userID}")]
