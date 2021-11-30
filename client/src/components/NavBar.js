@@ -19,9 +19,6 @@ const NavBar = ({ user, registeredUser }) => {
 
   const authenticated = () => (
     <>
-      <NavItem>
-        <Link className="nav-link" to="/orders">Orders</Link>
-      </NavItem>
 
       <NavItem>
         <Link className="nav-link" to="/items">Items</Link>
