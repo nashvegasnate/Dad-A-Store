@@ -35,7 +35,6 @@ function SingleOrder({ userFromDB }) {
     paymentID={thisOrder.paymentID}
     orderAmount={thisOrder.orderAmount}
     orderDate={thisOrder.orderDate}
-    shipDate={thisOrder.shipDate}
     />
     }
     </div>

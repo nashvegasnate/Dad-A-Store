@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
-import Orders from '../views/Orders';
 import ItemsView from '../views/ItemsView';
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
@@ -31,7 +30,6 @@ PrivateRoute.propTypes = {
 };
 function Routes({
   user,
-  orders,
   items,
   payments,
   setPayments,
@@ -47,16 +45,6 @@ function Routes({
         registeredUser={registeredUser}
         userFromDB={userFromDB}
          />} />
-        <PrivateRoute
-        user={user}
-        registeredUser={registeredUser}
-        userFromDB={userFromDB}
-        path='/orders'
-        component={() => <Orders
-          user={user}
-          orders={orders}
-        />}
-        />
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}

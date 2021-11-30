@@ -11,7 +11,8 @@ function OpenOrderSingleCard({
   orderID,
   paymentID,
   orderAmount,
-  orderDate
+  orderDate,
+  shipDate
 }) {
   const [userPayment, setUserPayment] = useState(null);
 
@@ -28,6 +29,7 @@ function OpenOrderSingleCard({
           <CardText>Order Amount: ${orderAmount}</CardText>
           { userPayment && <CardText>Payment Type: {userPayment[0].paymentType}</CardText> }
           <CardText>Order Date: {orderDate}</CardText>
+          { shipDate && <CardText>Ship Date: {shipDate}</CardText> }
         </CardBody>
       </Card>
     </div>
@@ -39,7 +41,8 @@ OpenOrderSingleCard.propTypes = {
   orderID: PropTypes.string.isRequired,
   paymentID: PropTypes.string.isRequired,
   orderAmount: PropTypes.number.isRequired,
-  orderDate: PropTypes.any.isRequired
+  orderDate: PropTypes.any.isRequired,
+  shipDate: PropTypes.any
 };
 
 export default OpenOrderSingleCard;
