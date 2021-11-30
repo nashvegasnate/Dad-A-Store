@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getOpenCart } from '../helpers/data/cartData';
 import getCartDetails from '../helpers/data/cartDetailsData';
 import CartDetailCard from '../components/CartDetailCard';
+import CartCard from '../components/CartCard';
 
 function Cart({ userFromDB }) {
   const [cart, setCart] = useState(null);
@@ -33,8 +34,14 @@ function Cart({ userFromDB }) {
           itemQuantity={cartInfo.itemQuantity}
           itemPrice={cartInfo.itemPrice}
           setCartDetails={setCartDetails}
+          setCart={setCart}
           />
         ))
+      }
+      { cart && <CartCard
+      userFromDB={userFromDB}
+      cart={cart}
+      />
       }
     </div>
   );

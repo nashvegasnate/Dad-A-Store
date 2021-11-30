@@ -21,4 +21,13 @@ const addUserToDB = (object) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getValidUser, getUserWithUID, addUserToDB };
+const updateUser = (userObject) => new Promise((resolve, reject) => {
+  axios.put(`${dbURL}/api/users/${userObject.userID}`, userObject)
+    .then(() => {
+      getUserWithUID(userObject.userID).then((resolve));
+    }).catch((error) => reject(error));
+});
+
+export {
+  getValidUser, getUserWithUID, addUserToDB, updateUser
+};

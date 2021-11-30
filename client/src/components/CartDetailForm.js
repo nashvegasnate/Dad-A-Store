@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
-import { updateCartSingleItem } from '../helpers/data/cartData';
+import { getOpenCart, updateCartSingleItem } from '../helpers/data/cartData';
 
 function CartDetailForm({
   userID,
   itemID,
   quantity,
-  setCartDetails
+  setCartDetails,
+  setCart
 }) {
   const [cartDetail, setCartDetail] = useState({
     itemID: itemID || '',
@@ -21,10 +22,18 @@ function CartDetailForm({
     }));
   };
 
+  const handleUpdate = () => {
+    getOpenCart(userID).then((cartArray) => setCart(cartArray));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateCartSingleItem(userID, cartDetail).then((cartDetArr) => setCartDetails(cartDetArr));
+    updateCartSingleItem(userID, cartDetail).then((cartDetArr) => setCartDetails(cartDetArr)).then(() => handleUpdate());
   };
+
+  useEffect(() => {
+    getOpenCart(userID).then((cartArray) => setCart(cartArray));
+  }, []);
 
   return (
     <div className='form-group'>
@@ -49,7 +58,8 @@ CartDetailForm.propTypes = {
   userID: PropTypes.any.isRequired,
   itemID: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
-  setCartDetails: PropTypes.func.isRequired
+  setCartDetails: PropTypes.func.isRequired,
+  setCart: PropTypes.func.isRequired
 };
 
 export default CartDetailForm;
