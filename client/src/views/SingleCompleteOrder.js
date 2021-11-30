@@ -5,15 +5,15 @@ import OrderDetailCard from '../components/OrderDetailCard';
 import { getSingleOrder, getSingleOrderDetails } from '../helpers/data/ordersData';
 import OpenOrderSingleCard from '../components/OpenOrderSingleCard';
 
-function SingleOrder({ userFromDB }) {
+function SingleCompleteOrder({ userFromDB }) {
   const [thisOrder, setThisOrder] = useState(null);
   const [thisOrderDetails, setThisOrderDetails] = useState(null);
 
   const params = useParams();
 
   useEffect(() => {
-    getSingleOrder(params.orderID).then((orderArr) => setThisOrder(orderArr));
-    getSingleOrderDetails(params.orderID).then((orderDets) => setThisOrderDetails(orderDets));
+    getSingleOrder(params.completeOrderID).then((orderArr) => setThisOrder(orderArr));
+    getSingleOrderDetails(params.completeOrderID).then((orderDets) => setThisOrderDetails(orderDets));
   }, []);
 
   return (
@@ -42,8 +42,8 @@ function SingleOrder({ userFromDB }) {
   );
 }
 
-SingleOrder.propTypes = {
+SingleCompleteOrder.propTypes = {
   userFromDB: PropTypes.any.isRequired
 };
 
-export default SingleOrder;
+export default SingleCompleteOrder;
