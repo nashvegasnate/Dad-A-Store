@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import ItemsForm from './ItemsForm';
 import { deleteItem } from '../helpers/data/itemsData';
+import { addItemCart } from '../helpers/data/cartData';
 
 function ItemCard({
   itemID,
@@ -21,6 +22,10 @@ function ItemCard({
   userFromDB
 }) {
   const [editing, setEditing] = useState(false);
+  const [thisItem] = useState({
+    itemID,
+    quantity: 1
+  });
 
   const handleClick = (type) => {
     switch (type) {
@@ -38,7 +43,7 @@ function ItemCard({
   };
 
   const handleAddItemToCart = () => {
-    console.warn(`Add Item ${itemID} to the Cart`);
+    addItemCart(userFromDB.userID, thisItem);
   };
 
   return (

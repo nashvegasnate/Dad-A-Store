@@ -2,13 +2,18 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
-import Orders from '../views/Orders';
+// import Orders from '../views/Orders';
+// import ItemsView from '../views/ItemsView';
 import ItemsView from '../views/ItemsView';
 import ItemsFormView from '../views/ItemsFormsView';
 import Categories from '../views/Categories';
 import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
+import Checkout from '../views/Checkout';
+import MyOrders from '../views/MyOrders';
+import SingleOrder from '../views/SingleOrder';
+import SingleCompleteOrder from '../views/SingleCompleteOrder';
 import ProfileView from '../views/ProfileView';
 
 const PrivateRoute = ({
@@ -30,7 +35,6 @@ PrivateRoute.propTypes = {
 };
 function Routes({
   user,
-  orders,
   items,
   setItems,
   categories,
@@ -51,16 +55,6 @@ function Routes({
         registeredUser={registeredUser}
         userFromDB={userFromDB}
          />} />
-        <PrivateRoute
-        user={user}
-        registeredUser={registeredUser}
-        userFromDB={userFromDB}
-        path='/orders'
-        component={() => <Orders
-          user={user}
-          orders={orders}
-        />}
-        />
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
@@ -121,6 +115,38 @@ function Routes({
         registeredUser={registeredUser}
         path='/cart'
         component={() => <Cart
+        userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/checkout'
+        component={() => <Checkout
+        userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/myorders'
+        component={() => <MyOrders
+        userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/singleOrder/:orderID'
+        component={() => <SingleOrder
+        userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/singleCompleteOrder/:completeOrderID'
+        component={() => <SingleCompleteOrder
         userFromDB={userFromDB}
         />}
         />
