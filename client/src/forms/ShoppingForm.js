@@ -27,3 +27,8 @@
 //     [e.target.name]: e.target.value,
 //   }));
 // };
+
+// const handleSearch = (e) => {
+//   setSearchItem([]);
+
+// }
