@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
+// import Routes from '../helpers/Routes';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import { getValidUser, getUserWithUID } from '../helpers/data/usersData';
@@ -65,6 +66,7 @@ function App() {
         setDepartments={setDepartments}
         payments={payments}
         setPayments={setPayments}
+        setUserFromDB={setUser}
         />
       </Router>
     </div>

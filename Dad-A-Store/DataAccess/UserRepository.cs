@@ -111,8 +111,6 @@ namespace Dad_A_Store.DataAccess
       var ID = db.ExecuteScalar(sql, newUser2);
     }
 
-
-
     internal void RemoveUser(Guid ID)
     {
       using var db = new SqlConnection(_connectionString);
