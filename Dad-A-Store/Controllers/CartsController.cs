@@ -50,8 +50,8 @@ namespace Dad_A_Store.Controllers
       return _repo.AddToCart(userID, cartItem);
     }
 
-    [HttpPut("/removeItemFromCart/{userID}")]
-    public Cart removeItem(Guid userID, Guid itemID)
+    [HttpPut("/removeItemFromCart/{userID}/{itemID}")]
+    public List<CartDetail> removeItem(Guid userID, Guid itemID)
     {
       return _repo.RemoveItem(userID, itemID);
     }
