@@ -2,14 +2,18 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
+// import ItemsView from '../views/ItemsView';
 import ItemsView from '../views/ItemsView';
+import ItemsFormView from '../views/ItemsFormsView';
+import Categories from '../views/Categories';
+import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
-import ItemsFormView from '../views/ItemsFormsView';
 import Checkout from '../views/Checkout';
 import MyOrders from '../views/MyOrders';
 import SingleOrder from '../views/SingleOrder';
 import SingleCompleteOrder from '../views/SingleCompleteOrder';
+import ProfileView from '../views/ProfileView';
 
 const PrivateRoute = ({
   component: Component,
@@ -31,11 +35,16 @@ PrivateRoute.propTypes = {
 function Routes({
   user,
   items,
+  setItems,
+  categories,
+  setCategories,
+  departments,
+  setDepartments,
   payments,
   setPayments,
   registeredUser,
   userFromDB,
-  setItems
+  setUserFromDB
 }) {
   return (
     <div>
@@ -70,12 +79,34 @@ function Routes({
         <PrivateRoute
         user={user}
         registeredUser={registeredUser}
-        userFromDB={userFromDB}
+        path='/categories'
+        component={() => <Categories
+          user={user}
+          userFromDB={userFromDB}
+          categories={categories}
+          setCategories={setCategories}
+          />}
+          />
+          <PrivateRoute
+          user={user}
+          registeredUser={registeredUser}
         path='/paymenttypes'
         component={() => <Payments
           user={user}
+          userFromDB={userFromDB}
           payments={payments}
           setPayments={setPayments}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        userFromDB={userFromDB}
+        path='/departments'
+        component={() => <DepartmentsView
+          user={user}
+          departments={departments}
+          setDepartments={setDepartments}
         />}
         />
         <PrivateRoute
@@ -118,6 +149,16 @@ function Routes({
         userFromDB={userFromDB}
         />}
         />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/profile'
+        component={() => <ProfileView
+        user={user}
+        setUserFromDB={setUserFromDB}
+        userFromDB={userFromDB}
+        />}
+        />
       </Switch>
     </div>
   );
@@ -127,11 +168,16 @@ Routes.propTypes = {
   user: PropTypes.any,
   orders: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
+  setItems: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
+  setCategories: PropTypes.func.isRequired,
+  departments: PropTypes.array.isRequired,
+  setDepartments: PropTypes.func.isRequired,
   payments: PropTypes.array.isRequired,
   setPayments: PropTypes.func.isRequired,
   registeredUser: PropTypes.bool.isRequired,
   userFromDB: PropTypes.any,
-  setItems: PropTypes.func.isRequired
+  setUserFromDB: PropTypes.any.isRequired
 };
 
 export default Routes;

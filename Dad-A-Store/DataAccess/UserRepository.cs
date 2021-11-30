@@ -72,27 +72,43 @@ namespace Dad_A_Store.DataAccess
       return userPayment;
     }
 
+    internal Guid AddPayment(string newPayment)
+    {
+      using var db = new SqlConnection(_connectionString);
+
+      var sql = @"
+                   INSERT INTO PAYMENTTYPES (PaymentType)
+                   OUTPUT INSERTED.PaymentID
+                   VALUES (@PaymentType)";
+
+      var ID = db.ExecuteScalar<Guid>(sql, new { PaymentType  = newPayment });
+      return ID;
+    }
+
+
     internal void Add(User newUser)
     {
       using var db = new SqlConnection(_connectionString);
 
-      //var sql = @"IF NOT EXISTS(SELECT * 
-      //                          FROM USERS
-      //                          WHERE  UserFirst = @UserFirst
-      //                          AND    UserLast = @UserLast
-      //                          )
-      //             INSERT INTO USERS (UserFirst, UserLast, UserAddress1, UserAddress2, UserCity, UserState, UserZipCode, PaymentID)
-      //             OUTPUT INSERTED.UserID
-      //             VALUES (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZipeCode,
-      //                     CAST((SELECT PaymentID
-      //                     FROM PAYMENTTYPES
-      //                     WHERE PaymentID = @PaymentID) AS uniqeidentifier))";
+      var newUser2 = new
+      {
+        UserFirst = newUser.UserFirst,
+        UserLast = newUser.UserLast,
+        UserAddress1 = newUser.UserAddress1,
+        UserAddress2 = newUser.UserAddress2,
+        UserCity = newUser.UserCity,
+        UserState = newUser.UserState,
+        UserZip = newUser.UserZip,
+        PaymentID = AddPayment(newUser.PaymentType),
+        UserUID = newUser.UserUID,
+        UserRole = newUser.UserRole
+      };
 
       var sql = @"INSERT into USERS(UserFirst,UserLast,UserAddress1,UserAddress2,UserCity,UserState,UserZip,PaymentID,userUID,userRole)
                         output INSERTED.UserID
                         values (@UserFirst, @UserLast, @UserAddress1, @UserAddress2, @UserCity, @UserState, @UserZip, @PaymentID, @UserUID, @UserRole)";
 
-      var ID = db.ExecuteScalar(sql, newUser);
+      var ID = db.ExecuteScalar(sql, newUser2);
     }
 
     internal void RemoveUser(Guid ID)
