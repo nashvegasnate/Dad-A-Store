@@ -114,7 +114,10 @@ function Routes({
         registeredUser={registeredUser}
         path='/itemsSingleView/:itemParam'
         component={() => <SingleItemView
-        userFromDB={userFromDB}
+          user={user}
+          items={items}
+          setItems={setItems}
+          userFromDB={userFromDB}
         />}
         />
       </Switch>

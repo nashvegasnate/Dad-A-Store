@@ -16,7 +16,7 @@ function ItemCard({
   categoryName,
   sellerFirstName,
   sellerLastName,
-  // user,
+  user,
   setItems,
   userFromDB
 }) {
@@ -51,6 +51,7 @@ function ItemCard({
           <CardText>Item Category: {categoryName}</CardText>
           <CardText>Seller : {sellerFirstName} {sellerLastName}</CardText>
           <CardText>Seller ID: {sellerID}</CardText>
+          <CardText>User: {user.userName}</CardText>
           <Button
             color="success"
             onClick={() => handleClick('edit')}
@@ -96,7 +97,7 @@ ItemCard.propTypes = {
   categoryName: PropTypes.any.isRequired,
   sellerFirstName: PropTypes.any.isRequired,
   sellerLastName: PropTypes.any.isRequired,
-  // user: PropTypes.any.isRequired,
+  user: PropTypes.any.isRequired,
   setItems: PropTypes.any.isRequired,
   userFromDB: PropTypes.any.isRequired
 };
