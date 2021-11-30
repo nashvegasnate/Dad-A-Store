@@ -71,6 +71,9 @@ const NavBar = ({ user, registeredUser }) => {
             </NavItem>
           }
         </Nav>
+      <NavItem>
+        <Link className="nav-link profile" to="/profile">Profile</Link>
+      </NavItem>
         </Collapse>
       </Navbar>
     </div>

@@ -1,22 +1,41 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
-import { addUserToDB } from '../helpers/data/usersData';
+import { addUserToDB, updateUser } from '../helpers/data/usersData';
 
-function UserForm() {
+function UserForm({
+  user,
+  userFirst,
+  userLast,
+  userAddress1,
+  userAddress2,
+  userCity,
+  userState,
+  userZip,
+  paymentID,
+  userUID,
+  userRole,
+  paymentType,
+  userID,
+  setUserFromDB
+}) {
   const [newUser, setNewUser] = useState({
-    userFirst: '',
-    userLast: '',
-    userAddress1: '',
-    userAddress2: '',
-    userCity: '',
-    userState: '',
-    userZip: 0,
-    paymentID: '132fce4c-8d39-ec11-9141-6c6a77444a6b',
-    userUID: '12345',
-    userRole: 'CUSTOMER',
-    paymentType: ''
+    userFirst: userFirst || '',
+    userLast: userLast || '',
+    userAddress1: userAddress1 || '',
+    userAddress2: userAddress2 || '',
+    userCity: userCity || '',
+    userState: userState || '',
+    userZip: userZip || 0,
+    paymentID: paymentID || '132fce4c-8d39-ec11-9141-6c6a77444a6b',
+    userUID: userUID || '12345',
+    userRole: userRole || 'CUSTOMER',
+    paymentType: paymentType || '',
+    userID: userID || ''
   });
+
+  const history = useHistory();
 
   const handleInputChange = (e) => {
     setNewUser((prevState) => ({
@@ -34,8 +53,13 @@ function UserForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addUserToDB(newUser);
-    console.warn('Submitted');
+    if (newUser.userUID) {
+      updateUser(newUser).then((userArray) => setUserFromDB(userArray));
+      history.push('/profile');
+    } else {
+      addUserToDB(newUser);
+      console.warn(user);
+    }
   };
 
   return (
@@ -122,7 +146,20 @@ function UserForm() {
 }
 
 UserForm.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  userFirst: PropTypes.any,
+  userLast: PropTypes.any,
+  userAddress1: PropTypes.any,
+  userAddress2: PropTypes.any,
+  userCity: PropTypes.any,
+  userState: PropTypes.any,
+  userZip: PropTypes.any,
+  paymentID: PropTypes.any,
+  userUID: PropTypes.any,
+  userRole: PropTypes.any,
+  paymentType: PropTypes.any,
+  userID: PropTypes.any,
+  setUserFromDB: PropTypes.any
 };
 
 export default UserForm;
