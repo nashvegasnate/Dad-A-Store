@@ -33,7 +33,8 @@ export default function SearchBar() {
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchItem([]);
-    getItemByName(e.target.value).then((Response) => {
+    // getItemByName(e.target.value)
+    getItemByName(searchItem).then((Response) => {
       setSearchItem(Response);
     });
   };
@@ -46,7 +47,7 @@ export default function SearchBar() {
       autoComplete='off'
       onSubmit={handleSearch}
     >
-        <Label for="category">Search Items</Label>
+        <Label for="Search Items">Search Items</Label>
         <Input
             name='SearchInput'
             id='SearchInput'
