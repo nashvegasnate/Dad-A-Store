@@ -52,7 +52,7 @@ function ItemCard({
         <CardBody>
           <CardTitle tag="h3">Item: {itemName}</CardTitle>
           <CardText>Item Description: {itemDescription}</CardText>
-          <CardText>Item Price: {itemPrice}</CardText>
+          <CardText>Item Price: ${itemPrice}</CardText>
           <CardText>Item Category: {categoryName}</CardText>
           <CardText>Seller : {sellerFirstName} {sellerLastName}</CardText>
           <CardText>Seller ID: {sellerID}</CardText>
