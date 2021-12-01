@@ -21,6 +21,10 @@ const NavBar = ({ user, registeredUser }) => {
     <>
 
       <NavItem>
+        <Link className="nav-link" to="/searchItems">Shop</Link>
+      </NavItem>
+
+      <NavItem>
         <Link className="nav-link" to="/items">Items</Link>
       </NavItem>
 

@@ -14,6 +14,7 @@ import MyOrders from '../views/MyOrders';
 import SingleOrder from '../views/SingleOrder';
 import SingleCompleteOrder from '../views/SingleCompleteOrder';
 import ProfileView from '../views/ProfileView';
+import SearchBar from '../forms/ShoppingForm';
 
 const PrivateRoute = ({
   component: Component,
@@ -74,6 +75,17 @@ function Routes({
           user={user}
           setItems={setItems}
           userFromDB={userFromDB}
+        />}
+        />
+        <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/searchItems'
+        component={() => <SearchBar
+        user={user}
+        items={items}
+        setItems={setItems}
+        userFromDB={userFromDB}
         />}
         />
           <PrivateRoute
