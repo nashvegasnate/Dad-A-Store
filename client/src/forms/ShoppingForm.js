@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
+import {
+  Button, Form, FormGroup, Input, Label
+} from 'reactstrap';
 import getItemByName from '../helpers/data/shoppingData';
 // import ItemCard from '../components/ItemCard';
 
@@ -35,9 +38,15 @@ export default function SearchBar() {
     });
   };
 
-return (
-    <>
+  return (
+    <div className='category-form'>
+    <Form
+      id='addCategoryForm'
+      autoComplete='off'
+      onSubmit={handleSearch}
+    >
 
-    </>
+    </Form>
+    </div>
   );
 }
