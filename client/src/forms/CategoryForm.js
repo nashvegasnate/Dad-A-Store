@@ -70,6 +70,7 @@ const CategoryForm = ({
             defaultValue={categoryName}
             type='text'
             placeholder='Enter Category'
+            required
             onChange={handleInputChange}
           />
         </FormGroup>
@@ -81,6 +82,7 @@ const CategoryForm = ({
             defaultValue={categoryDescription}
             type='text'
             placeholder='Enter Description'
+            required
             onChange={handleInputChange}
           />
         </FormGroup>
@@ -92,6 +94,7 @@ const CategoryForm = ({
             defaultValue={departmentName}
             type='text'
             placeholder='Enter Department'
+            required
             onChange={handleInputChange}
           />
         </FormGroup>
