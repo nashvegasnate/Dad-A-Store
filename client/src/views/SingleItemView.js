@@ -34,20 +34,6 @@ function SingleItemView({
         userFromDB={userFromDB}
         />
       }
-      {/* <ItemCard
-        itemID={item.itemID}
-        itemName={item.itemName}
-        itemDescription={item.itemDescription}
-        itemPrice={item.itemPrice}
-        categoryID={item.categoryID}
-        sellerID={item.sellerID}
-        categoryName={item.categoryName}
-        sellerFirstName={item.sellerFirstName}
-        sellerLastName={item.sellerLastName}
-        user={user}
-        setItems={setItems}
-        userFromDB={userFromDB}
-        /> */}
     </div>
   );
 }
