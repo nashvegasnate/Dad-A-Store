@@ -4,7 +4,7 @@ import {
   Button, Form, Input, Label
 } from 'reactstrap';
 import getItemByName from '../helpers/data/shoppingData';
-// import ItemCard from '../components/ItemCard';
+import ItemCard from '../components/ItemCard';
 
 const SearchBarElement = `
   input[type=text] {
@@ -59,6 +59,29 @@ export default function SearchBar() {
           <Button type='submit'>Search</Button>
     </Form>
     </SearchBarElement>
+    <div className='item-container'>
+    {
+        searchItem.length > 0
+          ? searchItem.map((item, itemID) => (
+        <ItemCard
+        key={itemID}
+        itemID={item[0].itemID}
+        itemName={item[0].itemName}
+        itemDescription={item[0].itemDescription}
+        itemPrice={item[0].itemPrice}
+        categoryID={item[0].categoryID}
+        sellerID={item[0].sellerID}
+        categoryName={item[0].categoryName}
+        sellerFirstName={item[0].sellerFirstName}
+        sellerLastName={item[0].sellerLastName}
+        user={user}
+        setItems={setItems}
+        userFromDB={userFromDB}
+        />
+          ))
+          : ''
+      }
+    </div>
     </div>
   );
 }
