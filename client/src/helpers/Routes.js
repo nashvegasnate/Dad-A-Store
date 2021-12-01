@@ -9,6 +9,7 @@ import Categories from '../views/Categories';
 import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
 import Payments from '../views/PaymentTypes';
+import SingleItemView from '../views/SingleItemView';
 import Checkout from '../views/Checkout';
 import MyOrders from '../views/MyOrders';
 import SingleOrder from '../views/SingleOrder';
@@ -114,6 +115,17 @@ function Routes({
         registeredUser={registeredUser}
         path='/cart'
         component={() => <Cart
+        userFromDB={userFromDB}
+        />}
+        />
+         <PrivateRoute
+        user={user}
+        registeredUser={registeredUser}
+        path='/itemsSingleView/:itemParam'
+        component={() => <SingleItemView
+        user={user}
+        items={items}
+        setItems={setItems}
         userFromDB={userFromDB}
         />}
         />
