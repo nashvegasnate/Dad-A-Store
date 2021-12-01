@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import {
-  Button, Form, FormGroup, Input, Label
+  Button, Form, Input, Label
 } from 'reactstrap';
 import getItemByName from '../helpers/data/shoppingData';
 // import ItemCard from '../components/ItemCard';
 
-const SearchBarElement = styled.div`
+const SearchBarElement = `
   input[type=text] {
     margin-top: 25px;
     padding: 12px;
@@ -39,14 +39,25 @@ export default function SearchBar() {
   };
 
   return (
-    <div className='category-form'>
+    <div className='search-form'>
+        <SearchBarElement>
     <Form
-      id='addCategoryForm'
+      id='SearchForm'
       autoComplete='off'
       onSubmit={handleSearch}
     >
-
+        <Label for="category">Search Items</Label>
+        <Input
+            name='SearchInput'
+            id='SearchInput'
+            // defaultValue={categoryDescription}
+            type='text'
+            placeholder='Search'
+            onChange={handleInputChange}
+          />
+          <Button type='submit'>Search</Button>
     </Form>
+    </SearchBarElement>
     </div>
   );
 }
