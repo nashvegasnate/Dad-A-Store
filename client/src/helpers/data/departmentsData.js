@@ -15,19 +15,6 @@ const getDepartmentByDepartmentID = (departmentID) => new Promise((resolve, reje
     .catch((error) => reject(error));
 });
 
-// This way doesn't show any departments in the departmentView
-// const getDepartments = () => new Promise((resolve, reject) => {
-//   axios.get(`${dbURL}/api/departments`)
-//     .then(() => getDepartments().then(resolve))
-//     .catch((error) => reject(error));
-// });
-
-// const addDepartment = (dept) => new Promise((resolve, reject) => {
-//   axios.post(`${dbURL}/api/departments`, dept)
-//     .then((response) => resolve(response.data))
-//     .catch((error) => reject(error));
-// });
-
 const addDepartment = (dept) => new Promise((resolve, reject) => {
   axios.post(`${dbURL}/api/departments`, dept)
     .then(() => {
