@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {
   Button, Form, Input, Label
 } from 'reactstrap';
-import getItemByName from '../helpers/data/shoppingData';
+import getItemByName from '../helpers/data/itemsData';
 import ItemCard from '../components/ItemCard';
 
 export default function SearchBar() {

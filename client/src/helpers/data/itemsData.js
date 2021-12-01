@@ -20,6 +20,12 @@ const getItemByItemID = (itemID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getItemByName = (itemName) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/api/items/CGetItemByNameFromList/${itemName}`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 const additem = (itemObject) => new Promise((resolve, reject) => {
   axios.post(`${dbURL}/api/items`, itemObject)
     .then(() => {
@@ -43,5 +49,5 @@ const deleteItem = (itemID) => new Promise((resolve, reject) => {
 });
 
 export {
-  getItems, getItemByItemID, additem, updateItem, deleteItem
+  getItems, getItemByItemID, getItemByName, additem, updateItem, deleteItem
 };
