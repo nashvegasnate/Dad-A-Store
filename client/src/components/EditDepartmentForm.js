@@ -33,7 +33,6 @@ export default function EditDepartmentForm({
     e.preventDefault();
     if (department.departmentID) {
       updateDepartment(department).then(setDepartments);
-      console.warn(department);
     } else {
       addDepartment(department).then((response) => {
         setDepartments(response);
