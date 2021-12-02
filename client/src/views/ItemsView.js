@@ -24,7 +24,6 @@ function Items({
 
   const handlePush = (itemID) => {
     history.push(`/itemsSingleView/${itemID}`);
-    console.warn(itemID);
   };
 
   return (

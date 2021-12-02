@@ -32,7 +32,6 @@ export default function AddDepartmentForm({
     e.preventDefault();
     if (department.departmentID) {
       updateDepartment(department).then(setDepartments);
-      console.warn(department);
     } else {
       addDepartment(department).then(setDepartments);
       setShowButton(false);

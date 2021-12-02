@@ -22,7 +22,6 @@ const getCategoryByDepartmentID = (departmentID) => new Promise((resolve, reject
 });
 
 const addCategory = (categoryObj) => new Promise((resolve, reject) => {
-  // console.warn(categoryObj);
   axios.post(`${dbURL}/api/categories`, categoryObj)
     .then(() => getCategories().then(resolve))
     .catch((error) => reject(error));

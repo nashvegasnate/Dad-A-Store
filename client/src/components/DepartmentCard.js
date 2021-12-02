@@ -28,7 +28,6 @@ function DepartmentCard({
         break;
       case 'update':
         setUpdating((prevState) => !prevState);
-        console.warn(departmentID);
         break;
       default:
         console.warn('nothing selected');

@@ -28,7 +28,6 @@ const additem = (itemObject) => new Promise((resolve, reject) => {
 });
 
 const updateItem = (itemObject) => new Promise((resolve, reject) => {
-  console.warn(itemObject);
   axios.put(`${dbURL}/api/items/${itemObject.itemID}`, itemObject)
     .then(() => {
       getItems().then((resolve));
