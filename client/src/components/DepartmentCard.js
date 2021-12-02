@@ -47,7 +47,7 @@ function DepartmentCard({
   margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: 10px;
-  border: 6px ridge darkgrey;
+  border: 6px ridge #2F8F20;
 `;
 
   return (
