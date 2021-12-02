@@ -51,7 +51,7 @@ function Home({
 
   return (
     <div>
-      <Card className='home-card' style={{ borderWidth: '5px', borderColor: '#2F8F20' }}>
+      <Card className='home-card' style={{ borderWidth: '3px', borderColor: '#2F8F20' }}>
         <CardBody>
           <CardImg src={dadLogo} style={{ width: '50%', height: '50%' }}></CardImg>
           <CardSubtitle tag="h6" className="mb-2 text-muted">An e-commerce platform for the Dad in your life.</CardSubtitle>
