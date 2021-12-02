@@ -31,7 +31,6 @@ function ItemCard({
     switch (type) {
       case 'delete':
         deleteItem(itemID).then((itemsArray) => setItems(itemsArray));
-        console.warn('Delete Item');
         break;
       case 'edit':
         setEditing((prevState) => !prevState);

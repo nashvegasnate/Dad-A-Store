@@ -28,11 +28,9 @@ function ProfileCard({
   const handleShowOrdersCart = (type) => {
     switch (type) {
       case 'Order':
-        console.warn('Order');
         history.push('/myorders');
         break;
       case 'Cart':
-        console.warn('Cart');
         history.push('/cart');
         break;
       default:

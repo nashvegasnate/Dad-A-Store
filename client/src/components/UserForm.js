@@ -5,7 +5,6 @@ import { Button } from 'reactstrap';
 import { addUserToDB, updateUser } from '../helpers/data/usersData';
 
 function UserForm({
-  user,
   userFirst,
   userLast,
   userAddress1,
@@ -58,7 +57,6 @@ function UserForm({
       history.push('/profile');
     } else {
       addUserToDB(newUser);
-      console.warn(user);
     }
   };
 
@@ -146,7 +144,6 @@ function UserForm({
 }
 
 UserForm.propTypes = {
-  user: PropTypes.any,
   userFirst: PropTypes.any,
   userLast: PropTypes.any,
   userAddress1: PropTypes.any,
