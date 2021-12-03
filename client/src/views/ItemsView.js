@@ -5,8 +5,10 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 const ItemButton = styled.div`
-  border: solid 3px;
+  border: 3px;
+  border-bottom-style: double;
   border-color: #2F8F20;
+  background-color: lightGrey;
   display: flex;
   justify-content: center;
   width: auto;
@@ -27,13 +29,14 @@ function Items({
   };
 
   return (
-    <>
+    <div className='col-lg-12'>
+      <h3>ALL ITEMS</h3>
         {items.map((item, itemID) => (
           <h3 key={itemID}>
             <ItemButton className='mt-5' color='info' onClick={() => handlePush(item.itemID)}>{item.itemName}</ItemButton>
           </h3>
         ))}
-    </>
+    </div>
   );
 }
 
