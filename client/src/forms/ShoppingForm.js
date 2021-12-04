@@ -6,7 +6,7 @@ import {
 import { getItemByName } from '../helpers/data/itemsData';
 import ItemCard from '../components/ItemCard';
 
-export default function SearchBar({
+export default function ShoppingForm({
     user, setItems, userFromDB }) {
     const [searchItem, setSearchItem] = useState('');
     const [resultSearch, setResultSearch] = useState([]);
@@ -70,7 +70,7 @@ export default function SearchBar({
     );
 }
 
-SearchBar.propTypes = {
+ShoppingForm.propTypes = {
     user: PropTypes.any.isRequired,
     item: PropTypes.array,
     setItems: PropTypes.any,
