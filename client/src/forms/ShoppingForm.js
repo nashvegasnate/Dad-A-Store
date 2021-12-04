@@ -22,7 +22,7 @@ import { getItemByName } from '../helpers/data/itemsData';
 //   justify-items: center;
 //   `;
 
-export default function ShoppingForm({ user, setItems, userFromDB }) {
+function ShoppingForm({ user, setItems, userFromDB }) {
   const [searchItem, setSearchItem] = useState('');
   const [resultSearch, setResultSearch] = useState([]);
 
@@ -39,8 +39,6 @@ export default function ShoppingForm({ user, setItems, userFromDB }) {
       setResultSearch(Response);
     });
   };
-
-  //  console.warn(resultSearch);
 
   return (
     <div className="search-form">
@@ -87,3 +85,5 @@ ShoppingForm.propTypes = {
   setItems: PropTypes.any,
   userFromDB: PropTypes.any.isRequired,
 };
+
+export default ShoppingForm;
