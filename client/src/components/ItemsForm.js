@@ -47,7 +47,6 @@ const ItemsForm = ({
     categoryName: categoryName || '',
     sellerFirstName: sellerFirstName || '',
     sellerLastName: sellerLastName || '',
-    // userID: user ? user.id : '',
   });
 
   const history = useHistory();
@@ -59,6 +58,13 @@ const ItemsForm = ({
     }));
   };
 
+  const handleNumberInput = (e) => {
+    setItem((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.valueAsNumber
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (item.itemID) {
@@ -67,14 +73,6 @@ const ItemsForm = ({
     } else {
       additem(item).then((itemsArray) => setItems(itemsArray));
       history.push('/items');
-
-      // setItem({
-      //   itemName: '',
-      //   itemDescription: '',
-      //   itemPrice: '',
-      //   categoryName: '',
-      //   sellerID: ''
-      // });
     }
   };
 
@@ -112,10 +110,10 @@ const ItemsForm = ({
             <Input
               name='itemPrice'
               id='itemPrice'
-              type='text'
+              type='number'
               placeholder='Please enter the item&#39;s price'
               value={item.itemPrice}
-              onChange={handleInputChange}
+              onChange={handleNumberInput}
               required
              />
           </FormGroup>
@@ -149,7 +147,6 @@ ItemsForm.propTypes = {
   sellerLastName: PropTypes.any,
   sellerID: PropTypes.any,
   formTitle: PropTypes.any,
-  // user: PropTypes.any.isRequired,
   setItems: PropTypes.func.isRequired,
   userFromDB: PropTypes.any.isRequired
 };

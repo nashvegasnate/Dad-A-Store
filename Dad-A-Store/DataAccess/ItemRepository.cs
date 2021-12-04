@@ -171,21 +171,23 @@ namespace Dad_A_Store.DataAccess
                    UPDATE ITEMS 
                    SET ItemName          = @ItemName
                       ,ItemDescription   = @ItemDescription
+                      ,ItemPrice         = @ItemPrice
                       ,CategoryID        = @CategoryID
                    OUTPUT INSERTED.*
                    WHERE ItemID = @ItemID";
 
-      var sql2 = new
+      var variables = new
       {
         ItemID = Item.ItemID,
         ItemName = Item.ItemName,
         ItemDescription = Item.ItemDescription,
+        ItemPrice       = Item.ItemPrice,
         CategoryID = Item.CategoryID
       };
 
 
       Item.ItemID = ID;
-      var updateItem = db.QuerySingleOrDefault<Item>(sql, sql2);
+      var updateItem = db.QuerySingleOrDefault<Item>(sql, variables);
 
       return updateItem;
     }

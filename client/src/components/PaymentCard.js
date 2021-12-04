@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card, CardText, CardBody, CardTitle, Button
+  CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
+import styled from 'styled-components';
 import { deletePaymentType } from '../helpers/data/paymentTypesData';
 import PaymentForm from '../forms/PaymentForm';
 
+const StyledPaymentCard = styled.div`
+  display: flex;
+  flex-flow: row-wrap;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: auto;
+  flex-basis: 20em;
+  margin: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: lightGrey;
+  box-shadow: 10px;
+  border: 5px double #2F8F20;
+`;
 function PaymentTypeCard({
   user,
   paymentID,
@@ -34,11 +50,11 @@ function PaymentTypeCard({
 
   return (
     <div className="paymentCard">
-      <Card className='payment-cards'>
+      <StyledPaymentCard className='payment-cards'>
         <CardBody>
           <CardTitle tag="h3">Payment Type: {paymentType}</CardTitle>
           <br />
-          <CardText>User: {user.uid}</CardText>
+          <CardText>User: {user.userName}</CardText>
           <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
         <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
         {editing
@@ -51,7 +67,7 @@ function PaymentTypeCard({
           />
         }
         </CardBody>
-      </Card>
+      </StyledPaymentCard>
     </div>
   );
 }
