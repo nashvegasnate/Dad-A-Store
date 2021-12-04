@@ -47,7 +47,6 @@ const ItemsForm = ({
     categoryName: categoryName || '',
     sellerFirstName: sellerFirstName || '',
     sellerLastName: sellerLastName || '',
-    // userID: user ? user.id : '',
   });
 
   const history = useHistory();
@@ -148,7 +147,6 @@ ItemsForm.propTypes = {
   sellerLastName: PropTypes.any,
   sellerID: PropTypes.any,
   formTitle: PropTypes.any,
-  // user: PropTypes.any.isRequired,
   setItems: PropTypes.func.isRequired,
   userFromDB: PropTypes.any.isRequired
 };

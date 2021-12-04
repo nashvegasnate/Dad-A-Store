@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
-// import ItemCard from '../components/ItemCard';
 import ItemsForm from '../components/ItemsForm';
 import ShoppingForm from '../forms/ShoppingForm';
 
@@ -54,7 +53,6 @@ function Items({
               <Button className="closeForm" onClick={handleClick}>Close Form</Button>
               <ItemsForm
               setAddItem={setAddItem}
-              // formTitle='New Item form'
               setItems={setItems}
                 userFromDB={userFromDB}
                 user={user}
