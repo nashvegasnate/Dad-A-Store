@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, FormGroup, Input, Label
+  Button, FormGroup, Input, Label
 } from 'reactstrap';
 import styled from 'styled-components';
 import { addCategory, updateCategory } from '../helpers/data/categoriesData';
 
-const NewCategoryForm = styled.div`
+const StyledCategoryForm = styled.div`
   border: 3px;
   border-bottom-style: double;
   border-color: #2F8F20;
@@ -72,7 +72,7 @@ const CategoryForm = ({
 
   return (
     <div className='category-form'>
-      <Form
+      <StyledCategoryForm
         id='addCategoryForm'
         autoComplete='off'
         onSubmit={handleSubmit}
@@ -115,7 +115,7 @@ const CategoryForm = ({
           />
         </FormGroup>
         <Button type='submit'>Submit</Button>
-        </Form>
+        </StyledCategoryForm >
     </div>
   );
 };

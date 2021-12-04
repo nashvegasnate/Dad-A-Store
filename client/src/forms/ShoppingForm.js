@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, Input, Label
+  Button, Input, Label
 } from 'reactstrap';
 import styled from 'styled-components';
 import { getItemByName } from '../helpers/data/itemsData';
 import ItemCard from '../components/ItemCard';
 
-const NewShoppingForm = styled.div`
+const StyledShoppingForm = styled.div`
   border: 3px;
   border-bottom-style: double;
   border-color: #2F8F20;
@@ -44,7 +44,7 @@ export default function ShoppingForm({ user, setItems, userFromDB }) {
 
   return (
     <div className="search-form">
-      <Form id="SearchForm" autoComplete="off" onSubmit={handleSearch}>
+      <StyledShoppingForm id="SearchForm" autoComplete="off" onSubmit={handleSearch}>
         <Label for="Search Items">Search Items</Label>
         <Input
           name="SearchInput"
@@ -55,7 +55,7 @@ export default function ShoppingForm({ user, setItems, userFromDB }) {
           onChange={handleInputChange}
         />
         <Button type="submit">Search</Button>
-      </Form>
+      </StyledShoppingForm>
       <div className="item-container">
         {resultSearch.length > 0 ? (
           <ItemCard

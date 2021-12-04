@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, FormGroup, Input, Label
+  Button, FormGroup, Input, Label
 } from 'reactstrap';
 import styled from 'styled-components';
 import { addPaymentType, updatePaymentType } from '../helpers/data/paymentTypesData';
 
-const NewPaymentForm = styled.div`
+const StyledPaymentForm = styled.div`
   border: 3px;
   border-bottom-style: double;
   border-color: #2F8F20;
@@ -60,7 +60,7 @@ const PaymentForm = ({
 
   return (
     <div className='payment-form'>
-      <Form
+      <StyledPaymentForm
         id='addPaymentForm'
         autoComplete='off'
         onSubmit={handleSubmit}
@@ -80,7 +80,7 @@ const PaymentForm = ({
           />
         </FormGroup>
         <Button type='submit'>Submit</Button>
-        </Form>
+        </StyledPaymentForm>
     </div>
   );
 };
