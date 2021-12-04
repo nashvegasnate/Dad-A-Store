@@ -69,8 +69,7 @@ namespace Dad_A_Store.DataAccess
                                                 SELECT ItemID 
                                                       ,ItemName
                                                       ,ItemDescription
-                                    
-,ItemPrice
+                                                      ,ItemPrice
                                                       ,CategoryID
                                                       ,(SELECT  CategoryName
                                                             FROM CATEGORIES AS C
