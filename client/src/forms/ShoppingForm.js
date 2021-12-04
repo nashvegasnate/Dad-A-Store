@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Input, Label
+  Form, Button, Input, Label
 } from 'reactstrap';
-import styled from 'styled-components';
-import { getItemByName } from '../helpers/data/itemsData';
+// import styled from 'styled-components';
 import ItemCard from '../components/ItemCard';
+import { getItemByName } from '../helpers/data/itemsData';
 
-const StyledShoppingForm = styled.div`
-  border: 3px;
-  border-bottom-style: double;
-  border-color: #2F8F20;
-  background-color: lightGrey;
-  display: inline-block;
-  align-items: center;
-  text-align: center;
-  margin: 10px;
-  justify-content: space-between;
-  padding: 20px;
-  width: 450px;
-  justify-items: center;
-  `;
+// const StyledShoppingForm = styled.div`
+//   border: 3px;
+//   border-bottom-style: double;
+//   border-color: #2F8F20;
+//   background-color: lightGrey;
+//   display: inline-block;
+//   align-items: center;
+//   text-align: center;
+//   margin: 10px;
+//   justify-content: space-between;
+//   padding: 20px;
+//   width: 450px;
+//   justify-items: center;
+//   `;
 
 export default function ShoppingForm({ user, setItems, userFromDB }) {
   const [searchItem, setSearchItem] = useState('');
@@ -40,11 +40,11 @@ export default function ShoppingForm({ user, setItems, userFromDB }) {
     });
   };
 
-  console.warn(resultSearch);
+  //  console.warn(resultSearch);
 
   return (
     <div className="search-form">
-      <StyledShoppingForm id="SearchForm" autoComplete="off" onSubmit={handleSearch}>
+      <Form id="SearchForm" autoComplete="off" onSubmit={handleSearch}>
         <Label for="Search Items">Search Items</Label>
         <Input
           name="SearchInput"
@@ -55,7 +55,7 @@ export default function ShoppingForm({ user, setItems, userFromDB }) {
           onChange={handleInputChange}
         />
         <Button type="submit">Search</Button>
-      </StyledShoppingForm>
+      </Form>
       <div className="item-container">
         {resultSearch.length > 0 ? (
           <ItemCard
