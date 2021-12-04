@@ -53,7 +53,7 @@ function DepartmentCard({
   return (
     <div>
     <DeptCard>
-      <Card className='department-cards p-2'>
+      <Card className='department-cards p-2' style={{ backgroundColor: 'lightgray' }}>
           <CardBody>
               <CardTitle tag="h3">{departmentName}</CardTitle>
               <CardText>{departmentDescription}</CardText>

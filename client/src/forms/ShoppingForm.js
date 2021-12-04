@@ -56,7 +56,7 @@ function ShoppingForm({ user, setItems, userFromDB }) {
           placeholder="Search"
           onChange={handleInputChange}
         />
-        <Button type="submit">Search</Button>
+        <Button type="submit" color="info">Search</Button>
       </Form>
       <div className="item-container">
         {resultSearch.length > 0

@@ -51,19 +51,22 @@ function ProfileCard({
           <CardText>City: {userFromDB.userCity} Zip: {userFromDB.userZip} State: {userFromDB.userState}</CardText>
           <CardText>Role: {userFromDB.userRole}</CardText>
           <Button
-            color="success"
+            className="m-2"
+            color="info"
             onClick={() => handleClick('edit')}
             size="sm">
             {editing ? 'Close Form' : 'Edit User' }
           </Button>
           <Button
-            color="info"
+            className="m-2"
+            color="warning"
             onClick={() => handleShowOrdersCart('Order')}
             size="sm">
             {'See my Orders'}
           </Button>
           <Button
-            color="info"
+            className="m-2"
+            color="primary"
             onClick={() => handleShowOrdersCart('Cart')}
             size="sm">
             {'See my Cart'}

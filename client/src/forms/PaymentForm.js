@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
   Button, FormGroup, Input, Label
 } from 'reactstrap';
-import styled from 'styled-components';
 import { addPaymentType, updatePaymentType } from '../helpers/data/paymentTypesData';
 
 const StyledPaymentForm = styled.div`
@@ -79,8 +79,8 @@ const PaymentForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
-        <Button type='submit'>Submit</Button>
-        </StyledPaymentForm>
+        <Button type='submit' color='success'>Submit</Button>
+      </StyledPaymentForm>
     </div>
   );
 };
