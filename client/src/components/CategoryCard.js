@@ -1,11 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card, CardText, CardBody, CardTitle, Button
+  CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
+import styled from 'styled-components';
 import { getDepartmentByDepartmentID } from '../helpers/data/departmentsData';
 import { deleteCategory } from '../helpers/data/categoriesData';
 import CategoryForm from '../forms/CategoryForm';
+
+const CatCard = styled.div`
+  display: flex;
+  flex-flow: row-wrap;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: auto;
+  flex-basis: 20em;
+  margin: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: lightGrey;
+  box-shadow: 10px;
+  border: 5px double #2F8F20;
+`;
 
 function CategoryCard({
   user,
@@ -40,14 +57,14 @@ function CategoryCard({
 
   return (
         <div>
-            <Card className='category-cards'>
+            <CatCard className='category-cards'>
           <CardBody>
               <CardTitle tag="h3">Category: {categoryName}</CardTitle>
               {/* <CardText>Category ID: {categoryID}</CardText> */}
               <CardTitle>Description: {categoryDescription}</CardTitle>
               { department && <CardText>Department: {department[0].departmentName}</CardText> }
-              <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
-              <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
+              <Button className="btn-md mr-2 ml-2 mt-2" color="danger" onClick={() => handleClick('delete')}>Delete</Button>
+              <Button className="btn-md mr-2 ml-2 mt-2" color="info" onClick={() => handleClick('edit')}>Edit</Button>
         {editing
           && <CategoryForm
             formTitle='Edit Category'
@@ -62,7 +79,7 @@ function CategoryCard({
         }
         <br/>
           </CardBody>
-        </Card>
+        </CatCard>
       </div>
   );
 }

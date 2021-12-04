@@ -1,11 +1,28 @@
 import React, { useState } from 'react';
 import {
-  Card, CardText, CardBody, CardTitle, Button
+  CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ItemsForm from './ItemsForm';
 import { deleteItem } from '../helpers/data/itemsData';
 import { addItemCart } from '../helpers/data/cartData';
+
+const SingleItemCard = styled.div`
+  display: flex;
+  flex-flow: row-wrap;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: auto;
+  flex-basis: 20em;
+  margin: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: lightGrey;
+  box-shadow: 10px;
+  border: 5px double #2F8F20;
+`;
 
 function ItemCard({
   itemID,
@@ -47,7 +64,7 @@ function ItemCard({
 
   return (
     <div>
-      <Card className='item-cards'>
+      <SingleItemCard className='item-cards'>
         <CardBody>
           <CardTitle tag="h3">Item: {itemName}</CardTitle>
           <CardText>Item Description: {itemDescription}</CardText>
@@ -86,7 +103,7 @@ function ItemCard({
             size="sm">Add To Cart
           </Button>
         </CardBody>
-      </Card>
+      </SingleItemCard>
     </div>
   );
 }

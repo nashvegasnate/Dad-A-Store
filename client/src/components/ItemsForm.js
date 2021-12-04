@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import {
-  FormGroup, Form, Label, Input, Button
+  FormGroup, Label, Input, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { additem, updateItem } from '../helpers/data/itemsData';
+
+const NewItemForm = styled.div`
+  border: 3px;
+  border-bottom-style: double;
+  border-color: #2F8F20;
+  background-color: lightGrey;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  width: 450px;
+  justify-items: center;
+  `;
 
 const ItemsForm = ({
   itemID,
@@ -60,7 +76,7 @@ const ItemsForm = ({
   return (
     <>
       <div className='item-form'>
-        <Form id='add-item-form' autoComplete='off' onSubmit={handleSubmit}>
+        <NewItemForm autoComplete='off' onSubmit={handleSubmit}>
           <h2>{formTitle}</h2>
           <FormGroup>
             <Label>Item Name</Label>
@@ -106,8 +122,8 @@ const ItemsForm = ({
               onChange={handleInputChange}
              />
           </FormGroup>
-          <Button type='submit'>Submit</Button>
-        </Form>
+          <Button type='submit' color='success'>Submit</Button>
+        </NewItemForm>
       </div>
     </>
   );

@@ -63,7 +63,7 @@ function UserForm({
   return (
     <div>
       <form className='mt-3' id='add-expense-form' autoComplete='off' onSubmit={handleSubmit}>
-        <h2>Create your Dad-A-Store account.</h2>
+        <h4>Create your Dad-A-Store account</h4>
         <label>First Name:</label>
         <input
         className='ml-2'

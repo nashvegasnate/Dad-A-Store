@@ -10,6 +10,7 @@ import {
   NavItem,
   Button
 } from 'reactstrap';
+import { ImUserTie, ImHome, ImCart } from 'react-icons/im';
 import { signInUser, signOutUser } from '../helpers/auth';
 
 const NavBar = ({ user, registeredUser }) => {
@@ -41,7 +42,7 @@ const NavBar = ({ user, registeredUser }) => {
       </NavItem>
 
       <NavItem>
-        <Link className="nav-link" to="/cart">My Cart</Link>
+        <Link className="nav-link" to="/cart"><ImCart /> Cart</Link>
       </NavItem>
       <NavItem>
         <Link className="nav-link" to="/myorders">My Orders</Link>
@@ -51,13 +52,15 @@ const NavBar = ({ user, registeredUser }) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar style={{
+        backgroundColor: '#2F8F20', padding: '5px', border: '3px'
+      }} dark expand="md">
         <NavbarBrand href="/">Dad-A-Store</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
         <NavItem>
-          <Link className="nav-link" to="/">Home</Link>
+          <Link className="nav-link" to="/"><ImHome /> Home</Link>
         </NavItem>
         { (user && registeredUser) && authenticated() }
         {
@@ -70,10 +73,10 @@ const NavBar = ({ user, registeredUser }) => {
               }
             </NavItem>
           }
+          <NavItem>
+            <Link className="nav-link" to="/profile"><ImUserTie /> Profile</Link>
+          </NavItem>
         </Nav>
-      <NavItem>
-        <Link className="nav-link profile" to="/profile">Profile</Link>
-      </NavItem>
         </Collapse>
       </Navbar>
     </div>

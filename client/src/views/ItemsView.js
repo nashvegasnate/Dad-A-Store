@@ -1,7 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
+import styled from 'styled-components';
+// import { Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
+
+const ItemButton = styled.div`
+  border: 3px;
+  border-bottom-style: double;
+  border-color: #2F8F20;
+  background-color: lightGrey;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  font-family: Calibri;
+  font-size: 30px;
+  flex-wrap: wrap;
+  padding: 15px;
+  margin: 10px;
+  `;
 
 function Items({
   items
@@ -13,13 +29,14 @@ function Items({
   };
 
   return (
-    <>
+    <div className='col-lg-12'>
+      <h3>ALL ITEMS</h3>
         {items.map((item, itemID) => (
           <h3 key={itemID}>
-            <Button className='mt-1' color='info' onClick={() => handlePush(item.itemID)}>{item.itemName}</Button>
+            <ItemButton className='mt-5' color='info' onClick={() => handlePush(item.itemID)}>{item.itemName}</ItemButton>
           </h3>
         ))}
-    </>
+    </div>
   );
 }
 
