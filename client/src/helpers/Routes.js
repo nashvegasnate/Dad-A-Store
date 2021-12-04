@@ -14,7 +14,7 @@ import MyOrders from '../views/MyOrders';
 import SingleOrder from '../views/SingleOrder';
 import SingleCompleteOrder from '../views/SingleCompleteOrder';
 import ProfileView from '../views/ProfileView';
-import SearchResult from '../views/ShopView';
+import ShopResult from '../views/ShopView';
 
 const PrivateRoute = ({
   component: Component,
@@ -81,7 +81,7 @@ function Routes({
         user={user}
         registeredUser={registeredUser}
         path='/searchItems'
-        component={() => <SearchResult
+        component={() => <ShopResult
         user={user}
         items={items}
         setItems={setItems}

@@ -7,7 +7,8 @@ import { getItemByName } from '../helpers/data/itemsData';
 import ItemCard from '../components/ItemCard';
 
 export default function SearchBar() {
-  const [searchItem, setSearchItem] = useState([]);
+  const [searchItem, setSearchItem] = useState('');
+  const [resultSearch, setResultSearch] = useState([]);
 
   const handleInputChange = (e) => {
     setSearchItem((prevState) => ({
@@ -18,11 +19,13 @@ export default function SearchBar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearchItem([]);
-    getItemByName(e.target.value).then((Response) => {
-      setSearchItem(Response);
+    // setSearchItem([]);
+    getItemByName(searchItem.SearchInput).then((Response) => {
+      setResultSearch(Response);
     });
   };
+
+  console.warn(resultSearch);
 
   return (
         <div className='search-form'>
@@ -44,24 +47,22 @@ export default function SearchBar() {
                 </Form>
             <div className='item-container'>
                 {
-            searchItem.length > 0
-              ? searchItem.map((item, itemID) => (
-                    <ItemCard
-                        key={itemID}
-                        itemID={item[0].itemID}
-                        itemName={item[0].itemName}
-                        itemDescription={item[0].itemDescription}
-                        itemPrice={item[0].itemPrice}
-                        categoryID={item[0].categoryID}
-                        sellerID={item[0].sellerID}
-                        categoryName={item[0].categoryName}
-                        sellerFirstName={item[0].sellerFirstName}
-                        sellerLastName={item[0].sellerLastName}
+            resultSearch.length > 0
+              ? <ItemCard
+                        key={resultSearch[0].itemID}
+                        itemID={resultSearch[0].itemID}
+                        itemName={resultSearch[0].itemName}
+                        itemDescription={resultSearch[0].itemDescription}
+                        itemPrice={resultSearch[0].itemPrice}
+                        categoryID={resultSearch[0].categoryID}
+                        sellerID={resultSearch[0].sellerID}
+                        categoryName={resultSearch[0].categoryName}
+                        sellerFirstName={resultSearch[0].sellerFirstName}
+                        sellerLastName={resultSearch[0].sellerLastName}
                         // user={user}
                         // setItems={setItems}
                         // userFromDB={userFromDB}
                         />
-              ))
               : ''
                 }
             </div>
