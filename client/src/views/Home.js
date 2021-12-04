@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Card, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardImg, CardSubtitle, Button
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../helpers/auth';
 import grill from '../assets/grill.jpg';
 import lawnmower from '../assets/lawnmower.jpg';
 import tools from '../assets/tools.jpg';
 import tools2 from '../assets/tools2.jpg';
-// import shoes from '../assets/shoes.jpg';
+import dadShoes from '../assets/dadShoes.jpg';
 import UserForm from '../components/UserForm';
+import dadLogo from '../assets/dadLogo.png';
 
-const images = [grill, lawnmower, tools, tools2];
+const images = [grill, lawnmower, tools, tools2, dadShoes];
 
 function Home({
   user,
@@ -20,7 +21,7 @@ function Home({
 }) {
   const isNotRegistered = () => (
     <>
-      <h2>You must register before continuing </h2>
+      <h4>You must register before continuing </h4>
       <UserForm />
     </>
   );
@@ -50,12 +51,16 @@ function Home({
 
   return (
     <div>
-      <Card className='home-card'>
+      <Card className='home-card' style={{ borderWidth: '3px', borderColor: '#2F8F20' }}>
         <CardBody>
-          <CardTitle tag="h5">Dad-A-Store</CardTitle>
+          <CardImg src={dadLogo} style={{ width: '50%', height: '50%' }}></CardImg>
           <CardSubtitle tag="h6" className="mb-2 text-muted">An e-commerce platform for the Dad in your life.</CardSubtitle>
           <CardText>Our goal is to be the one stop shop for all Dad needs.</CardText>
-          { user ? authenticated() : notAuthenticated() }
+        </CardBody>
+      </Card>
+      <Card className='home-form'>
+        <CardBody>
+        { user ? authenticated() : notAuthenticated() }
           { (user && registeredUser) && isNotRegistered() }
         </CardBody>
       </Card>

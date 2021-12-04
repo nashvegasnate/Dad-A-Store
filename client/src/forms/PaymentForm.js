@@ -26,7 +26,6 @@ const PaymentForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (paymentUpdate.paymentID !== null) {
-      // console.warn(paymentUpdate); .paymentID, payment
       updatePaymentType(paymentUpdate).then(setPayments);
       // setPaymentUpdate(!paymentUpdate);
     } else {
