@@ -44,10 +44,12 @@ function ProfileCard({
       <Card className='expense-cards'>
         <CardBody>
            <CardTitle tag="h3">User name {userFromDB.userFirst} {userFromDB.userLast}</CardTitle>
-          <CardText>Address: ${userFromDB.userAddress1}</CardText>
-          <CardText>Address: ${userFromDB.userAddress2}</CardText>
-          <CardText>City: ${userFromDB.userCity} Zip: ${userFromDB.userZip} State: ${userFromDB.userState}</CardText>
-          <CardText>Role: ${userFromDB.userRole}</CardText>
+          <CardText>Address: {userFromDB.userAddress1}</CardText>
+         {userFromDB.userAddress2
+         && <CardText>Address: {userFromDB.userAddress2}</CardText>
+         }
+          <CardText>City: {userFromDB.userCity} Zip: {userFromDB.userZip} State: {userFromDB.userState}</CardText>
+          <CardText>Role: {userFromDB.userRole}</CardText>
           <Button
             color="success"
             onClick={() => handleClick('edit')}

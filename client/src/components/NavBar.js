@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { ImUserTie, ImHome, ImCart } from 'react-icons/im';
 import {
   Collapse,
   Navbar,
@@ -10,7 +11,6 @@ import {
   NavItem,
   Button
 } from 'reactstrap';
-import { ImUserTie, ImHome, ImCart } from 'react-icons/im';
 import { signInUser, signOutUser } from '../helpers/auth';
 
 const NavBar = ({ user, registeredUser }) => {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   FormGroup, Label, Input, Button
 } from 'reactstrap';
@@ -49,6 +50,8 @@ const ItemsForm = ({
     // userID: user ? user.id : '',
   });
 
+  const history = useHistory();
+
   const handleInputChange = (e) => {
     setItem((prevState) => ({
       ...prevState,
@@ -60,8 +63,10 @@ const ItemsForm = ({
     e.preventDefault();
     if (item.itemID) {
       updateItem(item).then((itemsArray) => setItems(itemsArray));
+      history.push('/items');
     } else {
       additem(item).then((itemsArray) => setItems(itemsArray));
+      history.push('/items');
 
       // setItem({
       //   itemName: '',
@@ -76,7 +81,7 @@ const ItemsForm = ({
   return (
     <>
       <div className='item-form'>
-        <NewItemForm autoComplete='off' onSubmit={handleSubmit}>
+        <NewItemForm autoComplete='off'>
           <h2>{formTitle}</h2>
           <FormGroup>
             <Label>Item Name</Label>
@@ -87,6 +92,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s name'
               value={item.itemName}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -98,6 +104,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s Description'
               value={item.itemDescription}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -109,6 +116,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s price'
               value={item.itemPrice}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -120,9 +128,10 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s category Name'
               value={item.categoryName}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
-          <Button type='submit' color='success'>Submit</Button>
+          <Button type='submit' color='success' onClick={handleSubmit}>Submit</Button>
         </NewItemForm>
       </div>
     </>
