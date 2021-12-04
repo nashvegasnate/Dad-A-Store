@@ -21,7 +21,7 @@ const NavBar = ({ user, registeredUser }) => {
     <>
 
       <NavItem>
-        <Link className="nav-link" to="/searchItems">Shop</Link>
+        <Link className="nav-link" to="/shop">Shop</Link>
       </NavItem>
 
       <NavItem>

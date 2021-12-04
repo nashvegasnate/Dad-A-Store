@@ -80,7 +80,7 @@ function Routes({
         <PrivateRoute
           user={user}
           registeredUser={registeredUser}
-          path='/searchItems'
+          path='/shop'
           component={() => <ShopView
             user={user}
             items={items}
