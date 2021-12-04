@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
-  FormGroup, Form, Label, Input, Button
+  FormGroup, Label, Input, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { additem, updateItem } from '../helpers/data/itemsData';
+
+const NewItemForm = styled.div`
+  border: 3px;
+  border-bottom-style: double;
+  border-color: #2F8F20;
+  background-color: lightGrey;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  width: 450px;
+  justify-items: center;
+  `;
 
 const ItemsForm = ({
   itemID,
@@ -33,6 +50,8 @@ const ItemsForm = ({
     // userID: user ? user.id : '',
   });
 
+  const history = useHistory();
+
   const handleInputChange = (e) => {
     setItem((prevState) => ({
       ...prevState,
@@ -44,8 +63,10 @@ const ItemsForm = ({
     e.preventDefault();
     if (item.itemID) {
       updateItem(item).then((itemsArray) => setItems(itemsArray));
+      history.push('/items');
     } else {
       additem(item).then((itemsArray) => setItems(itemsArray));
+      history.push('/items');
 
       // setItem({
       //   itemName: '',
@@ -60,7 +81,7 @@ const ItemsForm = ({
   return (
     <>
       <div className='item-form'>
-        <Form id='add-item-form' autoComplete='off' onSubmit={handleSubmit}>
+        <NewItemForm autoComplete='off'>
           <h2>{formTitle}</h2>
           <FormGroup>
             <Label>Item Name</Label>
@@ -71,6 +92,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s name'
               value={item.itemName}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -82,6 +104,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s Description'
               value={item.itemDescription}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -93,6 +116,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s price'
               value={item.itemPrice}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -104,10 +128,11 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s category Name'
               value={item.categoryName}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
-          <Button type='submit'>Submit</Button>
-        </Form>
+          <Button type='submit' color='success' onClick={handleSubmit}>Submit</Button>
+        </NewItemForm>
       </div>
     </>
   );

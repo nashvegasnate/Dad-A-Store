@@ -3,7 +3,23 @@ import PropTypes from 'prop-types';
 import {
   Button, Form, FormGroup, Input, Label
 } from 'reactstrap';
+import styled from 'styled-components';
 import { addPaymentType, updatePaymentType } from '../helpers/data/paymentTypesData';
+
+const NewPaymentForm = styled.div`
+  border: 3px;
+  border-bottom-style: double;
+  border-color: #2F8F20;
+  background-color: lightGrey;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  width: 450px;
+  justify-items: center;
+  `;
 
 const PaymentForm = ({
   formTitle,
@@ -26,7 +42,6 @@ const PaymentForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (paymentUpdate.paymentID !== null) {
-      // console.warn(paymentUpdate); .paymentID, payment
       updatePaymentType(paymentUpdate).then(setPayments);
       // setPaymentUpdate(!paymentUpdate);
     } else {
@@ -60,6 +75,7 @@ const PaymentForm = ({
             defaultValue={paymentType}
             type='text'
             placeholder='Enter Payment Type'
+            required
             onChange={handleInputChange}
           />
         </FormGroup>

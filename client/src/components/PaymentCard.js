@@ -38,7 +38,7 @@ function PaymentTypeCard({
         <CardBody>
           <CardTitle tag="h3">Payment Type: {paymentType}</CardTitle>
           <br />
-          <CardText>User: {user.uid}</CardText>
+          <CardText>User: {user.userName}</CardText>
           <Button className="deleteBtn" onClick={() => handleClick('delete')}>Delete</Button>
         <Button className="editBtn" onClick={() => handleClick('edit')}>Edit</Button>
         {editing

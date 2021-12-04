@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import {
   Card,
   CardText,
@@ -7,9 +6,26 @@ import {
   CardTitle,
   Button
 } from 'reactstrap';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { deleteDepartment } from '../helpers/data/departmentsData';
 import EditDepartmentForm from './EditDepartmentForm';
+
+const DeptCard = styled.div`
+display: flex;
+flex-flow: row-wrap;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content: space-around;
+align-self: auto;
+flex-basis: 20em;
+margin: 15px;
+margin-top: 20px;
+margin-bottom: 20px;
+background-color: lightGrey;
+box-shadow: 10px;
+border: 5px double #2F8F20;
+`;
 
 function DepartmentCard({
   departmentID,
@@ -28,29 +44,14 @@ function DepartmentCard({
         break;
       case 'update':
         setUpdating((prevState) => !prevState);
-        console.warn(departmentID);
         break;
       default:
         console.warn('nothing selected');
     }
   };
 
-  const DeptCard = styled.div`
-  display: flex;
-  flex-flow: row-wrap;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-around;
-  align-self: auto;
-  flex-basis: 20em;
-  margin: 15px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  box-shadow: 10px;
-  border: 6px ridge darkgrey;
-`;
-
   return (
+    <div>
     <DeptCard>
       <Card className='department-cards p-2'>
           <CardBody>
@@ -60,7 +61,7 @@ function DepartmentCard({
               <CardText>User: {user.uid}</CardText>
           </CardBody>
           <Button className="btn-md mr-2 ml-2 mt-2" color="danger" onClick={() => handleClick('delete')}>DELETE DEPARTMENT</Button>
-          <Button className="btn-md mr-2 ml-2 mt-2" color="primary" onClick={() => handleClick('update')}>
+          <Button className="btn-md mr-2 ml-2 mt-2" color="info" onClick={() => handleClick('update')}>
           {updating ? 'CLOSE FORM' : 'EDIT DEPARTMENT'}
           </Button>
           {
@@ -74,6 +75,7 @@ function DepartmentCard({
           }
       </Card>
     </DeptCard>
+    </div>
   );
 }
 

@@ -5,7 +5,6 @@ import { Button } from 'reactstrap';
 import { addUserToDB, updateUser } from '../helpers/data/usersData';
 
 function UserForm({
-  user,
   userFirst,
   userLast,
   userAddress1,
@@ -58,14 +57,13 @@ function UserForm({
       history.push('/profile');
     } else {
       addUserToDB(newUser);
-      console.warn(user);
     }
   };
 
   return (
     <div>
       <form className='mt-3' id='add-expense-form' autoComplete='off' onSubmit={handleSubmit}>
-        <h2>Create your Dad-A-Store account.</h2>
+        <h4>Create your Dad-A-Store account</h4>
         <label>First Name:</label>
         <input
         className='ml-2'
@@ -73,7 +71,8 @@ function UserForm({
         type='text'
         placeholder='First'
         value={newUser.userFirst}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>Last Name:</label>
         <input
@@ -82,7 +81,8 @@ function UserForm({
         type='text'
         placeholder='Last'
         value={newUser.userLast}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>Address1:</label>
         <input
@@ -91,7 +91,9 @@ function UserForm({
         type='text'
         placeholder='Address'
         value={newUser.userAddress1}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required
+        />
         <br/>
         <label>Address2:</label>
         <input
@@ -100,7 +102,8 @@ function UserForm({
         type='text'
         placeholder='Apt #'
         value={newUser.userAddress2}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        />
         <br/>
         <label>City:</label>
         <input
@@ -109,7 +112,8 @@ function UserForm({
         type='text'
         placeholder='City'
         value={newUser.userCity}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>State:</label>
         <input
@@ -118,7 +122,8 @@ function UserForm({
         type='text'
         placeholder='State'
         value={newUser.userState}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>Zip Code:</label>
         <input
@@ -127,7 +132,8 @@ function UserForm({
         type='number'
         placeholder='37122'
         value={newUser.userZip}
-        onChange={handleNumberInput} />
+        onChange={handleNumberInput}
+        required />
         <br/>
        <br/>
         <label>Payment Type:</label>
@@ -137,7 +143,8 @@ function UserForm({
         type='text'
         placeholder='Visa, MasterCard...'
         value={newUser.paymentType}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <Button color='success' type='submit'>Submit</Button>
       </form>
@@ -146,7 +153,6 @@ function UserForm({
 }
 
 UserForm.propTypes = {
-  user: PropTypes.any,
   userFirst: PropTypes.any,
   userLast: PropTypes.any,
   userAddress1: PropTypes.any,

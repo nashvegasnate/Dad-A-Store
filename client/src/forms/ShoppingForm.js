@@ -3,8 +3,24 @@ import PropTypes from 'prop-types';
 import {
   Button, Form, Input, Label
 } from 'reactstrap';
+import styled from 'styled-components';
 import { getItemByName } from '../helpers/data/itemsData';
 import ItemCard from '../components/ItemCard';
+
+const NewShoppingForm = styled.div`
+  border: 3px;
+  border-bottom-style: double;
+  border-color: #2F8F20;
+  background-color: lightGrey;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  width: 450px;
+  justify-items: center;
+  `;
 
 export default function ShoppingForm({ user, setItems, userFromDB }) {
   const [searchItem, setSearchItem] = useState('');

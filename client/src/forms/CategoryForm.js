@@ -3,7 +3,23 @@ import PropTypes from 'prop-types';
 import {
   Button, Form, FormGroup, Input, Label
 } from 'reactstrap';
+import styled from 'styled-components';
 import { addCategory, updateCategory } from '../helpers/data/categoriesData';
+
+const NewCategoryForm = styled.div`
+  border: 3px;
+  border-bottom-style: double;
+  border-color: #2F8F20;
+  background-color: lightGrey;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  width: 450px;
+  justify-items: center;
+  `;
 
 const CategoryForm = ({
   formTitle,
