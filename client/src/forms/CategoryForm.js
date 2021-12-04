@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, FormGroup, Input, Label
+  Button, FormGroup, Input, Label
 } from 'reactstrap';
+import styled from 'styled-components';
 import { addCategory, updateCategory } from '../helpers/data/categoriesData';
+
+const StyledCategoryForm = styled.div`
+  border: 3px;
+  border-bottom-style: double;
+  border-color: #2F8F20;
+  background-color: lightGrey;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  width: 450px;
+  justify-items: center;
+  `;
 
 const CategoryForm = ({
   formTitle,
@@ -56,7 +72,7 @@ const CategoryForm = ({
 
   return (
     <div className='category-form'>
-      <Form
+      <StyledCategoryForm
         id='addCategoryForm'
         autoComplete='off'
         onSubmit={handleSubmit}
@@ -70,6 +86,7 @@ const CategoryForm = ({
             defaultValue={categoryName}
             type='text'
             placeholder='Enter Category'
+            required
             onChange={handleInputChange}
           />
         </FormGroup>
@@ -81,6 +98,7 @@ const CategoryForm = ({
             defaultValue={categoryDescription}
             type='text'
             placeholder='Enter Description'
+            required
             onChange={handleInputChange}
           />
         </FormGroup>
@@ -92,11 +110,12 @@ const CategoryForm = ({
             defaultValue={departmentName}
             type='text'
             placeholder='Enter Department'
+            required
             onChange={handleInputChange}
           />
         </FormGroup>
         <Button type='submit'>Submit</Button>
-        </Form>
+        </StyledCategoryForm >
     </div>
   );
 };

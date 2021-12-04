@@ -26,10 +26,6 @@ const NavBar = ({ user, registeredUser }) => {
       </NavItem>
 
       <NavItem>
-        <Link className="nav-link" to="/itemsForms">Items-Form</Link>
-      </NavItem>
-
-      <NavItem>
         <Link className="nav-link" to="/categories">Categories</Link>
       </NavItem>
 
@@ -38,15 +34,9 @@ const NavBar = ({ user, registeredUser }) => {
       </NavItem>
 
       <NavItem>
-      <Link className="nav-link" to="/paymenttypes">Payments</Link>
+        <Link className="nav-link" to="/paymenttypes">Payments</Link>
       </NavItem>
 
-      <NavItem>
-        <Link className="nav-link" to="/cart"><ImCart /> Cart</Link>
-      </NavItem>
-      <NavItem>
-        <Link className="nav-link" to="/myorders">My Orders</Link>
-      </NavItem>
     </>
   );
 
@@ -75,6 +65,14 @@ const NavBar = ({ user, registeredUser }) => {
           }
           <NavItem>
             <Link className="nav-link" to="/profile"><ImUserTie /> Profile</Link>
+          </NavItem>
+
+          <NavItem>
+            <Link className="nav-link" to="/myorders">My Orders</Link>
+          </NavItem>
+
+          <NavItem>
+            <Link className="nav-link" to="/cart"><ImCart /> Cart</Link>
           </NavItem>
         </Nav>
         </Collapse>

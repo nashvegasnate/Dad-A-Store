@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
+import ItemsForm from '../components/ItemsForm';
+import ShoppingForm from '../forms/ShoppingForm';
 
 const ItemContainer = styled.div`
 display: flex;
@@ -30,9 +32,14 @@ const ItemButton = styled.div`
   `;
 
 function Items({
-  items
+  user, items, setItems, userFromDB
 }) {
+  const [showAddItem, setAddItem] = useState(false);
   const history = useHistory();
+
+  const handleClick = () => {
+    setAddItem((prevState) => !prevState);
+  };
 
   const handlePush = (itemID) => {
     history.push(`/itemsSingleView/${itemID}`);
@@ -40,6 +47,29 @@ function Items({
 
   return (
     <div className='col-lg-12'>
+    <div>
+      <h1>Shop and Find</h1>
+      <ShoppingForm
+        user={user}
+        setItems={setItems}
+        userFromDB={userFromDB}
+      />
+      </div>
+      <br/>
+    <div>
+      {!showAddItem
+        ? <Button className="addItmBtn" color="success" onClick={handleClick}>Add Item</Button>
+        : <div>
+              <Button className="closeForm" onClick={handleClick}>Close Form</Button>
+              <ItemsForm
+              setAddItem={setAddItem}
+              setItems={setItems}
+                userFromDB={userFromDB}
+                user={user}
+              />
+          </div>
+      }
+    </div>
       <h3>ALL ITEMS</h3>
       <ItemContainer className="item-container">
         {items.map((item, itemID) => (
@@ -53,7 +83,10 @@ function Items({
 }
 
 Items.propTypes = {
+  user: PropTypes.any,
   items: PropTypes.array.isRequired,
+  setItems: PropTypes.func.isRequired,
+  userFromDB: PropTypes.any.isRequired
 };
 
 export default Items;
