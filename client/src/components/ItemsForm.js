@@ -67,14 +67,6 @@ const ItemsForm = ({
     } else {
       additem(item).then((itemsArray) => setItems(itemsArray));
       history.push('/items');
-
-      // setItem({
-      //   itemName: '',
-      //   itemDescription: '',
-      //   itemPrice: '',
-      //   categoryName: '',
-      //   sellerID: ''
-      // });
     }
   };
 

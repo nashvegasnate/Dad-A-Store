@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import ItemsView from '../views/ItemsView';
-import ItemsFormView from '../views/ItemsFormsView';
 import Categories from '../views/Categories';
 import DepartmentsView from '../views/DepartmentsView';
 import Cart from '../views/Cart';
@@ -14,7 +13,6 @@ import MyOrders from '../views/MyOrders';
 import SingleOrder from '../views/SingleOrder';
 import SingleCompleteOrder from '../views/SingleCompleteOrder';
 import ProfileView from '../views/ProfileView';
-import ShopView from '../views/ShopView';
 
 const PrivateRoute = ({
   component: Component,
@@ -61,27 +59,6 @@ function Routes({
           userFromDB={userFromDB}
           path='/items'
           component={() => <ItemsView
-            user={user}
-            items={items}
-            setItems={setItems}
-            userFromDB={userFromDB}
-          />}
-        />
-        <PrivateRoute
-          user={user}
-          registeredUser={registeredUser}
-          path='/itemsForms'
-          component={() => <ItemsFormView
-            user={user}
-            setItems={setItems}
-            userFromDB={userFromDB}
-          />}
-        />
-        <PrivateRoute
-          user={user}
-          registeredUser={registeredUser}
-          path='/shop'
-          component={() => <ShopView
             user={user}
             items={items}
             setItems={setItems}

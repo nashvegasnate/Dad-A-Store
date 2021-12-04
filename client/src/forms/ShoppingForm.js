@@ -38,16 +38,20 @@ function ShoppingForm({ user, setItems, userFromDB }) {
     getItemByName(searchItem.SearchInput).then((Response) => {
       setResultSearch(Response);
     });
+
+    // Clears Input Fields
+    setSearchItem({
+      [e.target.name]: ''
+    });
   };
 
   return (
-    <div className="search-form">
-      <Form id="SearchForm" autoComplete="off" onSubmit={handleSearch}>
+    <div className="shopping-form">
+      <Form id="ShoppingForm" autoComplete="off" onSubmit={handleSearch}>
         <Label for="Search Items">Search Items</Label>
         <Input
           name="SearchInput"
           id="SearchInput"
-          // value={item.itemName}
           type="text"
           placeholder="Search"
           onChange={handleInputChange}
@@ -55,7 +59,8 @@ function ShoppingForm({ user, setItems, userFromDB }) {
         <Button type="submit">Search</Button>
       </Form>
       <div className="item-container">
-        {resultSearch.length > 0 ? (
+        {resultSearch.length > 0
+        && (
           <ItemCard
             key={resultSearch[0].itemID}
             itemID={resultSearch[0].itemID}
@@ -71,8 +76,6 @@ function ShoppingForm({ user, setItems, userFromDB }) {
             setItems={setItems}
             userFromDB={userFromDB}
           />
-        ) : (
-          ''
         )}
       </div>
     </div>
