@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ShoppingForm from '../forms/ShoppingForm';
 
-export default function ShopView({
-  user, setItems, userFromDB }) {
+export default function ShopView({ user, setItems, userFromDB }) {
   return (
     <div>
       <h1>Shop and Find</h1>
