@@ -92,6 +92,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s name'
               value={item.itemName}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -103,6 +104,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s Description'
               value={item.itemDescription}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -114,6 +116,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s price'
               value={item.itemPrice}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <FormGroup>
@@ -125,6 +128,7 @@ const ItemsForm = ({
               placeholder='Please enter the item&#39;s category Name'
               value={item.categoryName}
               onChange={handleInputChange}
+              required
              />
           </FormGroup>
           <Button type='submit' color='success' onClick={handleSubmit}>Submit</Button>

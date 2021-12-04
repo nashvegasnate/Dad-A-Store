@@ -71,7 +71,8 @@ function UserForm({
         type='text'
         placeholder='First'
         value={newUser.userFirst}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>Last Name:</label>
         <input
@@ -80,7 +81,8 @@ function UserForm({
         type='text'
         placeholder='Last'
         value={newUser.userLast}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>Address1:</label>
         <input
@@ -89,7 +91,9 @@ function UserForm({
         type='text'
         placeholder='Address'
         value={newUser.userAddress1}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required
+        />
         <br/>
         <label>Address2:</label>
         <input
@@ -98,7 +102,8 @@ function UserForm({
         type='text'
         placeholder='Apt #'
         value={newUser.userAddress2}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        />
         <br/>
         <label>City:</label>
         <input
@@ -107,7 +112,8 @@ function UserForm({
         type='text'
         placeholder='City'
         value={newUser.userCity}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>State:</label>
         <input
@@ -116,7 +122,8 @@ function UserForm({
         type='text'
         placeholder='State'
         value={newUser.userState}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <label>Zip Code:</label>
         <input
@@ -125,7 +132,8 @@ function UserForm({
         type='number'
         placeholder='37122'
         value={newUser.userZip}
-        onChange={handleNumberInput} />
+        onChange={handleNumberInput}
+        required />
         <br/>
        <br/>
         <label>Payment Type:</label>
@@ -135,7 +143,8 @@ function UserForm({
         type='text'
         placeholder='Visa, MasterCard...'
         value={newUser.paymentType}
-        onChange={handleInputChange} />
+        onChange={handleInputChange}
+        required />
         <br/>
         <Button color='success' type='submit'>Submit</Button>
       </form>
