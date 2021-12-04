@@ -59,6 +59,13 @@ const ItemsForm = ({
     }));
   };
 
+  const handleNumberInput = (e) => {
+    setItem((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.valueAsNumber
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (item.itemID) {
@@ -104,10 +111,10 @@ const ItemsForm = ({
             <Input
               name='itemPrice'
               id='itemPrice'
-              type='text'
+              type='number'
               placeholder='Please enter the item&#39;s price'
               value={item.itemPrice}
-              onChange={handleInputChange}
+              onChange={handleNumberInput}
               required
              />
           </FormGroup>
