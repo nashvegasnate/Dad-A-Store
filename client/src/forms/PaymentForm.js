@@ -62,7 +62,7 @@ const PaymentForm = ({
             onChange={handleInputChange}
           />
         </FormGroup>
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' color='success'>Submit</Button>
         </Form>
     </div>
   );

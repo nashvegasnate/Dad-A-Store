@@ -31,7 +31,7 @@ function Departments({ user }) {
     <div className="departments-page">
       <section className="header mt-2">
       { !showButton
-        ? <Button className="m-2 btn-lg" color="primary" onClick={handleClick}>Add Department</Button>
+        ? <Button className="m-2 btn-lg" color="success" onClick={handleClick}>Add Department</Button>
         : <div>
           <Button className="m-2 btn-lg" color="danger" onClick={handleClick}>Close</Button>
           <AddDepartmentForm className="justify-content-center mt-3" departments={departments} setDepartments={setDepartments} setShowButton={setShowButton} user={user} />

@@ -22,6 +22,8 @@ const CatCard = styled.div`
   background-color: lightGrey;
   box-shadow: 10px;
   border: 5px double #2F8F20;
+  width: 400px;
+  height: 250px;
 `;
 
 function CategoryCard({
@@ -57,7 +59,7 @@ function CategoryCard({
 
   return (
         <div>
-            <CatCard className='category-cards'>
+            <CatCard className='category-cards p-2'>
           <CardBody>
               <CardTitle tag="h3">Category: {categoryName}</CardTitle>
               {/* <CardText>Category ID: {categoryID}</CardText> */}

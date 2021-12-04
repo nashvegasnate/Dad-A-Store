@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import {
   Card, CardText, CardBody,
   CardTitle, Button
@@ -7,6 +8,16 @@ import PropTypes from 'prop-types';
 import { getCompletedOrders, getOpenOrders } from '../helpers/data/ordersData';
 import OpenOrderCard from '../components/OpenOrderCard';
 import CompletedOrderCard from '../components/CompletedOrderCard';
+
+const OpenOrdContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  padding: 20px;
+  margin: 20px;
+  z-index: -1;
+  `;
 
 function MyOrders({ userFromDB }) {
   const [openOrders, setOpenOrders] = useState(null);
@@ -35,7 +46,8 @@ function MyOrders({ userFromDB }) {
 
   return (
     <div>
-      <Card className='income-cards'>
+      <OpenOrdContainer>
+      <Card className='income-cards' style={{ backgroundColor: 'lightgray' }}>
         <CardBody>
           <CardTitle tag="h3">This is your orders page</CardTitle>
           <CardText>{userFromDB.userFirst} {userFromDB.userLast}</CardText>
@@ -44,7 +56,7 @@ function MyOrders({ userFromDB }) {
             openOrders && <Button className='mt-1' color='info' onClick={() => handleClick('open')}>Open Orders</Button>
           }
           {
-            completedOrders && <Button className='ml-1 mt-1' color='info' onClick={() => handleClick('completed')}>Completed Orders</Button>
+            completedOrders && <Button className='ml-1 mt-1' color='warning' onClick={() => handleClick('completed')}>Completed Orders</Button>
           }
           {
             viewingOpen && <h2>Open Orders View</h2>
@@ -79,6 +91,7 @@ function MyOrders({ userFromDB }) {
           }
         </CardBody>
       </Card>
+      </OpenOrdContainer>
     </div>
   );
 }

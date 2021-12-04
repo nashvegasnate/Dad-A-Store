@@ -4,19 +4,29 @@ import styled from 'styled-components';
 // import { Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
+const ItemContainer = styled.div`
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+padding: 10px;
+margin: 10px;
+z-index: -1;
+`;
+
 const ItemButton = styled.div`
-  border: 3px;
-  border-bottom-style: double;
+  border: 3px double;
   border-color: #2F8F20;
-  background-color: lightGrey;
-  display: flex;
+  background-color: lightgray;
   justify-content: center;
-  width: auto;
+  width: 20em;
   font-family: Calibri;
   font-size: 30px;
   flex-wrap: wrap;
   padding: 15px;
   margin: 10px;
+  border-radius: 20px;
   `;
 
 function Items({
@@ -31,11 +41,13 @@ function Items({
   return (
     <div className='col-lg-12'>
       <h3>ALL ITEMS</h3>
+      <ItemContainer className="item-container">
         {items.map((item, itemID) => (
           <h3 key={itemID}>
-            <ItemButton className='mt-5' color='info' onClick={() => handlePush(item.itemID)}>{item.itemName}</ItemButton>
+            <ItemButton className='mt-5' onClick={() => handlePush(item.itemID)}>{item.itemName}</ItemButton>
           </h3>
         ))}
+      </ItemContainer>
     </div>
   );
 }

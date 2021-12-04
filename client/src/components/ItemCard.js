@@ -74,12 +74,14 @@ function ItemCard({
           <CardText>Seller ID: {sellerID}</CardText>
           <CardText>User: {user.userName}</CardText>
           <Button
-            color="success"
+            className="btn-md mr-2 ml-2 mt-2"
+            color="info"
             onClick={() => handleClick('edit')}
             size="sm">
             {editing ? 'Close Form' : 'Edit Item' }
           </Button>
           <Button
+            className="btn-md mr-2 ml-2 mt-2"
             color="danger"
             onClick={() => handleClick('delete')}
             size="sm">Delete
@@ -98,7 +100,8 @@ function ItemCard({
                           setItems={setItems}
                           userFromDB={userFromDB} />}
           <Button
-            color="info"
+            className="btn-md mr-2 ml-2 mt-2"
+            color="success"
             onClick={() => handleAddItemToCart()}
             size="sm">Add To Cart
           </Button>

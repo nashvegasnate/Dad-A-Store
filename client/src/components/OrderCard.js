@@ -1,8 +1,27 @@
 import React from 'react';
+// import styled from 'styled-components';
 import {
   Card, CardText, CardBody, CardTitle
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+
+// const OrdCard = styled.div`
+//   display: flex;
+//   flex-flow: row-wrap;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-self: auto;
+//   flex-basis: 20em;
+//   margin: 15px;
+//   margin-top: 20px;
+//   margin-bottom: 20px;
+//   background-color: lightGrey;
+//   box-shadow: 10px;
+//   border: 5px double #2F8F20;
+//   width: 400px;
+//   height: 250px;
+// `;
 
 function OrderCard({
   orderID,

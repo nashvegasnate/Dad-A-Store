@@ -47,7 +47,7 @@ function CartDetailCard({
            { item && <CardText>Description: {item[0].itemDescription}</CardText> }
           <CardText>Item Price: ${itemPrice}</CardText>
           <CardText>Quantity: {itemQuantity}</CardText>
-          <Button className='mt-1' color='info' onClick={() => handleClick('edit')}> {editing ? 'Close' : 'Edit'}
+          <Button className='m-1 btn-md' color='info' onClick={() => handleClick('edit')}> {editing ? 'Close' : 'Edit'}
           </Button>
           {
             editing && <CartDetailForm
@@ -58,7 +58,7 @@ function CartDetailCard({
             setCart={setCart}
             />
           }
-          <Button className='mt-1' color='danger' onClick={() => handleClick('delete')}>Remove</Button>
+          <Button className='m-1 btn-md' color='danger' onClick={() => handleClick('delete')}>Remove</Button>
           <br />
         </CardBody>
       </Card>

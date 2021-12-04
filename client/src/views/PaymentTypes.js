@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import PaymentTypeCard from '../components/PaymentCard';
 import PaymentForm from '../forms/PaymentForm';
+
+const PaymentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+  z-index: -1;
+  `;
 
 export default function Payments({
   user, payments, setPayments
@@ -17,12 +28,10 @@ export default function Payments({
     <div className="paymentView">
       <div className="card-container">
       <br />
-
-    <div>
     {!showAddPayment
-      ? <Button className="addPayBtn" onClick={handleClick}>Add Payment</Button>
+      ? <Button className="addPayBtn" color="success" onClick={handleClick}>Add Payment</Button>
       : <div>
-            <Button className="closeForm" onClick={handleClick}>Close Form</Button>
+            <Button className="closeForm" color="danger" onClick={handleClick}>Close Form</Button>
             <PaymentForm
             setAddPayment={setAddPayment}
               setPayments={setPayments}
@@ -31,7 +40,8 @@ export default function Payments({
         </div>
     }
     </div>
-      {/* <h2>Payment Type Info for {user.userName}</h2> */}
+      <h3>Payments</h3>
+      <PaymentContainer className="payments-container align-content-center" id="payments-container">
       {
          payments.map((paymentInfo) => (
           <PaymentTypeCard
@@ -43,7 +53,7 @@ export default function Payments({
           />
          ))
       }
-      </div>
+      </PaymentContainer>
     </div>
   );
 }

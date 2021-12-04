@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { getOpenCart } from '../helpers/data/cartData';
 import getCartDetails from '../helpers/data/cartDetailsData';
 import CartDetailCard from '../components/CartDetailCard';
 import CartCard from '../components/CartCard';
+
+const CartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+  z-index: -1;
+  `;
 
 function Cart({ userFromDB }) {
   const [cart, setCart] = useState(null);
@@ -25,6 +36,7 @@ function Cart({ userFromDB }) {
   return (
     <div>
       <h2> This is your cart</h2>
+      <CartContainer>
       {
         cartDetails.map((cartInfo) => (
           <CartDetailCard
@@ -43,6 +55,7 @@ function Cart({ userFromDB }) {
       cart={cart}
       />
       }
+      </CartContainer>
     </div>
   );
 }
